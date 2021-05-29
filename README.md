@@ -4,6 +4,9 @@ This template should help get you started developing with Vue 3 and Typescript i
 
 ## 在线编辑简历
 
+### 技术栈
+
+* vue3 + ant-design-vue + TypeScript + Vite 
 ### 功能
 
 * 选择简历模版
