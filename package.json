@@ -7,6 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons-vue": "^6.0.1",
     "ant-design-vue": "^2.1.6",
     "vue": "^3.0.5",
     "vue-router": "^4.0.8"

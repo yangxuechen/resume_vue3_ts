@@ -2,7 +2,7 @@
     <div class="temp01-box">
         <div class="left-box">
            <Avatar :data="data"></Avatar>
-           
+           <PersonInfo></PersonInfo>
         </div>
         <div class="right-box">
             right
@@ -12,7 +12,8 @@
   
   <script lang="ts" setup>
      /** 左右排版 3 7 布局 */
-     import Avatar from '../../components/layout/Avatar.vue'
+     import Avatar from '../../components/layout/Avatar.vue';
+     import PersonInfo from '../../components/layout/PersonInfo.vue'
      interface AvatarData{
           name:string;
           desc:string;
