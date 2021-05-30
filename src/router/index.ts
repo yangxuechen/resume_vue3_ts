@@ -9,6 +9,7 @@ const routes: Array<RouteRecordRaw> = [
         children:[
             { path:'/resumeTemplate',component: () => import('../views/user/ResumeTemplate.vue')},
             { path:'/mineResume',component: () => import('../views/user/MineResume.vue')},
+            { path:'/resumeEdit',component: () => import('../views/user/ResumeEdit.vue')},
         ]
      },
     { path:'/test', name:'test',component: () => import('../components/Test.vue')},

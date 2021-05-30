@@ -37,6 +37,7 @@
            border-bottom-width: 1px;
            border-bottom-color: #00000021;
            border-bottom-style: solid;
+           z-index: 100;
         //    padding: 15px;
 
            .leftBox{
