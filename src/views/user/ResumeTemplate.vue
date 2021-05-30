@@ -51,7 +51,7 @@ interface ResumeData{
   ]
 
   const toResumeEdit =(resumeTitle:string)=>{
-    route.push({path:'/resumeEdit',params:{name:resumeTitle}})
+    route.push({path:'/resumeEdit',query:{name:resumeTitle}})
   }
 </script>
 

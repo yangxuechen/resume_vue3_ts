@@ -1,22 +1,70 @@
 <template>
-    <div >
-        <div>
-          简历编辑
+    <div class="rs-edit-box">
+        <div class="rs-edit">
+          {{msg}}
+          <Template01></Template01>
         </div>
-       
+       <div class="toolMenu">
+         <div class="item">
+          <a-button type="primary" ghost>保存</a-button>
+         </div>
+         <div class="item">
+          <a-button type="danger" ghost>导出pdf</a-button>
+         </div>
+       </div>
     </div>
   </template>
   
-  <script lang="ts">
-     import { toRaw } from '@vue/reactivity';
-import route from '../../router'
+  <script lang="ts" setup>
+     
+     
+     import { computed, ref } from 'vue';
+     import route from '../../router';
+     import Template01 from '../template/Template01.vue'
+      const msg2 =ref<string>('1');   
+    
+     const msg =computed(()=>{
 
-     console.log(route.currentRoute.value.params,'param');
-     console.log(toRaw(route.currentRoute),'ro');
+        console.log(route.currentRoute.value.query,'currentRoute');
+        
+        return route.currentRoute.value.query.name;
+     })
+
+    // console.log(route.currentRoute.value.query,'route');
+     
      
   </script>
   
   <style lang="less" scoped>
-  
-   
+     .rs-edit-box{
+       display: flex;
+       justify-content: center;
+
+       .rs-edit{
+         width: 700px;
+         height: 900px;
+         overflow: auto;
+        //  background-color: chocolate;
+         margin-top: 25px;
+         margin-bottom: 50px;
+         border: 5px #e6e4deba solid;
+         padding: 15px;
+       }
+
+
+       .toolMenu{
+         position: fixed;
+         right: 50px;
+         top: 80px;
+
+         .item{ 
+           padding: 15px;
+         }
+
+         button{
+          width: 100px;
+         }
+       }
+
+     }
   </style>
