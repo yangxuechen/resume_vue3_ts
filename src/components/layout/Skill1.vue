@@ -1,51 +1,52 @@
 <template>
     <div class="info-box">
         <div class="title">
-            <UserOutlined :style="{fontSize: '20px', color: 'black'}"  />
-         <h4>个人信息</h4>
+            <PushpinOutlined :style="{fontSize: '20px', color: 'black'}"  />
+         <h4>技能特长</h4>
         </div>
-         <div class="info">
-             <div><ManOutlined /></div>
-             <div class="info-desc"><input class="input_dash name" value="男"></div>
-         </div>
-         <div class="info">
-             <div><PaperClipOutlined /></div>
-             <div class="info-desc"><input class="input_dash name" value="24"></div>
-         </div>
-         <div class="info">
-             <div><UsergroupAddOutlined /></div>
-             <div class="info-desc"><input class="input_dash name" value="汉"></div>
-         </div>
-         <div class="info">
-             <div><SolutionOutlined /></div>
-             <div class="info-desc"><input class="input_dash name" value="本科"></div>
-         </div>
-         <div class="info">
-             <div><HourglassOutlined /></div>
-             <div class="info-desc"><input class="input_dash name" value="2年"></div>
-         </div>
-         <div class="info">
-             <div><PhoneOutlined /></div>
-             <div class="info-desc"><input class="input_dash name" value="18328486111"></div>
-         </div>
-         <div class="info">
-             <div><MailOutlined /></div>
-             <div class="info-desc"><input class="input_dash name" value="88888888@qq.com"></div>
-         </div>
+        <div v-for="record in skilllist">
+          <div class="skill-box">
+            <div><input class="input_dash" :value="record.key"></div>
+            <div><input class="input_dash" :value="record.value" style="text-align: right;"></div>
+           </div>
+          <div class="progress-box">
+            <a-progress :percent="record.process" :show-info="false" strokeColor="#9e9494" />
+          </div>
+        </div>
+       
     </div>
   </template>
-  
+
+
+<script lang="ts">
+   interface Skill{
+       key:string;
+       value:string;
+       process:number
+   }
+</script>
   <script lang="ts" setup>
   
   import {UserOutlined,ManOutlined,
     PaperClipOutlined,UsergroupAddOutlined,
-    SolutionOutlined,HourglassOutlined,PhoneOutlined,MailOutlined} from '@ant-design/icons-vue'
+    SolutionOutlined,HourglassOutlined,PhoneOutlined,MailOutlined,PushpinOutlined} from '@ant-design/icons-vue'
+import { reactive } from 'vue';
+
+    const skilllist = reactive<Skill[]>([
+        {key:'javascript',value:'良好',process:80},
+        {key:'html5',value:'良好',process:50},
+        {key:'css3',value:'良好',process:60},
+        {key:'node.js',value:'良好',process:50},
+        {key:'vue3.js',value:'良好',process:50},
+        {key:'java',value:'良好',process:50},
+    ])
   </script>
   
   <style lang="less" scoped>
       .info-box{
           width: 100%;
           padding: 0 15px;
+          margin: 15px auto;
           color: white;
           .title{
               background-color: white;
@@ -80,10 +81,16 @@
               }
           }
 
+          .skill-box{
+              display: flex;
+              justify-content: space-between;
+              padding: 5px 0;
+          }
+
       }
 
       .input_dash{
-          width: 170px;
+          width:100px;
           height: 20px;
               border-color:white;
             //   padding: 5px;
@@ -105,5 +112,10 @@
                border-width: 1px;
                border-style: dotted;    
                
+           }
+
+           .progress-box{
+               padding: 0;
+               margin-top: -10px;
            }
   </style>

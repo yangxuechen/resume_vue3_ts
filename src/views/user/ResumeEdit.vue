@@ -41,7 +41,7 @@
        justify-content: center;
 
        .rs-edit{
-         width: 700px;
+         width: 800px;
          height: 900px;
          overflow: auto;
         //  background-color: chocolate;
