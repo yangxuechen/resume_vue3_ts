@@ -1,31 +1,31 @@
 <template>
     <div class="info-box">
         <div class="title">
-            <PushpinOutlined :style="{fontSize: '30px', color: 'white'}"  />
-         <h4>求职意向</h4>
+            <div style="display: flex;align-items: center;">
+                <PushpinOutlined :style="{fontSize: '30px', color: 'white'}"  />
+                <h4>教育背景</h4>
+            </div>
+         <div style="padding-right: 25px;">
+            <a-button type="link" @click="addEdu" class="btn">添加教育经历</a-button>
+        </div>
         </div>
        
-        <div class="intension-desc">
+        <div class="intension-desc" >
+            <div v-for="item in state.dateset" class="item-box">
+                <div class="item">
+                  <input class="input_dash" :value="item.date" style="width: 120px;">
+                </div>
              <div class="item">
-                
-                <UserOutlined :style="{fontSize: '20px', color: 'black'}"  />
-                <input class="input_dash" value="前端工程师">
+                <input class="input_dash" :value="item.school" style="width: 120px;">
              </div>
              <div class="item">
-              
-                <ShopFilled :style="{fontSize: '20px', color: 'black'}"  />
-                <input class="input_dash" value="成都">
+                <input class="input_dash" :value="item.major">
              </div>
              <div class="item">
-               
-                <TransactionOutlined :style="{fontSize: '20px', color: 'black'}"  />
-                <input class="input_dash" value="15k">
+                <input class="input_dash" :value="item.eduction" style="width: 50px;">
              </div>
-             <div class="item">
-               
-                <HourglassFilled :style="{fontSize: '20px', color: 'black'}"  />
-                <input class="input_dash" value="一周内">
-             </div>
+            </div>
+            
         </div>
        
     </div>
@@ -33,10 +33,11 @@
 
 
 <script lang="ts">
-   interface Skill{
-       key:string;
-       value:string;
-       process:number
+   interface Edu{
+       date:string;
+       school:string;
+       major:string;
+       eduction:string;
    }
 </script>
   <script lang="ts" setup>
@@ -44,16 +45,22 @@
   import {UserOutlined,ManOutlined,
     PaperClipOutlined,UsergroupAddOutlined,
     SolutionOutlined,HourglassFilled,ShopFilled,TransactionOutlined,PushpinOutlined} from '@ant-design/icons-vue'
-import { reactive } from 'vue';
+import { message } from 'ant-design-vue';
+  import { reactive } from 'vue';
 
-    const skilllist = reactive<Skill[]>([
-        {key:'javascript',value:'良好',process:80},
-        {key:'html5',value:'良好',process:50},
-        {key:'css3',value:'良好',process:60},
-        {key:'node.js',value:'良好',process:50},
-        {key:'vue3.js',value:'良好',process:50},
-        {key:'java',value:'良好',process:50},
-    ])
+  const state =reactive({
+      dateset: [{date:'2016~2020',school:'行知大学',major:'软件工程',eduction:'本科'}] as Edu[],
+  })
+
+  const addEdu =()=>{
+      if(state.dateset.length>2){
+          message.warning('最多允许添加3条记录');
+      }else{
+        state.dateset.push({date:'2016~2020',school:'行知大学',major:'软件工程',eduction:"硕士"});
+        message.success('添加成功')
+      }
+    
+  }
   </script>
   
   <style lang="less" scoped>
@@ -72,7 +79,7 @@ import { reactive } from 'vue';
               padding-left: 10px;
               display: flex;
              align-items: center;
-
+              justify-content: space-between;
              h4{
                  margin: 0 0 0 5px;
                  color: white;
@@ -105,7 +112,7 @@ import { reactive } from 'vue';
       }
 
       .input_dash{
-          max-width:80px;
+          width:90px;
           height: 20px;
               border-color:white;
             //   padding: 5px;
@@ -135,13 +142,29 @@ import { reactive } from 'vue';
            }
 
            .intension-desc{
-               display: flex;
+              
+               padding: 25px 10px;
+
+               .item-box{
+                display: flex;
                justify-content: space-around;
-            padding: 20px 1px;
+               padding: 5px 10px;
+               }
                .item{
-                   padding: 15px;
+                   padding: 5px;
                    display: flex;
                    align-items: center;
                }
+           }
+
+           .btn{
+               color: #25272a;
+
+              
+           }
+
+           .btn:hover{
+             color: azure;
+             transform: scale(1.1);
            }
   </style>

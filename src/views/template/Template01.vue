@@ -7,6 +7,7 @@
         </div>
         <div class="right-box">
            <JobIntension></JobIntension>
+           <Eduction></Eduction>
         </div>
     </div>
   </template>
@@ -17,6 +18,7 @@
      import PersonInfo from '../../components/layout/PersonInfo.vue';
      import Skill1 from '../../components/layout/Skill1.vue';
      import JobIntension from '../../components/layout/JobIntension.vue'
+import Eduction from '../../components/layout/Eduction.vue'
      interface AvatarData{
           name:string;
           desc:string;
