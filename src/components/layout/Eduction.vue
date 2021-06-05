@@ -143,7 +143,7 @@ import { message } from 'ant-design-vue';
 
            .intension-desc{
               
-               padding: 25px 10px;
+               padding: 25px 10px 10px 10px;
 
                .item-box{
                 display: flex;
