@@ -11,6 +11,7 @@
       <WorkExperience></WorkExperience>
       <OpenSourcePro></OpenSourcePro>
       <AutoInput></AutoInput>
+      <AutoTextArea></AutoTextArea>
     </div>
   </div>
 </template>
@@ -25,6 +26,7 @@ import Eduction from "../../components/layout/Eduction.vue";
 import WorkExperience from "../../components/layout/WorkExperience.vue";
 import OpenSourcePro from "../../components/layout/OpenSourcePro.vue";
 import AutoInput from "../../components/base/AutoInput.vue";
+import AutoTextArea from "../../components/base/AutoTextArea.vue";
 interface AvatarData {
   name: string;
   desc: string;

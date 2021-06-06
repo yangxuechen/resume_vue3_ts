@@ -28,14 +28,15 @@
           <input class="input_dash" :value="item.position" />
         </div>
       </div>
+    </div>
 
-      <div class="exprience-box" v-for="desc in item.desc">
-        <div class="exprience-box-item">
-          <div class="point"></div>
+    <div class="exprience-box" v-for="desc in desclist">
+      <div class="exprience-box-item">
+        <div class="point"></div>
 
-          <div class="text-box">
-            {{ desc }}
-          </div>
+        <div class="text-box">
+          {{ desc }}
+          <!-- <a-textarea v-model="desc" autosize> </a-textarea> -->
         </div>
       </div>
     </div>
@@ -53,8 +54,14 @@ interface WorkExperience {
 <script lang="ts" setup>
 import { PushpinOutlined } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 
+const desclist = reactive<string[]>([
+  "负责相关产品的需求以及前端程序的实现，提供合理的前端架构。改进和优化开发工具、开发流程、和开发框架。",
+  " Web前端功能设计、开发和实现，与后台工程师协作，完成数据交互、动态展现;",
+  " 从视觉和易用性角度，为网站设计提供改进建议，为网站/客户端的页面提供持续优化方案;",
+]);
+desclist.push("111");
 const state = reactive({
   dateset: [
     {
