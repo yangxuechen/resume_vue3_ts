@@ -36,7 +36,7 @@
 
         <div class="text-box">
           {{ desc }}
-          <!-- <a-textarea v-model="desc" autosize> </a-textarea> -->
+          <!-- <a-textarea :value="desc" autosize> </a-textarea> -->
         </div>
       </div>
     </div>
@@ -185,6 +185,7 @@ const addEdu = () => {};
 
     .text-box {
       padding-left: 25px;
+      flex-grow: 1;
     }
   }
 }

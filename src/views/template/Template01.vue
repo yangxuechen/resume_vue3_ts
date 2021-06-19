@@ -10,8 +10,8 @@
       <Eduction></Eduction>
       <WorkExperience></WorkExperience>
       <OpenSourcePro></OpenSourcePro>
-      <AutoInput></AutoInput>
-      <AutoTextArea></AutoTextArea>
+      <!-- <AutoInput></AutoInput>
+      <AutoTextArea></AutoTextArea> -->
     </div>
   </div>
 </template>

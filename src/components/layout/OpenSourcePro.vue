@@ -15,8 +15,14 @@
     <div class="open-source-box">
       <div class="open-source-item">
         <div class="point"></div>
-        <div style="padding: 15px">
-          开源项目1(<a href="https://www.baidu.com">链接地址</a>)
+        <div style="padding: 15px; flex-grow: 1">
+          <a-textarea
+            v-model:value="value"
+            placeholder="Autosize height based on content lines"
+            auto-size
+            class="myinput"
+          />
+          <!-- 开源项目1<a href="https://www.baidu.com">链接地址</a>) -->
         </div>
       </div>
     </div>
@@ -44,7 +50,7 @@ import {
   PushpinOutlined,
 } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 
 const state = reactive({
   dateset: [
@@ -70,6 +76,8 @@ const addEdu = () => {
     message.success("添加成功");
   }
 };
+
+const value = ref<string>("开源项目1");
 </script>
 
 <style lang="less" scoped>
@@ -143,5 +151,9 @@ const addEdu = () => {
     color: black;
     align-items: center;
   }
+}
+
+.myinput {
+  border: none;
 }
 </style>
