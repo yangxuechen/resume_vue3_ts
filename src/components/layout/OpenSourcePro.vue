@@ -87,7 +87,7 @@ const value = ref<string>("开源项目1");
   margin: 15px auto;
   color: white;
   .title {
-    background-color: #25262a;
+    background-color: var(--rs-bgcolor-1);
     width: 100%;
     height: 40px;
     //   line-height: 30px;

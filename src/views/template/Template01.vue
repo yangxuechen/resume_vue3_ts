@@ -56,7 +56,8 @@ const data2: AvatarData = {
 
   .left-box {
     width: 30%;
-    background-color: #25252a;
+    // background-color: #25252a;
+    background-color: var(--rs-bgcolor-1);
   }
 
   .right-box {

@@ -6,6 +6,9 @@
     </div>
     <div class="toolMenu">
       <div class="item">
+        <Theme></Theme>
+      </div>
+      <div class="item">
         <a-button type="primary" ghost>保存</a-button>
       </div>
       <div class="item">
@@ -21,6 +24,7 @@ import route from "../../router";
 import Template01 from "../template/Template01.vue";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+import Theme from "../../components/base/Theme.vue";
 const msg2 = ref<string>("1");
 const resume = ref<any>();
 const msg = computed(() => {

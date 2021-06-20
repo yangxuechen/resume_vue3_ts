@@ -2,21 +2,20 @@
   <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
   <!-- <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" /> -->
   <router-view />
- 
 </template>
 
 <script lang="ts" setup>
-import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
-import {useRouter} from 'vue-router'
-import Test from './components/Test.vue'
+import { defineComponent } from "vue";
+import HelloWorld from "./components/HelloWorld.vue";
+import { useRouter } from "vue-router";
+import Test from "./components/Test.vue";
 
-const router =useRouter();
+const router = useRouter();
 </script>
 
-<style lang="less" scoped>
-
-
+<style lang="less">
+ //@import "@/assets/style/main.less";
+@import url('./assets/style/main.less');
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
