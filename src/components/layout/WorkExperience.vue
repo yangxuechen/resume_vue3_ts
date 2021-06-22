@@ -6,9 +6,7 @@
         <h4>工作经历</h4>
       </div>
       <div style="padding-right: 25px">
-        <a-button type="link" @click="addEdu" class="btn"
-          >添加教育经历</a-button
-        >
+        <a-button type="link" @click="addEdu" class="btn">编辑</a-button>
       </div>
     </div>
 
@@ -41,6 +39,9 @@
       </div>
     </div>
   </div>
+  <MainLeft :leftBox="state.leftbox" @changeState="onChange">
+    <WorkEdit></WorkEdit>
+  </MainLeft>
 </template>
 
 <script lang="ts">
@@ -54,7 +55,8 @@ interface WorkExperience {
 <script lang="ts" setup>
 import { PushpinOutlined } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import { reactive, ref } from "vue";
+import { defineEmit, reactive, ref } from "vue";
+import MainLeft from "./MainLeft.vue";
 
 const desclist = reactive<string[]>([
   "负责相关产品的需求以及前端程序的实现，提供合理的前端架构。改进和优化开发工具、开发流程、和开发框架。",
@@ -75,9 +77,18 @@ const state = reactive({
       ],
     },
   ] as WorkExperience[],
+  leftbox: false as Boolean,
 });
 
-const addEdu = () => {};
+const addEdu = () => {
+  state.leftbox = true;
+};
+
+const onChange = (val: Boolean) => {
+  console.log("状态改变");
+  console.log(val);
+  state.leftbox = val;
+};
 </script>
 
 <style lang="less" scoped>
@@ -167,7 +178,7 @@ const addEdu = () => {};
 }
 
 .btn {
-  color: #25272a;
+  color: var(--rs-bgcolor-1);
 }
 
 .btn:hover {

@@ -171,7 +171,7 @@ const addEdu = () => {
 }
 
 .btn {
-  color: #25272a;
+  color: var(--rs-bgcolor-1);
 }
 
 .btn:hover {

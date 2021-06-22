@@ -5,8 +5,8 @@
       <h2>大象简历</h2>
     </div>
     <div class="rightBox">
-      <h3 class="item" @click="onClick_1">模版中心</h3>
-      <h3 class="item" @click="onClick_2">我的简历</h3>
+      <div class="item" @click="onClick_1">模版中心</div>
+      <div class="item" @click="onClick_2">我的简历</div>
     </div>
   </div>
 </template>
@@ -68,6 +68,8 @@ const onClick_1 = () => {
       padding-left: 15px;
       padding-right: 15px;
       cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
     }
   }
 }

@@ -127,7 +127,7 @@ const value = ref<string>("开源项目1");
   }
 
   .btn {
-    color: #25272a;
+    color: var(--rs-bgcolor-1);
   }
 
   .btn:hover {
