@@ -20,6 +20,7 @@
 <script lang="ts" setup>
 import MinResume from "../../components/layout/MinResume.vue";
 import route from "../../router";
+import resumeImgUrl from "../../assets/resume-temp/resume-tem2.png";
 interface MinResumeData {
   imgUrl: string;
   desc: string;
@@ -31,7 +32,8 @@ interface ResumeData {
 }
 const dataset: MinResumeData[] = [
   {
-    imgUrl: "src/assets/resume-temp/resume-tem2.png",
+    // imgUrl: "src/assets/resume-temp/resume-tem2.png",
+    imgUrl: resumeImgUrl,
     desc: "前端简历（清新版）",
     name: "resume-前端-1",
   },

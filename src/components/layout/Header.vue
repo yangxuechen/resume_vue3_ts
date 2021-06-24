@@ -1,6 +1,6 @@
 <template>
   <div class="contrainer-header">
-    <div class="leftBox">
+    <div class="leftBox" @click="toIndex">
       <img src="../../assets/icons8-elephant-80.png" class="logo" />
       <h2>大象简历</h2>
     </div>
@@ -19,6 +19,10 @@ const onClick_2 = () => {
 };
 const onClick_1 = () => {
   route.push({ path: "/resumeTemplate" });
+};
+
+const toIndex = () => {
+  route.push({ path: "/" });
 };
 </script>
 
@@ -44,7 +48,7 @@ const onClick_1 = () => {
     width: auto;
     height: 100%;
     display: flex;
-
+    cursor: pointer;
     .logo {
       transform: rotateY(180deg);
     }
@@ -52,12 +56,10 @@ const onClick_1 = () => {
       margin: 5px;
       width: 40px;
       height: 40px;
-      cursor: pointer;
     }
 
     h2 {
       margin-left: 15px;
-      cursor: pointer;
     }
   }
 

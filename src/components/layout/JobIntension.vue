@@ -14,10 +14,10 @@
         <ShopFilled :style="{ fontSize: '20px', color: 'black' }" />
         <input class="input_dash" value="成都" />
       </div>
-      <div class="item">
+      <!-- <div class="item">
         <TransactionOutlined :style="{ fontSize: '20px', color: 'black' }" />
         <input class="input_dash" value="15k" />
-      </div>
+      </div> -->
       <div class="item">
         <HourglassFilled :style="{ fontSize: '20px', color: 'black' }" />
         <input class="input_dash" value="一周内" />

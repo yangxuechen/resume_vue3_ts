@@ -39,9 +39,9 @@
       </div>
     </div>
   </div>
-  <MainLeft :leftBox="state.leftbox" @changeState="onChange">
+  <!-- <MainLeft :leftBox="state.leftbox" @changeState="onChange">
     <WorkEdit></WorkEdit>
-  </MainLeft>
+  </MainLeft> -->
 </template>
 
 <script lang="ts">

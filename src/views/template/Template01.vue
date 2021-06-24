@@ -50,7 +50,7 @@ const data2: AvatarData = {
 .temp01-box {
   width: 100%;
   //  margin-left: 15%;
-  min-height: 1010px;
+  min-height: 1086px;
   //  background-color: cadetblue;
   display: flex;
 

@@ -1,9 +1,11 @@
 <template>
   <div class="rs-edit-box">
-    <div class="rs-edit" id="resume">
-      {{ msg }}
-      <Template01 :ref="resume"></Template01>
+    <div class="box">
+      <div class="rs-edit" id="resume">
+        <Template01 :ref="resume"></Template01>
+      </div>
     </div>
+
     <div class="toolMenu">
       <div class="item">
         <Theme></Theme>
@@ -40,12 +42,12 @@ const downloadPdf = () => {
 
   console.log(width + " " + height);
 
-  html2canvas(htmlElement, {
+  html2canvas(htmlElement!, {
     height: htmlElement?.offsetHeight,
     width: htmlElement?.offsetWidth,
   }).then((canvas) => {
     const doc = new jsPDF();
-    doc.addImage(canvas, "image/jpeg", 0, 0, 210, 210 * 1.2);
+    doc.addImage(canvas, "image/jpeg", 0, 0, 210, 297); //单位是毫米
 
     doc.save("doc.pdf");
   });
@@ -58,14 +60,19 @@ const downloadPdf = () => {
   display: flex;
   justify-content: center;
 
+  .box {
+    width: 760px;
+    border: 5px #dff0fe solid;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
   .rs-edit {
-    width: 800px;
+    width: 756px;
     height: auto;
     overflow: auto;
     // background-color: chocolate;
-    margin-top: 25px;
-    margin-bottom: 50px;
-    border: 5px #dff0fe solid;
+
     padding: 15px;
   }
 
