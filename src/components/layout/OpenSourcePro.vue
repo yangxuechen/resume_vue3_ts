@@ -12,20 +12,25 @@
       </div>
     </div>
 
-    <div class="open-source-box">
+    <div style="width: 100%; padding-top: 25px">
+      <AutoTextArea :data="value1"></AutoTextArea>
+      <AutoTextArea :data="value1"></AutoTextArea>
+      <AutoTextArea :data="value1"></AutoTextArea>
+    </div>
+
+    <!-- <div class="open-source-box">
       <div class="open-source-item">
         <div class="point"></div>
         <div style="padding: 15px; flex-grow: 1">
           <a-textarea
-            v-model:value="value"
+            v-model:value="value1"
             placeholder="Autosize height based on content lines"
             auto-size
             class="myinput"
           />
-          <!-- 开源项目1<a href="https://www.baidu.com">链接地址</a>) -->
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -51,6 +56,7 @@ import {
 } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
 import { reactive, ref } from "vue";
+import AutoTextArea from "../base/AutoTextArea.vue";
 
 const state = reactive({
   dateset: [
@@ -77,7 +83,7 @@ const addEdu = () => {
   }
 };
 
-const value = ref<string>("开源项目1");
+const value1 = ref<string>("开源项目1");
 </script>
 
 <style lang="less" scoped>
@@ -135,10 +141,6 @@ const value = ref<string>("开源项目1");
     transform: scale(1.1);
   }
 
-  .open-source-box {
-    padding: 15px;
-  }
-
   .point {
     width: 10px;
     height: 10px;
@@ -151,9 +153,5 @@ const value = ref<string>("开源项目1");
     color: black;
     align-items: center;
   }
-}
-
-.myinput {
-  border: none;
 }
 </style>

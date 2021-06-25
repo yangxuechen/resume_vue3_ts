@@ -20,7 +20,7 @@
 <script lang="ts" setup>
 import MinResume from "../../components/layout/MinResume.vue";
 import route from "../../router";
-import resumeImgUrl from "../../assets/resume-temp/resume-tem2.png";
+import resumeImgUrl from "../../assets/resume-temp/resume-tem3.png";
 interface MinResumeData {
   imgUrl: string;
   desc: string;
@@ -38,12 +38,12 @@ const dataset: MinResumeData[] = [
     name: "resume-前端-1",
   },
   {
-    imgUrl: "src/assets/resume-temp/resume-tem1.png",
+    imgUrl: resumeImgUrl,
     desc: "前端简历（热火版）",
     name: "resume-前端-2",
   },
   {
-    imgUrl: "src/assets/resume-temp/resume-tem1.png",
+    imgUrl: resumeImgUrl,
     desc: "前端简历（简介版）",
     name: "resume-前端-3",
   },
@@ -55,37 +55,37 @@ const dataset: MinResumeData[] = [
 
 const dataset2: MinResumeData[] = [
   {
-    imgUrl: "src/assets/resume-temp/resume-tem1.png",
+    imgUrl: resumeImgUrl,
     desc: "运营简历（清新版）",
     name: "resume-前端-1",
   },
   {
-    imgUrl: "src/assets/resume-temp/resume-tem1.png",
+    imgUrl: resumeImgUrl,
     desc: "运营简历（热火版）",
     name: "resume-前端-1",
   },
   {
-    imgUrl: "src/assets/resume-temp/resume-tem1.png",
+    imgUrl: resumeImgUrl,
     desc: "运营简历（简介版）",
     name: "resume-前端-1",
   },
   {
-    imgUrl: "src/assets/resume-temp/resume-tem1.png",
+    imgUrl: resumeImgUrl,
     desc: "运营简历（热火版）",
     name: "resume-前端-1",
   },
   {
-    imgUrl: "src/assets/resume-temp/resume-tem1.png",
+    imgUrl: resumeImgUrl,
     desc: "运营简历（简介版）",
     name: "resume-前端-1",
   },
   {
-    imgUrl: "src/assets/resume-temp/resume-tem1.png",
+    imgUrl: resumeImgUrl,
     desc: "运营简历（热火版）",
     name: "resume-前端-1",
   },
   {
-    imgUrl: "src/assets/resume-temp/resume-tem1.png",
+    imgUrl: resumeImgUrl,
     desc: "运营简历（简介版）",
     name: "resume-前端-1",
   },

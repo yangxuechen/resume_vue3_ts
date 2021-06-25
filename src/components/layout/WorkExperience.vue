@@ -28,13 +28,38 @@
       </div>
     </div>
 
-    <div class="exprience-box" v-for="desc in desclist">
+    <div class="exprience-box">
       <div class="exprience-box-item">
         <div class="point"></div>
 
         <div class="text-box">
-          {{ desc }}
-          <!-- <a-textarea :value="desc" autosize> </a-textarea> -->
+          <!-- {{ desc }} -->
+          <a-textarea v-model:value="work1_desc1" class="myinput" autosize>
+          </a-textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="exprience-box">
+      <div class="exprience-box-item">
+        <div class="point"></div>
+
+        <div class="text-box">
+          <!-- {{ desc }} -->
+          <a-textarea v-model:value="work1_desc2" class="myinput" autosize>
+          </a-textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="exprience-box">
+      <div class="exprience-box-item">
+        <div class="point"></div>
+
+        <div class="text-box">
+          <!-- {{ desc }} -->
+          <a-textarea v-model:value="work1_desc3" class="myinput" autosize>
+          </a-textarea>
         </div>
       </div>
     </div>
@@ -63,6 +88,18 @@ const desclist = reactive<string[]>([
   " Web前端功能设计、开发和实现，与后台工程师协作，完成数据交互、动态展现;",
   " 从视觉和易用性角度，为网站设计提供改进建议，为网站/客户端的页面提供持续优化方案;",
 ]);
+
+const work1_desc1 = ref<string>(
+  "负责相关产品的需求以及前端程序的实现，提供合理的前端架构。改进和优化开发工具、开发流程、和开发框架。"
+);
+const work1_desc2 = ref<string>(
+  "Web前端功能设计、开发和实现，与后台工程师协作，完成数据交互、动态展现;"
+);
+const work1_desc3 = ref<string>(
+  "从视觉和易用性角度，为网站设计提供改进建议，为网站/客户端的页面提供持续优化方案;"
+);
+const work1_desc4 = ref<string>("");
+const work1_desc5 = ref<string>("");
 desclist.push("111");
 const state = reactive({
   dateset: [
@@ -207,5 +244,9 @@ const onChange = (val: Boolean) => {
   background-color: black;
   border-radius: 5px;
   padding: 5px;
+}
+
+.myinput {
+  border: none;
 }
 </style>
