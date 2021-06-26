@@ -5,32 +5,17 @@
         <PushpinOutlined :style="{ fontSize: '30px', color: 'white' }" />
         <h4>开源项目</h4>
       </div>
-      <div style="padding-right: 25px">
-        <a-button type="link" @click="addEdu" class="btn"
-          >添加教育经历</a-button
-        >
+      <div style="padding-right: 25px" class="btn-box">
+        <a-button type="link" @click="deleteDesc" class="btn">删除</a-button>
+        <a-button type="link" @click="addDesc" class="btn">添加</a-button>
       </div>
     </div>
 
     <div style="width: 100%; padding-top: 25px">
-      <AutoTextArea :data="value1"></AutoTextArea>
-      <AutoTextArea :data="value1"></AutoTextArea>
-      <AutoTextArea :data="value1"></AutoTextArea>
+      <AutoTextArea :data="value1" v-if="state[0]"></AutoTextArea>
+      <AutoTextArea :data="value2" v-if="state[1]"></AutoTextArea>
+      <AutoTextArea :data="value3" v-if="state[2]"></AutoTextArea>
     </div>
-
-    <!-- <div class="open-source-box">
-      <div class="open-source-item">
-        <div class="point"></div>
-        <div style="padding: 15px; flex-grow: 1">
-          <a-textarea
-            v-model:value="value1"
-            placeholder="Autosize height based on content lines"
-            auto-size
-            class="myinput"
-          />
-        </div>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -58,32 +43,41 @@ import { message } from "ant-design-vue";
 import { reactive, ref } from "vue";
 import AutoTextArea from "../base/AutoTextArea.vue";
 
-const state = reactive({
-  dateset: [
-    {
-      date: "2016~2020",
-      school: "行知大学",
-      major: "软件工程",
-      eduction: "本科",
-    },
-  ] as Edu[],
-});
+const state = reactive([true, true, true]);
+const num = ref<number>(3);
 
-const addEdu = () => {
-  if (state.dateset.length > 2) {
-    message.warning("最多允许添加3条记录");
-  } else {
-    state.dateset.push({
-      date: "2016~2020",
-      school: "行知大学",
-      major: "软件工程",
-      eduction: "硕士",
-    });
-    message.success("添加成功");
+const value1 = ref<string>("开源项目1");
+const value2 = ref<string>("开源项目2");
+const value3 = ref<string>("开源项目3");
+const deleteDesc = () => {
+  for (let i = 2; i > 0; i--) {
+    if (state[i] == true) {
+      state[i] = false;
+      message.success("删除成功");
+      break;
+    }
+  }
+  num.value = num.value - 1;
+  if (num.value < 1) {
+    message.warn("至少需要1条数据");
+    num.value = 1;
   }
 };
 
-const value1 = ref<string>("开源项目1");
+const addDesc = () => {
+  for (let i = 0; i < 3; i++) {
+    if (state[i] == false) {
+      state[i] = true;
+      message.success("添加成功");
+      break;
+    }
+  }
+  num.value = num.value + 1;
+  if (num.value > 3) {
+    message.warn("最多允许添加3条数据");
+    num.value = 3;
+  }
+};
 </script>
 
 <style lang="less" scoped>
@@ -109,29 +103,6 @@ const value1 = ref<string>("开源项目1");
     }
   }
 
-  .input_dash {
-    width: 90px;
-    height: 20px;
-    border-color: white;
-    //   padding: 5px;
-    border-width: 0ch;
-    text-align: left;
-    border-color: white;
-    border-width: 1px;
-    border-style: dotted;
-    background-color: white;
-    color: black;
-  }
-  .input_dash:focus {
-    background: none;
-    outline: none;
-    border: 0px;
-    //    padding: 5px;
-    border-color: tomato;
-    border-width: 1px;
-    border-style: dotted;
-  }
-
   .btn {
     color: var(--rs-bgcolor-1);
   }
@@ -140,18 +111,15 @@ const value1 = ref<string>("开源项目1");
     color: azure;
     transform: scale(1.1);
   }
+}
 
-  .point {
-    width: 10px;
-    height: 10px;
-    background-color: black;
-    border-radius: 5px;
-    padding: 5px;
-  }
-  .open-source-item {
-    display: flex;
-    color: black;
-    align-items: center;
+.btn-box {
+  color: var(--rs-bgcolor-1);
+}
+.btn-box:hover {
+  color: white;
+  .btn {
+    color: white;
   }
 }
 </style>

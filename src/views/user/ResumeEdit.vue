@@ -2,10 +2,12 @@
   <div class="rs-edit-box">
     <div class="box">
       <div class="rs-edit" id="resume">
-        <Template01 :ref="resume"></Template01>
+        <Template01 :ref="resume" @change="onChange"></Template01>
       </div>
     </div>
-
+    <div class="min-page">
+      <img :src="minPage" style="width: 170px; height: 238px" />
+    </div>
     <div class="toolMenu">
       <div class="item">
         <Theme></Theme>
@@ -21,12 +23,13 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import route from "../../router";
 import Template01 from "../template/Template01.vue";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import Theme from "../../components/base/Theme.vue";
+import { message } from "ant-design-vue";
 const msg2 = ref<string>("1");
 const resume = ref<any>();
 const msg = computed(() => {
@@ -34,8 +37,9 @@ const msg = computed(() => {
 
   return route.currentRoute.value.query.name;
 });
-
+const minPage = ref<string>("");
 const downloadPdf = () => {
+  window.scrollTo({ top: 0 });
   const htmlElement = document.getElementById("resume");
   const width: number = htmlElement?.offsetWidth || 0;
   const height: number = htmlElement?.offsetHeight || 0;
@@ -48,11 +52,41 @@ const downloadPdf = () => {
   }).then((canvas) => {
     const doc = new jsPDF();
     doc.addImage(canvas, "image/jpeg", 0, 0, 210, 297); //单位是毫米
+    minPage.value = canvas.toDataURL as unknown as string;
+    console.log(minPage);
 
     doc.save("doc.pdf");
   });
 };
+
+function createMinPageImage() {
+  const htmlElement = document.getElementById("resume");
+  const width: number = htmlElement?.offsetWidth || 0;
+  const height: number = htmlElement?.offsetHeight || 0;
+
+  console.log(width + " " + height);
+
+  html2canvas(htmlElement!, {
+    height: htmlElement?.offsetHeight,
+    width: htmlElement?.offsetWidth,
+  }).then((canvas) => {
+    console.log(canvas.toDataURL());
+    minPage.value = canvas.toDataURL() + "";
+  });
+}
+
+onMounted(() => {
+  createMinPageImage();
+});
+
 // console.log(route.currentRoute.value.query,'route');
+
+const onChange = () => {
+  //message.info("发生改变");
+  window.scrollTo({ top: 0 });
+
+  createMinPageImage();
+};
 </script>
 
 <style lang="less" scoped>
@@ -89,5 +123,14 @@ const downloadPdf = () => {
       width: 100px;
     }
   }
+}
+
+.min-page {
+  position: fixed;
+  left: 83px;
+  top: 92px;
+  width: 172px;
+  height: 250px;
+  border: 1px black solid;
 }
 </style>

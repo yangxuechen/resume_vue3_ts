@@ -5,7 +5,7 @@
       <div style="padding: 5px 15px; flex-grow: 1">
         <a-textarea
           v-model:value="data"
-          placeholder="Autosize height based on content lines"
+          placeholder="请输入内容"
           class="myinput"
           auto-size
           @change="onChange"

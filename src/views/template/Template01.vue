@@ -1,7 +1,7 @@
 <template>
   <div class="temp01-box">
     <div class="left-box">
-      <Avatar :data="data"></Avatar>
+      <Avatar></Avatar>
       <PersonInfo></PersonInfo>
       <Skill1></Skill1>
     </div>
@@ -27,17 +27,18 @@ import WorkExperience from "../../components/layout/WorkExperience.vue";
 import OpenSourcePro from "../../components/layout/OpenSourcePro.vue";
 import AutoInput from "../../components/base/AutoInput.vue";
 import AutoTextArea from "../../components/base/AutoTextArea.vue";
+import { reactive } from "@vue/reactivity";
 interface AvatarData {
   name: string;
   desc: string;
   avatarUrl: string;
 }
 
-const data: AvatarData = {
+const data: AvatarData = reactive<AvatarData>({
   name: "郑一剑",
   desc: "一剑在手，天下我有",
   avatarUrl: "src/",
-};
+});
 
 const data2: AvatarData = {
   name: "郑一剑2",

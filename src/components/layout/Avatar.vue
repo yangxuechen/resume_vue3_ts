@@ -3,10 +3,10 @@
     <a-avatar size="default" class="avatar">
       <template #icon><img src="../../assets/avatar-1.png" /></template>
     </a-avatar>
-    <h3><input class="input_dash name" :value="avatarData.name" /></h3>
+    <h3><input class="input_dash name" :value="name" /></h3>
 
     <a-textarea
-      v-model:value="avatarData.desc"
+      v-model:value="value1"
       placeholder=""
       auto-size
       class="input_dash"
@@ -21,20 +21,9 @@ interface AvatarData {
   desc: string;
   avatarUrl: string;
 }
-const props = defineProps({
-  data: {
-    type: Object,
-    default: undefined,
-  },
-});
 
-const value1 = ref<string>("一剑在手，天下我有");
-
-const avatarData = reactive<AvatarData>({
-  name: props.data.name,
-  desc: props.data.desc,
-  avatarUrl: props.data.avatarUrl,
-});
+const value1 = ref<string>(" this is for you");
+const name = ref<string>("郑一剑");
 </script>
 
 <style lang="less" scoped>
@@ -83,6 +72,7 @@ const avatarData = reactive<AvatarData>({
 
   .name {
     width: 120px;
+    height: 30px;
   }
 }
 </style>

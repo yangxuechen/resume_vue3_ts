@@ -1,8 +1,14 @@
 <template>
   <div class="info-box">
     <div class="title">
-      <PushpinOutlined :style="{ fontSize: '20px', color: 'black' }" />
-      <h4>技能特长</h4>
+      <div style="display: flex; align-items: center; width: 120px">
+        <PushpinOutlined :style="{ fontSize: '20px', color: 'black' }" />
+        <h4>技能特长</h4>
+      </div>
+      <div class="btn-box">
+        <MinusSquareOutlined @click="deleteSkill" />
+        <PlusSquareOutlined @click="addSkill" />
+      </div>
     </div>
     <div v-for="record in skilllist">
       <div class="skill-box">
@@ -37,16 +43,11 @@ interface Skill {
 </script>
 <script lang="ts" setup>
 import {
-  UserOutlined,
-  ManOutlined,
-  PaperClipOutlined,
-  UsergroupAddOutlined,
-  SolutionOutlined,
-  HourglassOutlined,
-  PhoneOutlined,
-  MailOutlined,
+  PlusSquareOutlined,
   PushpinOutlined,
+  MinusSquareOutlined,
 } from "@ant-design/icons-vue";
+import { message } from "ant-design-vue";
 import { reactive } from "vue";
 
 const skilllist = reactive<Skill[]>([
@@ -57,6 +58,24 @@ const skilllist = reactive<Skill[]>([
   { key: "vue3.js", value: "良好", process: 50 },
   { key: "java", value: "良好", process: 50 },
 ]);
+
+const addSkill = () => {
+  if (skilllist.length > 10) {
+    message.warning("最多允许添加10条记录");
+    return;
+  }
+  skilllist.push({ key: "aa", value: "ss", process: 50 });
+  message.success("添加成功");
+};
+
+const deleteSkill = () => {
+  if (skilllist.length == 1) {
+    message.warning("至少需要一条数据");
+    return;
+  }
+  skilllist.pop();
+  message.success("删除成功");
+};
 </script>
 
 <style lang="less" scoped>
@@ -75,7 +94,7 @@ const skilllist = reactive<Skill[]>([
     padding-left: 10px;
     display: flex;
     align-items: center;
-
+    justify-content: space-between;
     h4 {
       margin: 0 0 0 5px;
     }
@@ -104,5 +123,16 @@ const skilllist = reactive<Skill[]>([
 .progress-box {
   padding: 0;
   margin-top: -10px;
+}
+.btn-box {
+  color: white;
+  display: flex;
+  font-size: 30px;
+  gap: 10px;
+}
+
+.btn-box:hover {
+  color: var(--rs-bgcolor-1);
+  cursor: pointer;
 }
 </style>
