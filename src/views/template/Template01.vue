@@ -34,17 +34,7 @@ interface AvatarData {
   avatarUrl: string;
 }
 
-const data: AvatarData = reactive<AvatarData>({
-  name: "郑一剑",
-  desc: "一剑在手，天下我有",
-  avatarUrl: "src/",
-});
 
-const data2: AvatarData = {
-  name: "郑一剑2",
-  desc: "一剑在手，天下我有222",
-  avatarUrl: "src/2",
-};
 </script>
 
 <style lang="less" scoped>

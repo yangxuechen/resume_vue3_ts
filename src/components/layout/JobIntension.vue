@@ -1,7 +1,7 @@
 <template>
   <div class="info-box">
     <div class="title">
-      <PushpinOutlined :style="{ fontSize: '30px', color: 'white' }" />
+      <CompassFilled :style="{ fontSize: '24px', color: 'white' }" />
       <h4>求职意向</h4>
     </div>
 
@@ -36,14 +36,9 @@ interface Skill {
 <script lang="ts" setup>
 import {
   UserOutlined,
-  ManOutlined,
-  PaperClipOutlined,
-  UsergroupAddOutlined,
-  SolutionOutlined,
   HourglassFilled,
   ShopFilled,
-  TransactionOutlined,
-  PushpinOutlined,
+  CompassFilled,
 } from "@ant-design/icons-vue";
 import { reactive } from "vue";
 
@@ -63,6 +58,7 @@ const skilllist = reactive<Skill[]>([
   padding: 0 15px;
   margin: 15px auto;
   color: white;
+
   .title {
     //   background-color: #25262a;
     background-color: var(--rs-bgcolor-1);
@@ -74,6 +70,7 @@ const skilllist = reactive<Skill[]>([
     padding-left: 10px;
     display: flex;
     align-items: center;
+    gap: 10px;
 
     h4 {
       margin: 0 0 0 5px;

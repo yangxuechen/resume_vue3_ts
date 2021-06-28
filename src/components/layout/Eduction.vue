@@ -1,8 +1,8 @@
 <template>
   <div class="info-box">
     <div class="title">
-      <div style="display: flex; align-items: center">
-        <PushpinOutlined :style="{ fontSize: '30px', color: 'white' }" />
+      <div style="display: flex; align-items: center; gap: 10px">
+        <ReadFilled :style="{ fontSize: '24px', color: 'white' }" />
         <h4>教育背景</h4>
       </div>
       <div style="padding-right: 25px">
@@ -44,17 +44,7 @@ interface Edu {
 }
 </script>
 <script lang="ts" setup>
-import {
-  UserOutlined,
-  ManOutlined,
-  PaperClipOutlined,
-  UsergroupAddOutlined,
-  SolutionOutlined,
-  HourglassFilled,
-  ShopFilled,
-  TransactionOutlined,
-  PushpinOutlined,
-} from "@ant-design/icons-vue";
+import { ReadFilled, PushpinOutlined } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
 import { reactive } from "vue";
 

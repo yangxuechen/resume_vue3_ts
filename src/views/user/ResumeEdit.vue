@@ -1,7 +1,7 @@
 <template>
   <div class="rs-edit-box">
     <div class="box">
-      <div class="rs-edit" id="resume">
+      <div class="rs-edit" id="resume" ref="resume">
         <Template01 :ref="resume" @change="onChange"></Template01>
       </div>
     </div>
@@ -31,7 +31,7 @@ import { jsPDF } from "jspdf";
 import Theme from "../../components/base/Theme.vue";
 import { message } from "ant-design-vue";
 const msg2 = ref<string>("1");
-const resume = ref<any>();
+const resume = ref<HTMLElement>();
 const msg = computed(() => {
   console.log(route.currentRoute.value.query, "currentRoute");
 
@@ -41,19 +41,21 @@ const minPage = ref<string>("");
 const downloadPdf = () => {
   window.scrollTo({ top: 0 });
   const htmlElement = document.getElementById("resume");
+
   const width: number = htmlElement?.offsetWidth || 0;
   const height: number = htmlElement?.offsetHeight || 0;
 
-  console.log(width + " " + height);
+  // console.log(width + " " + height);
 
   html2canvas(htmlElement!, {
     height: htmlElement?.offsetHeight,
     width: htmlElement?.offsetWidth,
   }).then((canvas) => {
     const doc = new jsPDF();
+
     doc.addImage(canvas, "image/jpeg", 0, 0, 210, 297); //单位是毫米
     minPage.value = canvas.toDataURL as unknown as string;
-    console.log(minPage);
+    //  console.log(minPage);
 
     doc.save("doc.pdf");
   });
@@ -64,13 +66,13 @@ function createMinPageImage() {
   const width: number = htmlElement?.offsetWidth || 0;
   const height: number = htmlElement?.offsetHeight || 0;
 
-  console.log(width + " " + height);
+  //console.log(width + " " + height);
 
   html2canvas(htmlElement!, {
     height: htmlElement?.offsetHeight,
     width: htmlElement?.offsetWidth,
   }).then((canvas) => {
-    console.log(canvas.toDataURL());
+    // console.log(canvas.toDataURL());
     minPage.value = canvas.toDataURL() + "";
   });
 }

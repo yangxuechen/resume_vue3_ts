@@ -1,29 +1,60 @@
 <template>
   <div class="avatat-box">
-    <a-avatar size="default" class="avatar">
-      <template #icon><img src="../../assets/avatar-1.png" /></template>
+    <a-avatar size="default" class="avatar" @click="uploadImg">
+      <template #icon
+        ><img :src="user.avatarUrl" style="width: 80px; height: 80px"
+      /></template>
     </a-avatar>
-    <h3><input class="input_dash name" :value="name" /></h3>
+    <h3><input class="input_dash name" v-model="user.name" /></h3>
 
-    <a-textarea
-      v-model:value="value1"
-      placeholder=""
-      auto-size
-      class="input_dash"
-    />
+    <div>
+      <a-textarea
+        v-model:value="user.desc"
+        placeholder=""
+        auto-size
+        class="input_dash"
+      />
+    </div>
+    <div class="btn-box">
+      <input
+        type="file"
+        style="width: 120px; height: 10px"
+        accept="image/*"
+        id="btn_upload"
+        @change="preView($event)"
+      />
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { computed, defineProps, reactive, ref } from "vue";
+import img_url from "../../assets/avatar-1.png";
 interface AvatarData {
   name: string;
   desc: string;
   avatarUrl: string;
 }
-
+const user = reactive<AvatarData>({
+  name: "yi剑",
+  desc: "sss",
+  avatarUrl: img_url,
+});
 const value1 = ref<string>(" this is for you");
-const name = ref<string>("郑一剑");
+const name = ref<string>("郑一剑2");
+
+const uploadImg = () => {
+  const input_img = document.getElementById("btn_upload");
+  input_img?.click();
+};
+
+const preView = (e: any) => {
+  console.log(e.target.files[0]);
+  const src = window.URL.createObjectURL(e.target.files[0]);
+  console.log(src);
+
+  user.avatarUrl = src;
+};
 </script>
 
 <style lang="less" scoped>
@@ -74,5 +105,10 @@ const name = ref<string>("郑一剑");
     width: 120px;
     height: 30px;
   }
+}
+
+.btn-box {
+  visibility: hidden;
+  height: 10px;
 }
 </style>

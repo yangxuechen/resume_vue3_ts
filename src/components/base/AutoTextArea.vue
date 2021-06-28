@@ -7,7 +7,7 @@
           v-model:value="data"
           placeholder="请输入内容"
           class="myinput"
-          auto-size
+          :autoSize="{ minRows: 2, maxRows: 5 }"
           @change="onChange"
         />
       </div>

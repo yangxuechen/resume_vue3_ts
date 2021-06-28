@@ -1,8 +1,9 @@
 <template>
   <div class="info-box">
     <div class="title">
-      <div style="display: flex; align-items: center">
-        <PushpinOutlined :style="{ fontSize: '30px', color: 'white' }" />
+      <div style="display: flex; align-items: center; gap: 10px">
+        <GithubFilled :style="{ fontSize: '24px', color: 'white' }" />
+
         <h4>开源项目</h4>
       </div>
       <div style="padding-right: 25px" class="btn-box">
@@ -28,17 +29,7 @@ interface Edu {
 }
 </script>
 <script lang="ts" setup>
-import {
-  UserOutlined,
-  ManOutlined,
-  PaperClipOutlined,
-  UsergroupAddOutlined,
-  SolutionOutlined,
-  HourglassFilled,
-  ShopFilled,
-  TransactionOutlined,
-  PushpinOutlined,
-} from "@ant-design/icons-vue";
+import { GithubFilled } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
 import { reactive, ref } from "vue";
 import AutoTextArea from "../base/AutoTextArea.vue";

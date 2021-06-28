@@ -1,8 +1,8 @@
 <template>
   <div class="info-box">
     <div class="title">
-      <div style="display: flex; align-items: center">
-        <PushpinOutlined :style="{ fontSize: '30px', color: 'white' }" />
+      <div style="display: flex; align-items: center; gap: 10px">
+        <SignalFilled :style="{ fontSize: '24px', color: 'white' }" />
         <h4>工作经历</h4>
       </div>
       <div style="padding-right: 25px" class="btn-box">
@@ -22,7 +22,7 @@
 
 <script lang="ts"></script>
 <script lang="ts" setup>
-import { PushpinOutlined } from "@ant-design/icons-vue";
+import { PushpinOutlined, SignalFilled } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
 import { defineEmit, reactive, ref } from "vue";
 import MainLeft from "./MainLeft.vue";
