@@ -12,8 +12,14 @@
 </template>
 
 <script lang="ts" setup>
+import { defineEmit } from "@vue/runtime-core";
+
+const emit = defineEmit({
+  changeTheme: (val: string) => Boolean,
+});
 const changTheme = (color: string) => {
   document.body.style.setProperty("--rs-bgcolor-1", color);
+  emit("changeTheme", color);
 };
 </script>
 

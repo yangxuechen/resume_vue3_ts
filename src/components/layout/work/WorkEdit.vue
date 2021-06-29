@@ -35,13 +35,30 @@
       <div>
         <AutoTextArea
           :data="work1_desc1"
+          :edit="edit"
           v-if="descStatus[0]"
           @focus="onFocus"
         ></AutoTextArea>
-        <AutoTextArea :data="work1_desc2" v-if="descStatus[1]"></AutoTextArea>
-        <AutoTextArea :data="work1_desc3" v-if="descStatus[2]"></AutoTextArea>
-        <AutoTextArea :data="work1_desc4" v-if="descStatus[3]"></AutoTextArea>
-        <AutoTextArea :data="work1_desc5" v-if="descStatus[4]"></AutoTextArea>
+        <AutoTextArea
+          :data="work1_desc2"
+          :edit="edit"
+          v-if="descStatus[1]"
+        ></AutoTextArea>
+        <AutoTextArea
+          :data="work1_desc3"
+          :edit="edit"
+          v-if="descStatus[2]"
+        ></AutoTextArea>
+        <AutoTextArea
+          :data="work1_desc4"
+          :edit="edit"
+          v-if="descStatus[3]"
+        ></AutoTextArea>
+        <AutoTextArea
+          :data="work1_desc5"
+          :edit="edit"
+          v-if="descStatus[4]"
+        ></AutoTextArea>
       </div>
     </div>
   </div>
@@ -67,6 +84,7 @@ const state = reactive({
   showBorder: "  border: 1px #a7a3a3 dashed;",
 });
 
+const edit = ref<boolean>(false);
 const descStatus = reactive<boolean[]>([true, true, true, false, false]);
 
 const work1_desc1 = ref<string>(
@@ -114,10 +132,12 @@ const deleteDesc = () => {
 const onFocus = () => {
   // message.success("获得焦点");
   state.showTool = " visibility: visible;";
+  edit.value = true;
 };
 
 const hiddenToop = () => {
   state.showTool = " visibility: hidden;";
+  edit.value = false;
 };
 </script>
 

@@ -1,8 +1,8 @@
 <template>
-  <div class="avatat-box">
+  <div class="avatat-box" @mouseenter="canEdit" @mouseleave="notEdit">
     <a-avatar size="default" class="avatar" @click="uploadImg">
       <template #icon
-        ><img :src="user.avatarUrl" style="width: 80px; height: 80px"
+        ><img :src="avatarUrl" style="width: 80px; height: 80px"
       /></template>
     </a-avatar>
     <h3><input class="input_dash name" v-model="user.name" /></h3>
@@ -10,10 +10,13 @@
     <div>
       <a-textarea
         v-model:value="user.desc"
+        v-if="edit"
         placeholder=""
         auto-size
         class="input_dash"
       />
+
+      <div style="padding: 5px" v-else>{{ user.desc }}</div>
     </div>
     <div class="btn-box">
       <input
@@ -30,18 +33,20 @@
 <script lang="ts" setup>
 import { computed, defineProps, reactive, ref } from "vue";
 import img_url from "../../assets/avatar-1.png";
+import { avatarUrl } from "../../utils/data";
 interface AvatarData {
   name: string;
   desc: string;
   avatarUrl: string;
 }
+
+avatarUrl.value = img_url;
 const user = reactive<AvatarData>({
   name: "yi剑",
-  desc: "sss",
+  desc: "如果那两个字没有颤抖，我不会发现我难受",
   avatarUrl: img_url,
 });
-const value1 = ref<string>(" this is for you");
-const name = ref<string>("郑一剑2");
+const edit = ref<boolean>(false);
 
 const uploadImg = () => {
   const input_img = document.getElementById("btn_upload");
@@ -54,6 +59,15 @@ const preView = (e: any) => {
   console.log(src);
 
   user.avatarUrl = src;
+  avatarUrl.value = src;
+};
+
+const canEdit = () => {
+  edit.value = true;
+};
+
+const notEdit = () => {
+  edit.value = false;
 };
 </script>
 

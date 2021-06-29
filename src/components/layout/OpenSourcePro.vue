@@ -1,5 +1,5 @@
 <template>
-  <div class="info-box">
+  <div class="info-box" @mouseenter="onFocus" @mouseleave="hiddenToop">
     <div class="title">
       <div style="display: flex; align-items: center; gap: 10px">
         <GithubFilled :style="{ fontSize: '24px', color: 'white' }" />
@@ -13,9 +13,9 @@
     </div>
 
     <div style="width: 100%; padding-top: 25px">
-      <AutoTextArea :data="value1" v-if="state[0]"></AutoTextArea>
-      <AutoTextArea :data="value2" v-if="state[1]"></AutoTextArea>
-      <AutoTextArea :data="value3" v-if="state[2]"></AutoTextArea>
+      <AutoTextArea :data="value1" :edit="edit" v-if="state[0]"></AutoTextArea>
+      <AutoTextArea :data="value2" :edit="edit" v-if="state[1]"></AutoTextArea>
+      <AutoTextArea :data="value3" :edit="edit" v-if="state[2]"></AutoTextArea>
     </div>
   </div>
 </template>
@@ -33,7 +33,7 @@ import { GithubFilled } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
 import { reactive, ref } from "vue";
 import AutoTextArea from "../base/AutoTextArea.vue";
-
+const edit = ref<boolean>(false);
 const state = reactive([true, true, true]);
 const num = ref<number>(3);
 
@@ -68,6 +68,16 @@ const addDesc = () => {
     message.warn("最多允许添加3条数据");
     num.value = 3;
   }
+};
+
+const onFocus = () => {
+  // message.success("获得焦点");
+
+  edit.value = true;
+};
+
+const hiddenToop = () => {
+  edit.value = false;
 };
 </script>
 

@@ -1,8 +1,8 @@
 <template>
-  <div class="rs-edit-box">
+  <div class="rs-edit-box" id="main">
     <div class="box">
       <div class="rs-edit" id="resume" ref="resume">
-        <Template01 :ref="resume" @change="onChange"></Template01>
+        <Template01 @change=""></Template01>
       </div>
     </div>
     <div class="min-page">
@@ -10,7 +10,7 @@
     </div>
     <div class="toolMenu">
       <div class="item">
-        <Theme></Theme>
+        <Theme @changeTheme="onChange"></Theme>
       </div>
       <div class="item">
         <a-button type="primary" ghost>保存</a-button>
@@ -41,7 +41,7 @@ const minPage = ref<string>("");
 const downloadPdf = () => {
   window.scrollTo({ top: 0 });
   const htmlElement = document.getElementById("resume");
-
+  const main = document.getElementById("main");
   const width: number = htmlElement?.offsetWidth || 0;
   const height: number = htmlElement?.offsetHeight || 0;
 
@@ -53,11 +53,13 @@ const downloadPdf = () => {
   }).then((canvas) => {
     const doc = new jsPDF();
 
+    //document.body.appendChild(canvas);
     doc.addImage(canvas, "image/jpeg", 0, 0, 210, 297); //单位是毫米
     minPage.value = canvas.toDataURL as unknown as string;
     //  console.log(minPage);
 
-    doc.save("doc.pdf");
+    doc.save("resume.pdf");
+    createMinPageImage();
   });
 };
 
@@ -79,14 +81,17 @@ function createMinPageImage() {
 
 onMounted(() => {
   createMinPageImage();
+  // setInterval(() => {
+  //   createMinPageImage();
+  //   console.log("刷新");
+  // }, 3000);
 });
 
 // console.log(route.currentRoute.value.query,'route');
 
 const onChange = () => {
-  //message.info("发生改变");
+  // message.info("发生改变");
   window.scrollTo({ top: 0 });
-
   createMinPageImage();
 };
 </script>
@@ -132,7 +137,7 @@ const onChange = () => {
   left: 83px;
   top: 92px;
   width: 172px;
-  height: 250px;
-  border: 1px black solid;
+  height: 241px;
+  border: 1px #e6e6e6 solid;
 }
 </style>
