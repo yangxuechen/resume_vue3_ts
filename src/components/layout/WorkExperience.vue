@@ -3,11 +3,15 @@
     <div class="title">
       <div style="display: flex; align-items: center; gap: 10px">
         <SignalFilled :style="{ fontSize: '24px', color: 'white' }" />
-        <h4>工作经历</h4>
+        <input type="text" v-model="title" class="input_title" />
       </div>
-      <div style="padding-right: 25px" class="btn-box">
+      <!-- <div style="padding-right: 25px" class="btn-box">
         <a-button type="link" @click="deleteWork" class="btn">删除</a-button>
         <a-button type="link" @click="addWork" class="btn">添加</a-button>
+      </div> -->
+      <div class="btn-box">
+        <MinusSquareOutlined @click="deleteWork" />
+        <PlusSquareOutlined @click="addWork" />
       </div>
     </div>
 
@@ -22,12 +26,17 @@
 
 <script lang="ts"></script>
 <script lang="ts" setup>
-import { PushpinOutlined, SignalFilled } from "@ant-design/icons-vue";
+import {
+  PushpinOutlined,
+  SignalFilled,
+  MinusSquareOutlined,
+  PlusSquareOutlined,
+} from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
 import { defineEmit, reactive, ref } from "vue";
 import MainLeft from "./MainLeft.vue";
 import WorkEdit from "./work/WorkEdit.vue";
-
+const title = ref<string>("工作经历");
 const workStatus = reactive<boolean[]>([true, false, false]);
 const workNum = ref<number>(1);
 const addWork = () => {
@@ -86,14 +95,18 @@ const deleteWork = () => {
 }
 
 .btn-box {
+  padding-right: 25px;
   color: var(--rs-bgcolor-1);
+  display: flex;
+  font-size: 30px;
+  gap: 10px;
 }
+
 .btn-box:hover {
   color: white;
-  .btn {
-    color: white;
-  }
+  cursor: pointer;
 }
+
 .btn {
   color: var(--rs-bgcolor-1);
 }

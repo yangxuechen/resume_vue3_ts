@@ -3,12 +3,14 @@
     <div class="title">
       <div style="display: flex; align-items: center; gap: 10px">
         <ReadFilled :style="{ fontSize: '24px', color: 'white' }" />
-        <h4>教育背景</h4>
+        <input type="text" class="input_title" v-model="title" />
       </div>
-      <div style="padding-right: 25px">
-        <a-button type="link" @click="addEdu" class="btn"
+      <div style="padding-right: 25px" class="btn-box">
+        <!-- <a-button type="link" @click="addEdu" class="btn"
           >添加教育经历</a-button
-        >
+        > -->
+        <MinusSquareOutlined @click="deleteEdu" />
+        <PlusSquareOutlined @click="addEdu" />
       </div>
     </div>
 
@@ -44,10 +46,15 @@ interface Edu {
 }
 </script>
 <script lang="ts" setup>
-import { ReadFilled, PushpinOutlined } from "@ant-design/icons-vue";
+import {
+  ReadFilled,
+  PushpinOutlined,
+  PlusSquareOutlined,
+  MinusSquareOutlined,
+} from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import { reactive } from "vue";
-
+import { reactive, ref } from "vue";
+const title = ref<string>("教育经历");
 const state = reactive({
   dateset: [
     {
@@ -70,6 +77,14 @@ const addEdu = () => {
       eduction: "硕士",
     });
     message.success("添加成功");
+  }
+};
+
+const deleteEdu = () => {
+  if (state.dateset.length == 1) {
+    message.warning("至少需要一条记录");
+  } else {
+    state.dateset.pop();
   }
 };
 </script>
@@ -167,5 +182,16 @@ const addEdu = () => {
 .btn:hover {
   color: azure;
   transform: scale(1.1);
+}
+.btn-box {
+  color: var(--rs-bgcolor-1);
+  display: flex;
+  font-size: 30px;
+  gap: 10px;
+}
+
+.btn-box:hover {
+  color: white;
+  cursor: pointer;
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="info-box">
     <div class="title">
       <UserOutlined :style="{ fontSize: '20px', color: 'black' }" />
-      <h4>个人信息</h4>
+      <input type="text" class="input_title_bgWhite" v-model="title" />
     </div>
     <div class="info">
       <div><ManOutlined /></div>
@@ -52,6 +52,9 @@ import {
   PhoneOutlined,
   MailOutlined,
 } from "@ant-design/icons-vue";
+import { ref } from "vue";
+
+const title = ref<string>("教育经历");
 </script>
 
 <style lang="less" scoped>

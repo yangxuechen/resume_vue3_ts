@@ -2,7 +2,7 @@
   <div class="info-box">
     <div class="title">
       <CompassFilled :style="{ fontSize: '24px', color: 'white' }" />
-      <h4>求职意向</h4>
+      <input type="text" class="input_title" v-model="title" />
     </div>
 
     <div class="intension-desc">
@@ -40,8 +40,8 @@ import {
   ShopFilled,
   CompassFilled,
 } from "@ant-design/icons-vue";
-import { reactive } from "vue";
-
+import { reactive, ref } from "vue";
+const title = ref<string>("求职意向");
 const skilllist = reactive<Skill[]>([
   { key: "javascript", value: "良好", process: 80 },
   { key: "html5", value: "良好", process: 50 },

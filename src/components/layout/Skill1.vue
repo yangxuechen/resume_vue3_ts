@@ -3,7 +3,7 @@
     <div class="title">
       <div style="display: flex; align-items: center; width: 120px">
         <PushpinOutlined :style="{ fontSize: '20px', color: 'black' }" />
-        <h4>技能特长</h4>
+        <input type="text" class="input_title_bgWhite" v-model="title" />
       </div>
       <div class="btn-box">
         <MinusSquareOutlined @click="deleteSkill" />
@@ -48,8 +48,8 @@ import {
   MinusSquareOutlined,
 } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import { reactive } from "vue";
-
+import { reactive, ref } from "vue";
+const title = ref<string>("技能特长");
 const skilllist = reactive<Skill[]>([
   { key: "javascript", value: "良好", process: 80 },
   { key: "html5", value: "良好", process: 50 },

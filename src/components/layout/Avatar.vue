@@ -2,7 +2,7 @@
   <div class="avatat-box" @mouseenter="canEdit" @mouseleave="notEdit">
     <a-avatar size="default" class="avatar" @click="uploadImg">
       <template #icon
-        ><img :src="avatarUrl" style="width: 80px; height: 80px"
+        ><img :src="user.avatarUrl" style="width: 80px; height: 80px"
       /></template>
     </a-avatar>
     <h3><input class="input_dash name" v-model="user.name" /></h3>
@@ -16,7 +16,9 @@
         class="input_dash"
       />
 
-      <div style="padding: 5px" v-else>{{ user.desc }}</div>
+      <div style="padding: 5px; border: 1px var(--rs-bgcolor-1) solid" v-else>
+        {{ user.desc }}
+      </div>
     </div>
     <div class="btn-box">
       <input
@@ -56,6 +58,13 @@ const uploadImg = () => {
 const preView = (e: any) => {
   console.log(e.target.files[0]);
   const src = window.URL.createObjectURL(e.target.files[0]);
+
+  const reader = new FileReader();
+  reader.readAsDataURL(e.target.files[0]);
+  reader.onload = (e) => {
+    console.log(e.target!.result);
+    user.avatarUrl = e.target!.result as string;
+  };
   console.log(src);
 
   user.avatarUrl = src;

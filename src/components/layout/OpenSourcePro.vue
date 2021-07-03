@@ -4,11 +4,15 @@
       <div style="display: flex; align-items: center; gap: 10px">
         <GithubFilled :style="{ fontSize: '24px', color: 'white' }" />
 
-        <h4>开源项目</h4>
+        <input type="text" class="input_title" v-model="title" />
       </div>
-      <div style="padding-right: 25px" class="btn-box">
+      <!-- <div style="padding-right: 25px" class="btn-box">
         <a-button type="link" @click="deleteDesc" class="btn">删除</a-button>
         <a-button type="link" @click="addDesc" class="btn">添加</a-button>
+      </div> -->
+      <div class="btn-box">
+        <MinusSquareOutlined @click="deleteDesc" />
+        <PlusSquareOutlined @click="addDesc" />
       </div>
     </div>
 
@@ -29,10 +33,15 @@ interface Edu {
 }
 </script>
 <script lang="ts" setup>
-import { GithubFilled } from "@ant-design/icons-vue";
+import {
+  GithubFilled,
+  MinusSquareOutlined,
+  PlusSquareOutlined,
+} from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
 import { reactive, ref } from "vue";
 import AutoTextArea from "../base/AutoTextArea.vue";
+const title = ref<string>("开源项目");
 const edit = ref<boolean>(false);
 const state = reactive([true, true, true]);
 const num = ref<number>(3);
@@ -115,12 +124,15 @@ const hiddenToop = () => {
 }
 
 .btn-box {
+  padding-right: 25px;
   color: var(--rs-bgcolor-1);
+  display: flex;
+  font-size: 30px;
+  gap: 10px;
 }
+
 .btn-box:hover {
   color: white;
-  .btn {
-    color: white;
-  }
+  cursor: pointer;
 }
 </style>
