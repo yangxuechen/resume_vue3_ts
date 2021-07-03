@@ -2,7 +2,8 @@
   <div class="rs-edit-box" id="main">
     <div class="box">
       <div class="rs-edit" id="resume" ref="resume">
-        <Template01 @change=""></Template01>
+        <!-- <Template01 @change=""></Template01> -->
+        <router-view></router-view>
       </div>
     </div>
     <div class="min-page">
@@ -13,7 +14,7 @@
         <Theme @changeTheme="onChange"></Theme>
       </div>
       <div class="item">
-        <a-button type="primary" ghost>保存</a-button>
+        <a-button type="primary" @click="directPath" ghost>保存</a-button>
       </div>
       <div class="item">
         <a-button type="danger" ghost @click="downloadPdf">导出pdf</a-button>
@@ -32,6 +33,7 @@ import Theme from "../../components/base/Theme.vue";
 import { message } from "ant-design-vue";
 const msg2 = ref<string>("1");
 const resume = ref<HTMLElement>();
+
 const msg = computed(() => {
   console.log(route.currentRoute.value.query, "currentRoute");
 
@@ -80,6 +82,7 @@ function createMinPageImage() {
 }
 
 onMounted(() => {
+  window.scrollTo({ top: 0 });
   createMinPageImage();
   // setInterval(() => {
   //   createMinPageImage();
@@ -94,12 +97,28 @@ const onChange = () => {
   window.scrollTo({ top: 0 });
   createMinPageImage();
 };
+directPath();
+function directPath() {
+  switch (route.currentRoute.value.query.name) {
+    case "resume-01":
+      route.push("/resumeEdit/template01");
+      break;
+    case "resume-02":
+      route.push("/resumeEdit/template02");
+      break;
+    default:
+      break;
+  }
+
+  // route.push({ path: "/resumeEdit/template01" });
+}
 </script>
 
 <style lang="less" scoped>
 .rs-edit-box {
   display: flex;
   justify-content: center;
+  padding-bottom: 50px;
 
   .box {
     width: 760px;

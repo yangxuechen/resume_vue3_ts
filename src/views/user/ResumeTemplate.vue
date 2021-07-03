@@ -1,6 +1,6 @@
 <template>
   <div class="contrainer-resume">
-    <div v-for="record in resumedata">
+    <div v-for="record in resumedata" style="padding-top: 50px">
       <h3>
         {{ record.title }}
       </h3>
@@ -35,12 +35,12 @@ const dataset: MinResumeData[] = [
     // imgUrl: "src/assets/resume-temp/resume-tem2.png",
     imgUrl: resumeImgUrl,
     desc: "前端简历（清新版）",
-    name: "resume-前端-1",
+    name: "resume-01",
   },
   {
     imgUrl: resumeImgUrl,
     desc: "前端简历（热火版）",
-    name: "resume-前端-2",
+    name: "resume-02",
   },
   {
     imgUrl: resumeImgUrl,
@@ -97,7 +97,7 @@ const resumedata: ResumeData[] = [
 ];
 
 const toResumeEdit = (resumeTitle: string) => {
-  route.push({ path: "/resumeEdit", query: { name: resumeTitle } });
+  route.push({ path: "/resumeEdit/", query: { name: resumeTitle } });
 };
 </script>
 
@@ -106,7 +106,7 @@ const toResumeEdit = (resumeTitle: string) => {
   width: auto;
   height: auto;
   text-align: center;
-  padding: 0 30px;
+  padding: 0 80px 50px 80px;
 
   h3 {
     padding-top: 25px;
@@ -120,10 +120,12 @@ const toResumeEdit = (resumeTitle: string) => {
     display: flex;
     justify-content: start;
     flex-wrap: wrap;
+    gap: 50px;
     .resume-box {
-      margin: 15px 15px;
-      width: 200px;
-      height: 270px;
+      // margin: 15px 15px;
+      width: 260px;
+      height: 380px;
+      padding-top: 25px;
       // background-color: cornflowerblue;
     }
   }

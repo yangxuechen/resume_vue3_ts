@@ -54,7 +54,7 @@ import {
 } from "@ant-design/icons-vue";
 import { ref } from "vue";
 
-const title = ref<string>("教育经历");
+const title = ref<string>("基本信息");
 </script>
 
 <style lang="less" scoped>
