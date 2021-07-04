@@ -36,27 +36,32 @@
         <AutoTextArea
           :data="work1_desc1"
           :edit="edit"
+          shape="point"
           v-if="descStatus[0]"
           @focus="onFocus"
         ></AutoTextArea>
         <AutoTextArea
           :data="work1_desc2"
           :edit="edit"
+          shape="point"
           v-if="descStatus[1]"
         ></AutoTextArea>
         <AutoTextArea
           :data="work1_desc3"
           :edit="edit"
+          shape="point"
           v-if="descStatus[2]"
         ></AutoTextArea>
         <AutoTextArea
           :data="work1_desc4"
           :edit="edit"
+          shape="point"
           v-if="descStatus[3]"
         ></AutoTextArea>
         <AutoTextArea
           :data="work1_desc5"
           :edit="edit"
+          shape="point"
           v-if="descStatus[4]"
         ></AutoTextArea>
       </div>
@@ -144,6 +149,7 @@ const hiddenToop = () => {
 <style lang="less" scoped>
 .workEdit-box {
   width: 100%;
+  padding: 0 15px;
 }
 .tool-box {
   width: 100%;

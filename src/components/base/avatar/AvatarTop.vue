@@ -1,7 +1,7 @@
 <template>
   <div class="avatar-top-box" @mouseenter="canEdit" @mouseleave="notEdit">
     <div class="avarat-img-box">
-      <img :src="user.avatarUrl" style="width: 120px; height: 140px" />
+      <img :src="user.avatarUrl" style="width: 100px; height: 120px" />
     </div>
     <div class="avatar-name-box">
       <div class="name-box">
@@ -11,15 +11,15 @@
       <div>
         <a-textarea
           v-model:value="user.desc"
-          v-if="edit"
           placeholder=""
           auto-size
           class="input_dash text-area"
+          v-if="edit"
         />
 
         <div
           style="
-            padding: 5px;
+            padding: 4px;
             border: 1px var(--rs-bgcolor-1) solid;
             text-align: left;
           "
@@ -67,9 +67,9 @@ const notEdit = () => {
   justify-content: space-between;
   padding: 20px 50px 20px 10px;
   .avarat-img-box {
-    width: 120px;
-    height: 140px;
-    background-color: yellow;
+    width: 100px;
+    height: 120px;
+    // background-color: yellow;
   }
 
   .avatar-name-box {
@@ -96,5 +96,7 @@ const notEdit = () => {
   color: white;
   background-color: var(--rs-bgcolor-1);
   text-align: left;
+  padding: 4px;
+  border-color: transparent;
 }
 </style>

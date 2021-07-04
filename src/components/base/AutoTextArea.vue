@@ -1,7 +1,8 @@
 <template>
   <div class="open-source-box">
     <div class="open-source-item" v-if="state.edit">
-      <div class="point"></div>
+      <div class="point" v-if="shape === 'point'"></div>
+      <div class="square" v-if="shape === 'square'"></div>
       <div style="padding: 5px 15px; flex-grow: 1">
         <a-textarea
           v-model:value="data"
@@ -13,8 +14,9 @@
     </div>
 
     <div class="open-source-item" v-else>
-      <div class="point"></div>
-      <div style="padding: 10px 20px; flex-grow: 1; text-align: left">
+      <div class="point" v-if="shape === 'point'"></div>
+      <div class="square" v-if="shape === 'square'"></div>
+      <div class="input-text">
         <span>{{ data }}</span>
       </div>
     </div>
@@ -35,6 +37,15 @@ import { ref } from "vue";
 const props = defineProps({
   data: { type: String, default: "" },
   edit: { type: Boolean, default: true },
+  bgColor: { type: String, dedault: "white;" },
+  shape: { type: String, default: "" },
+});
+const bgcolor = computed(() => {
+  return props.bgColor;
+});
+
+const shape = computed(() => {
+  return props.shape;
 });
 const data = ref<string>("");
 data.value = props.data;
@@ -42,7 +53,8 @@ const emit = defineEmit({
   change: (value: string) => Boolean,
 });
 const state = reactive({
-  edit: true,
+  edit: false,
+  shape: props.shape,
 });
 
 watch(
@@ -55,7 +67,7 @@ watch(
 
 <style lang="less" scoped>
 .open-source-box {
-  padding: 0 15px;
+  padding: 0;
   width: 100%;
 }
 
@@ -64,6 +76,12 @@ watch(
   height: 10px;
   background-color: black;
   border-radius: 5px;
+  padding: 5px;
+}
+.square {
+  width: 10px;
+  height: 10px;
+  background-color: black;
   padding: 5px;
 }
 .open-source-item {
@@ -75,10 +93,18 @@ watch(
 .myinput {
   border: none;
   padding: 5px;
+  background-color: v-bind(bgcolor);
 }
 
 .text {
   position: absolute;
   display: none;
+}
+
+.input-text {
+  padding: 10px 20px;
+  flex-grow: 1;
+  text-align: left;
+  white-space: pre-wrap;
 }
 </style>

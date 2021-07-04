@@ -16,10 +16,25 @@
       </div>
     </div>
 
-    <div style="width: 100%; padding-top: 25px">
-      <AutoTextArea :data="value1" :edit="edit" v-if="state[0]"></AutoTextArea>
-      <AutoTextArea :data="value2" :edit="edit" v-if="state[1]"></AutoTextArea>
-      <AutoTextArea :data="value3" :edit="edit" v-if="state[2]"></AutoTextArea>
+    <div style="width: 100%; padding: 25px 0 0 15px">
+      <AutoTextArea
+        :data="value1"
+        :edit="edit"
+        shape="point"
+        v-if="state[0]"
+      ></AutoTextArea>
+      <AutoTextArea
+        :data="value2"
+        :edit="edit"
+        shape="point"
+        v-if="state[1]"
+      ></AutoTextArea>
+      <AutoTextArea
+        :data="value3"
+        :edit="edit"
+        shape="point"
+        v-if="state[2]"
+      ></AutoTextArea>
     </div>
   </div>
 </template>
