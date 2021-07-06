@@ -78,4 +78,8 @@ const resumeData = reactive<MinResumeData>({
   color: #312b2b94;
   padding: 10px 0;
 }
+
+.img-resume {
+  border: 1px #d8d8d8 solid;
+}
 </style>

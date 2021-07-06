@@ -2,7 +2,7 @@
   <div>
     <!-- <a-button goust>切换主题</a-button> -->
     <div class="color-box">
-      <div class="item-color-1 item" @click="changTheme('#25252a')"></div>
+      <div class="item-color-1 item" @click="changTheme('#062743')"></div>
       <div class="item-color-2 item" @click="changTheme('#efb788')"></div>
       <div class="item-color-3 item" @click="changTheme('#7194a9')"></div>
       <div class="item-color-4 item" @click="changTheme('#795548')"></div>

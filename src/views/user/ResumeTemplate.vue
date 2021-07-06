@@ -21,6 +21,8 @@
 import MinResume from "../../components/layout/MinResume.vue";
 import route from "../../router";
 import resumeImgUrl from "../../assets/resume-temp/resume-tem3.png";
+import resumeImgUrl2 from "../../assets/resume-temp/resume-temp4.png";
+import resumeImgUrl0 from "../../assets/resume-temp/resume-temp5.png";
 interface MinResumeData {
   imgUrl: string;
   desc: string;
@@ -33,12 +35,12 @@ interface ResumeData {
 const dataset: MinResumeData[] = [
   {
     // imgUrl: "src/assets/resume-temp/resume-tem2.png",
-    imgUrl: resumeImgUrl,
+    imgUrl: resumeImgUrl0,
     desc: "前端简历（清新版）",
     name: "resume-01",
   },
   {
-    imgUrl: resumeImgUrl,
+    imgUrl: resumeImgUrl2,
     desc: "前端简历（热火版）",
     name: "resume-02",
   },

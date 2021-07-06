@@ -1,7 +1,20 @@
 <template>
   <div class="avatar-top-box" @mouseenter="canEdit" @mouseleave="notEdit">
     <div class="avarat-img-box">
-      <img :src="user.avatarUrl" style="width: 100px; height: 120px" />
+      <img
+        :src="user.avatarUrl"
+        style="width: 100px; height: 120px"
+        @click="uploadImg"
+      />
+      <div class="btn-box">
+        <input
+          type="file"
+          style="width: 0px; height: 10px"
+          accept="image/*"
+          id="btn_upload"
+          @change="preView($event)"
+        />
+      </div>
     </div>
     <div class="avatar-name-box">
       <div class="name-box">
@@ -54,6 +67,26 @@ const canEdit = () => {
 const notEdit = () => {
   edit.value = false;
 };
+
+const preView = (e: any) => {
+  console.log(e.target.files[0]);
+  const src = window.URL.createObjectURL(e.target.files[0]);
+
+  const reader = new FileReader();
+  reader.readAsDataURL(e.target.files[0]);
+  reader.onload = (e) => {
+    console.log(e.target!.result);
+    user.avatarUrl = e.target!.result as string;
+  };
+  console.log(src);
+
+  user.avatarUrl = src;
+};
+
+const uploadImg = () => {
+  const input_img = document.getElementById("btn_upload");
+  input_img?.click();
+};
 </script>
 <style lang="less" scoped>
 .avatar-top-box {
@@ -98,5 +131,11 @@ const notEdit = () => {
   text-align: left;
   padding: 4px;
   border-color: transparent;
+}
+
+.btn-box {
+  visibility: hidden;
+  height: 10px;
+  width: 0px;
 }
 </style>

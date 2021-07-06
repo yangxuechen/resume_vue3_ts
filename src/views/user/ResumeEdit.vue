@@ -1,5 +1,5 @@
 <template>
-  <div class="rs-edit-box" id="main">
+  <div class="rs-edit-box" id="main" :key="key">
     <div class="box">
       <div class="rs-edit" id="resume" ref="resume">
         <!-- <Template01 @change=""></Template01> -->
@@ -7,7 +7,8 @@
       </div>
     </div>
     <div class="min-page">
-      <img :src="minPage" style="width: 170px; height: 238px" />
+      <a-spin v-if="loading" />
+      <img :src="minPage" style="width: 170px; height: 238px" v-else />
     </div>
     <div class="toolMenu">
       <div class="item">
@@ -24,7 +25,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onActivated, onMounted, ref } from "vue";
 import route from "../../router";
 import Template01 from "../template/Template01.vue";
 import html2canvas from "html2canvas";
@@ -32,8 +33,9 @@ import { jsPDF } from "jspdf";
 import Theme from "../../components/base/Theme.vue";
 import { message } from "ant-design-vue";
 const msg2 = ref<string>("1");
+const loading = ref<boolean>(true);
 const resume = ref<HTMLElement>();
-
+const key = ref<number>(0);
 const msg = computed(() => {
   console.log(route.currentRoute.value.query, "currentRoute");
 
@@ -82,29 +84,37 @@ function createMinPageImage() {
 }
 
 onMounted(() => {
+  console.log("onMounted");
+  directPath();
   window.scrollTo({ top: 0 });
   createMinPageImage();
-  // setInterval(() => {
-  //   createMinPageImage();
-  //   console.log("刷新");
-  // }, 3000);
+  setTimeout(() => {
+    createMinPageImage();
+
+    console.log("刷新");
+  }, 300);
+
+  setTimeout(() => {
+    loading.value = false;
+  }, 1000);
 });
 
 // console.log(route.currentRoute.value.query,'route');
 
 const onChange = () => {
-  // message.info("发生改变");
   window.scrollTo({ top: 0 });
   createMinPageImage();
 };
-directPath();
+
 function directPath() {
   switch (route.currentRoute.value.query.name) {
     case "resume-01":
       route.push("/resumeEdit/template01");
+
       break;
     case "resume-02":
       route.push("/resumeEdit/template02");
+
       break;
     default:
       break;
@@ -158,5 +168,8 @@ function directPath() {
   width: 172px;
   height: 241px;
   border: 1px #e6e6e6 solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

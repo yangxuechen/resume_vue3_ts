@@ -1,13 +1,23 @@
 <template>
   <div class="title">
     <input type="text" v-model="title" class="input_1 info-title" />
+    <div class="tool">
+      <!-- <div class="icon-box" @click="addDesc">
+          <PlusOutlined :style="{ fontSize: '24px', color: '#eae4e4' }" />
+        </div>
+        <div class="icon-box" @click="deleteDesc">
+          <MinusOutlined :style="{ fontSize: '24px', color: '#eae4e4' }" />
+        </div> -->
+      <PlusSquareOutlined @click="btnClick('add')" />
+      <MinusSquareOutlined @click="btnClick('delete')" />
+    </div>
   </div>
   <a-divider style="height: 2px; background-color: black; margin: 8px 0" />
 </template>
 
 <script lang="ts" setup>
-import { computed, defineProps } from "@vue/runtime-core";
-
+import { computed, defineEmit, defineProps } from "@vue/runtime-core";
+import { MinusSquareOutlined, PlusSquareOutlined } from "@ant-design/icons-vue";
 const props = defineProps({
   title: { type: String, default: "基本信息" },
   bgColor: { type: String, default: "white" },
@@ -20,18 +30,26 @@ const title = computed(() => {
 const bgColor = computed(() => {
   return props.bgColor;
 });
+const emit = defineEmit({
+  btnClick: (value: string) => Boolean,
+});
+const btnClick = (btnname: string) => {
+  emit("btnClick", btnname);
+};
 </script>
 
 <style lang="less" scoped>
 .title {
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 30px;
 }
 
 .input_1 {
   // background-color: #69695a;
   background-color: v-bind(bgColor);
-  width: auto;
+  width: 120px;
   height: 20px;
   border-width: 0ch;
   text-align: left;
@@ -57,5 +75,29 @@ const bgColor = computed(() => {
   height: 40px;
   font-size: 16px;
   font-weight: bolder;
+}
+
+.tool {
+  width: 200px;
+  height: 40px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+  color: v-bind(bgColor);
+  font-size: 30px;
+}
+
+.tool:hover {
+  width: 200px;
+  height: 40px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+  color: var(--rs-bgcolor-1);
+  font-size: 30px;
 }
 </style>
