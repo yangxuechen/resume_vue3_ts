@@ -129,7 +129,7 @@ function directPath() {
   display: flex;
   justify-content: center;
   padding-bottom: 50px;
-
+  background-color: #fff;
   .box {
     width: 760px;
     border: 5px #dff0fe solid;

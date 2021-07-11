@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="box">
     <Header></Header>
     <!-- <div>
           <a-button type="primary" @click="onClick">确认</a-button>
@@ -33,8 +33,24 @@ const onClick = () => {
 //      }
 //  }
 
+.box {
+  background-image: linear-gradient(to right top, #fdffff, #9fceda, #d6d7f9);
+}
 .mainContrainer {
   // margin-top: 50px;
   padding-top: 50px;
+  // background-image: linear-gradient(
+  //   to right top,
+  //   #6cd7e7,
+  //   #5fe4dd,
+  //   #6eeec8,
+  //   #94f6aa,
+  //   #c4f98b,
+  //   #f9f871
+  // );
+  width: 100%;
+  margin: auto;
+  // border: 1px black solid;
+  // backdrop-filter: blur(2px);
 }
 </style>

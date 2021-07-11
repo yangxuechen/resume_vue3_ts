@@ -66,31 +66,6 @@ const dataset2: MinResumeData[] = [
     desc: "运营简历（热火版）",
     name: "resume-前端-1",
   },
-  {
-    imgUrl: resumeImgUrl,
-    desc: "运营简历（简介版）",
-    name: "resume-前端-1",
-  },
-  {
-    imgUrl: resumeImgUrl,
-    desc: "运营简历（热火版）",
-    name: "resume-前端-1",
-  },
-  {
-    imgUrl: resumeImgUrl,
-    desc: "运营简历（简介版）",
-    name: "resume-前端-1",
-  },
-  {
-    imgUrl: resumeImgUrl,
-    desc: "运营简历（热火版）",
-    name: "resume-前端-1",
-  },
-  {
-    imgUrl: resumeImgUrl,
-    desc: "运营简历（简介版）",
-    name: "resume-前端-1",
-  },
 ];
 
 const resumedata: ResumeData[] = [
@@ -123,6 +98,11 @@ const toResumeEdit = (resumeTitle: string) => {
     justify-content: start;
     flex-wrap: wrap;
     gap: 50px;
+    padding-left: 50px;
+    padding-bottom: 50px;
+    border-radius: 45px;
+    // background: #e0e0e0;
+    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #bebebe;
     .resume-box {
       // margin: 15px 15px;
       width: 260px;

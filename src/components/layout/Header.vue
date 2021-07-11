@@ -30,7 +30,7 @@ const toIndex = () => {
 .contrainer-header {
   width: 100%;
   height: 50px;
-  background-color: #93c8f3;
+  // background-color: #93c8f3;
   display: flex;
   position: fixed;
   top: 0;
@@ -42,6 +42,17 @@ const toIndex = () => {
   border-bottom-color: #00000021;
   border-bottom-style: solid;
   z-index: 100;
+
+  // background-image: linear-gradient(
+  //   to bottom right,
+  //   #6cd7e7,
+  //   #5fe4dd,
+  //   #6eeec8,
+  //   #94f6aa,
+  //   #c4f98b,
+  //   #f9f871
+  // );
+
   //    padding: 15px;
 
   .leftBox {
