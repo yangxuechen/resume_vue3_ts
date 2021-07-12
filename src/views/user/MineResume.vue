@@ -57,7 +57,7 @@ const handleOk = (e: MouseEvent) => {
   text-align: center;
   // background-image: linear-gradient(rgb(184, 120, 120), #fff);
   background-color: rgb(14, 10, 5);
-  background-image: url(../../assets/bg-bg1.png);
+  background-image: url(../../assets/bg-bg2.jpg);
   background-size: 100% 100%;
 }
 
@@ -68,7 +68,7 @@ const handleOk = (e: MouseEvent) => {
   height: 400px;
   // background-color: blanchedalmond;
   margin: auto;
-  backdrop-filter: saturate(150%) blur(8px);
+  backdrop-filter: blur(8px);
   // filter: blur(1px) brightness(10%);
 }
 

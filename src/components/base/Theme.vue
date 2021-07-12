@@ -34,8 +34,8 @@ button {
   height: 40px;
   //   background-color: beige;
   z-index: 99;
-  right: 15px;
-  top: 60px;
+  right: 50px;
+  top: 100px;
   border-radius: 5px;
   display: flex;
   align-items: center;

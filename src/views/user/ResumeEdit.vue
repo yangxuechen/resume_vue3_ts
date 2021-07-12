@@ -148,8 +148,8 @@ function directPath() {
 
   .toolMenu {
     position: fixed;
-    right: 50px;
-    top: 80px;
+    right: 80px;
+    top: 135px;
 
     .item {
       padding: 15px;
@@ -164,7 +164,7 @@ function directPath() {
 .min-page {
   position: fixed;
   left: 83px;
-  top: 92px;
+  top: 125px;
   width: 172px;
   height: 241px;
   border: 1px #e6e6e6 solid;

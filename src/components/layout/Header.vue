@@ -1,12 +1,14 @@
 <template>
-  <div class="contrainer-header">
-    <div class="leftBox" @click="toIndex">
-      <img src="../../assets/icons8-elephant-80.png" class="logo" />
-      <h2>大象简历</h2>
-    </div>
-    <div class="rightBox">
-      <div class="item" @click="onClick_1">模版中心</div>
-      <div class="item" @click="onClick_2">我的简历</div>
+  <div class="head-box">
+    <div class="contrainer-header">
+      <div class="leftBox" @click="toIndex">
+        <img src="../../assets/icons8-elephant-80.png" class="logo" />
+        <h2>大象简历</h2>
+      </div>
+      <div class="rightBox">
+        <div class="item" @click="onClick_1">模版中心</div>
+        <div class="item" @click="onClick_2">我的简历</div>
+      </div>
     </div>
   </div>
 </template>
@@ -27,22 +29,30 @@ const toIndex = () => {
 </script>
 
 <style lang="less" scoped>
-.contrainer-header {
+.head-box {
   width: 100%;
+  height: 80px;
+  // background-image: url(../../assets/bg-bg1.png);
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+}
+.contrainer-header {
+  width: 90%;
   height: 50px;
   // background-color: #93c8f3;
   display: flex;
-  position: fixed;
-  top: 0;
+  margin: auto;
   padding-left: 25px;
   padding-right: 25px;
   line-height: 50px;
   justify-content: space-between;
-  border-bottom-width: 1px;
-  border-bottom-color: #00000021;
-  border-bottom-style: solid;
-  z-index: 100;
-
+  // border: 1px #fff solid;
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  box-shadow: 0px 0px 14px #629cad, 0px 0px 22px #bad3e9;
   // background-image: linear-gradient(
   //   to bottom right,
   //   #6cd7e7,
@@ -60,6 +70,7 @@ const toIndex = () => {
     height: 100%;
     display: flex;
     cursor: pointer;
+    backdrop-filter: blur(8px);
     .logo {
       transform: rotateY(180deg);
     }

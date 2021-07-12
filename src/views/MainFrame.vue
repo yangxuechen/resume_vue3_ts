@@ -38,7 +38,7 @@ const onClick = () => {
 }
 .mainContrainer {
   // margin-top: 50px;
-  padding-top: 50px;
+  padding-top: 80px;
   // background-image: linear-gradient(
   //   to right top,
   //   #6cd7e7,
