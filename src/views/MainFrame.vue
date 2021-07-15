@@ -7,6 +7,7 @@
     <div class="mainContrainer">
       <router-view></router-view>
     </div>
+  
   </div>
 </template>
 
@@ -14,6 +15,7 @@
 import { ref } from "vue";
 import { message } from "ant-design-vue";
 import Header from "../components/layout/Header.vue";
+import Footer1 from "../components/layout/Footer.vue";
 const msg = ref<string>("hello");
 
 const onClick = () => {

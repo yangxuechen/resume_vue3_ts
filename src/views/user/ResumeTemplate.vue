@@ -15,6 +15,7 @@
       </div>
     </div>
   </div>
+  <Footer1></Footer1>
 </template>
 
 <script lang="ts" setup>
@@ -23,6 +24,7 @@ import route from "../../router";
 import resumeImgUrl from "../../assets/resume-temp/resume-tem3.png";
 import resumeImgUrl2 from "../../assets/resume-temp/resume-temp4.png";
 import resumeImgUrl0 from "../../assets/resume-temp/resume-temp5.png";
+import Footer1 from "../../components/layout/Footer.vue";
 interface MinResumeData {
   imgUrl: string;
   desc: string;

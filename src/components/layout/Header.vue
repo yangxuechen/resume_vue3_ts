@@ -50,7 +50,8 @@ const toIndex = () => {
   line-height: 50px;
   justify-content: space-between;
   // border: 1px #fff solid;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(88px);
   border-radius: 10px;
   box-shadow: 0px 0px 14px #629cad, 0px 0px 22px #bad3e9;
   // background-image: linear-gradient(
@@ -70,9 +71,10 @@ const toIndex = () => {
     height: 100%;
     display: flex;
     cursor: pointer;
-    backdrop-filter: blur(8px);
+    // backdrop-filter: blur(8px);
     .logo {
       transform: rotateY(180deg);
+      z-index: 9999;
     }
     img {
       margin: 5px;

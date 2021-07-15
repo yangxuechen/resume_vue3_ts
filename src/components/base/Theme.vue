@@ -1,19 +1,26 @@
 <template>
-  <div>
+  <div class="toop-tip-box">
     <!-- <a-button goust>切换主题</a-button> -->
+
     <div class="color-box">
       <div class="item-color-1 item" @click="changTheme('#062743')"></div>
       <div class="item-color-2 item" @click="changTheme('#efb788')"></div>
       <div class="item-color-3 item" @click="changTheme('#7194a9')"></div>
       <div class="item-color-4 item" @click="changTheme('#795548')"></div>
       <div class="item-color-5 item" @click="changTheme('#907cb3')"></div>
+      <div class="item" @click="changTheme('#907cb3')">
+        <DownOutlined></DownOutlined>
+      </div>
     </div>
+    <!-- <div @click="changTheme('#907cb3')" class="drapdown-icon">
+      <DownOutlined></DownOutlined>
+    </div> -->
   </div>
 </template>
 
 <script lang="ts" setup>
 import { defineEmit } from "@vue/runtime-core";
-
+import { DownOutlined } from "@ant-design/icons-vue";
 const emit = defineEmit({
   changeTheme: (val: string) => Boolean,
 });
@@ -26,21 +33,6 @@ const changTheme = (color: string) => {
 <style lang="less" scoped>
 button {
   width: 100px;
-}
-
-.color-box {
-  position: fixed;
-  width: 200px;
-  height: 40px;
-  //   background-color: beige;
-  z-index: 99;
-  right: 50px;
-  top: 100px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  border: 1px #e2e1e1 solid;
-  justify-content: space-around;
 }
 
 .item-color-1 {
@@ -72,5 +64,26 @@ button {
   height: 17px;
   // border: 1px white solid;
   cursor: pointer;
+}
+
+.toop-tip-box {
+  display: flex;
+  width: 230px;
+  height: 40px;
+  position: fixed;
+  border: 1px #e2e1e1 solid;
+  right: 50px;
+  top: 100px;
+  align-items: center;
+  .color-box {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .drapdown-icon {
+    width: 30px;
+  }
 }
 </style>
