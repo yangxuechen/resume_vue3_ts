@@ -9,6 +9,7 @@ const routes: Array<RouteRecordRaw> = [
         children:[
             { path:'/resumeTemplate',component: () => import('../views/user/ResumeTemplate.vue')},
             { path:'/mineResume',component: () => import('../views/user/MineResume.vue')},
+            { path:'/recruitment',component: () => import('../views/user/Recruitment.vue')},
             {
                  path:'/resumeEdit',
                  component: () => import('../views/user/ResumeEdit.vue'),
@@ -22,9 +23,13 @@ const routes: Array<RouteRecordRaw> = [
         ]
      },
     { path:'/test', name:'test',component: () => import('../components/Test.vue')},
-
-
-    { path:'/hello', name:'hello',component: () => import('../components/HelloWorld.vue')}
+    { path:'/hello', name:'hello',component: () => import('../components/HelloWorld.vue')},
+    { path:'/404',name:'notFind',component:() => import('../views/sys/NotFind.vue')},
+    {
+        path: '/:w+',    // 此处需特别注意至于最底部
+        redirect: '/404'
+      }
+    
 ]
 
 const router =createRouter({

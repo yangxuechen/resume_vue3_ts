@@ -8,25 +8,41 @@
       <div class="item-color-3 item" @click="changTheme('#7194a9')"></div>
       <div class="item-color-4 item" @click="changTheme('#795548')"></div>
       <div class="item-color-5 item" @click="changTheme('#907cb3')"></div>
-      <div class="item" @click="changTheme('#907cb3')">
-        <DownOutlined></DownOutlined>
-      </div>
+      <!-- <div class="item" @click="changTheme('#907cb3')">
+       
+      </div> -->
     </div>
-    <!-- <div @click="changTheme('#907cb3')" class="drapdown-icon">
-      <DownOutlined></DownOutlined>
-    </div> -->
+    <div class="drapdown-icon" @click="openPanel">
+      <MoreOutlined
+        style="font-size: 20px; color: black"
+        class="menu-btn"
+        title="更多"
+      />
+    </div>
   </div>
+  <MoreColor v-if="visible"></MoreColor>
 </template>
 
 <script lang="ts" setup>
-import { defineEmit } from "@vue/runtime-core";
-import { DownOutlined } from "@ant-design/icons-vue";
+import { defineEmit, reactive } from "@vue/runtime-core";
+import { DownOutlined, MoreOutlined } from "@ant-design/icons-vue";
+import MoreColor from "../../components/base/MoreColor.vue";
+import { ref } from "vue";
+
+const visible = ref<boolean>(false);
 const emit = defineEmit({
   changeTheme: (val: string) => Boolean,
+  "update:visible": (value: boolean) => Boolean,
 });
 const changTheme = (color: string) => {
   document.body.style.setProperty("--rs-bgcolor-1", color);
   emit("changeTheme", color);
+};
+
+const openPanel = () => {
+  console.log("点击");
+
+  visible.value = true;
 };
 </script>
 
@@ -60,9 +76,9 @@ button {
 }
 
 .item:hover {
-  width: 17px;
-  height: 17px;
-  // border: 1px white solid;
+  // width: 17px;
+  // height: 17px;
+  border: 1px rgb(14, 11, 11) solid;
   cursor: pointer;
 }
 
@@ -84,6 +100,19 @@ button {
 
   .drapdown-icon {
     width: 30px;
+    display: flex;
+    align-items: center;
+  }
+
+  .drapdown-icon:hover {
+    cursor: pointer;
+  }
+  .menu-btn {
+    background-color: transparent;
+
+    &:hover {
+      background-color: #928f8a33;
+    }
   }
 }
 </style>

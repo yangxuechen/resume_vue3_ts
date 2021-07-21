@@ -1,5 +1,6 @@
 <template>
   <div class="contrainer-resume">
+    <!-- <div>招聘需求</div> -->
     <a-result title="该功能正在开发中，敬请期待！">
       <template #icon>
         <smile-twoTone />

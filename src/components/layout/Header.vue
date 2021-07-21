@@ -6,6 +6,7 @@
         <h2>大象简历</h2>
       </div>
       <div class="rightBox">
+        <div class="item" @click="onClick_3">招聘需求</div>
         <div class="item" @click="onClick_1">模版中心</div>
         <div class="item" @click="onClick_2">我的简历</div>
       </div>
@@ -23,6 +24,9 @@ const onClick_1 = () => {
   route.push({ path: "/resumeTemplate" });
 };
 
+const onClick_3 = () => {
+  route.push({ path: "/recruitment" });
+};
 const toIndex = () => {
   route.push({ path: "/" });
 };
