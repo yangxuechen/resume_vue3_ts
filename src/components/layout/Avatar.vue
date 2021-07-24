@@ -34,7 +34,7 @@
 
 <script lang="ts" setup>
 import { computed, defineProps, reactive, ref } from "vue";
-import img_url from "../../assets/avatar-1.png";
+import img_url from "../../assets/avatar-xx.png";
 import { avatarUrl } from "../../utils/data";
 interface AvatarData {
   name: string;
@@ -44,8 +44,8 @@ interface AvatarData {
 
 avatarUrl.value = img_url;
 const user = reactive<AvatarData>({
-  name: "yi剑",
-  desc: "如果那两个字没有颤抖，我不会发现我难受",
+  name: "张三",
+  desc: "用爱心来做事，用感恩的心做人",
   avatarUrl: img_url,
 });
 const edit = ref<boolean>(false);

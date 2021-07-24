@@ -16,6 +16,7 @@
       </div>
     </div>
   </div>
+  <Theme @changeTheme="onChange" :colors="colors"></Theme>
 </template>
 
 <script lang="ts" setup>
@@ -26,14 +27,38 @@ import BaseInfoRight from "../../components/base/baseinfo/BaseInfoRight.vue";
 import Skill02 from "../../components/base/skill/Skill02.vue";
 import EductionA from "../../components/base/edu/EductionA.vue";
 import Panel from "../../components/base/panel/Panel.vue";
-import { ref, watch } from "vue";
+import { defineEmit, onMounted, reactive, ref, watch } from "vue";
 import WorkExperise from "../../components/base/work/WorkExperise.vue";
-
+import Theme from "../../components/base/Theme.vue";
+interface ColorItem {
+  color: string;
+  background: string;
+}
 const edit = ref<boolean>(false);
 
 const onClick = (val: boolean) => {
   edit.value = val;
 };
+
+const colors = reactive<ColorItem[]>([
+  { color: "#284676", background: "background-color:#284676" },
+  { color: "#68412C", background: "background-color:#68412C" },
+  { color: "#13442A", background: "background-color:#13442A" },
+  { color: "#1D6357", background: "background-color:#1D6357" },
+  { color: "#9E552E", background: "background-color:#9E552E" },
+]);
+const emit = defineEmit({
+  colorChange: (value: string) => Boolean,
+});
+
+const onChange = () => {
+  // console.log("color change");
+  emit("colorChange", "ii");
+};
+
+onMounted(() => {
+  document.body.style.setProperty("--rs-bgcolor-1", colors[0].color);
+});
 </script>
 
 <style lang="less" scoped>
@@ -57,7 +82,7 @@ const onClick = (val: boolean) => {
     .left-box {
       width: 250px;
       min-height: calc(100% - 200px);
-      background-color: #dededd;
+      background-color: #f7f7f4;
     }
 
     .right-box {

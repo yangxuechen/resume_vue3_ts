@@ -21,9 +21,9 @@
 <script lang="ts" setup>
 import MinResume from "../../components/layout/MinResume.vue";
 import route from "../../router";
-import resumeImgUrl from "../../assets/resume-temp/resume-tem3.png";
-import resumeImgUrl2 from "../../assets/resume-temp/resume-temp4.png";
-import resumeImgUrl0 from "../../assets/resume-temp/resume-temp5.png";
+import resumeImgUrl from "../../assets/resume-temp/temp-03.png";
+import resumeImgUrl2 from "../../assets/resume-temp/temp-02.png";
+import resumeImgUrl0 from "../../assets/resume-temp/temp-01.png";
 import Footer1 from "../../components/layout/Footer.vue";
 interface MinResumeData {
   imgUrl: string;
@@ -49,7 +49,7 @@ const dataset: MinResumeData[] = [
   {
     imgUrl: resumeImgUrl,
     desc: "前端简历（简介版）",
-    name: "resume-前端-3",
+    name: "resume-03",
   },
   // {imgUrl:'src/assets/resume-temp/resume-tem1.png', desc:'前端简历（商务版）'},
   // {imgUrl:'src/assets/resume-temp/resume-tem1.png', desc:'前端简历（清新版）'},

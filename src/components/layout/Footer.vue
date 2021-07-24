@@ -10,7 +10,7 @@
     </div>
 
     <div class="foot-box">
-      <div class="name">©️2021 杨雪臣</div>
+      <div class="name">©️2021 吃西瓜要吐米米</div>
       <a href="https://beian.miit.gov.cn/" target="_blank"
         >蜀ICP备2021017342号-1</a
       >

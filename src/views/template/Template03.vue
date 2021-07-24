@@ -8,14 +8,12 @@
     <div class="right-box">
       <JobIntension></JobIntension>
       <Eduction></Eduction>
-      <WorkExperience></WorkExperience>
+      <WorkExperiseTimeLine></WorkExperiseTimeLine>
       <OpenSourcePro></OpenSourcePro>
-      <!-- <AutoInput></AutoInput>
-      <AutoTextArea></AutoTextArea> -->
     </div>
-
-    <Theme @changeTheme="onChange" :colors="colors"></Theme>
   </div>
+
+  <Theme @changeTheme="onChange" :colors="colors"></Theme>
 </template>
 
 <script lang="ts" setup>
@@ -26,25 +24,26 @@ import Skill1 from "../../components/layout/Skill1.vue";
 import JobIntension from "../../components/layout/JobIntension.vue";
 import Eduction from "../../components/layout/Eduction.vue";
 import WorkExperience from "../../components/layout/WorkExperience.vue";
+import WorkExperiseTimeLine from "../../components/base/work/WorkExperiseTimeLine.vue";
 import OpenSourcePro from "../../components/layout/OpenSourcePro.vue";
 import AutoInput from "../../components/base/AutoInput.vue";
 import AutoTextArea from "../../components/base/AutoTextArea.vue";
 import { reactive } from "@vue/reactivity";
 import Theme from "../../components/base/Theme.vue";
-import { defineEmit, inject, onMounted } from "@vue/runtime-core";
+import { defineEmit, onMounted } from "vue";
+interface ColorItem {
+  color: string;
+  background: string;
+}
 interface AvatarData {
   name: string;
   desc: string;
   avatarUrl: string;
 }
-interface ColorItem {
-  color: string;
-  background: string;
-}
 const colors = reactive<ColorItem[]>([
-  { color: "#062743", background: "background-color:#062743" },
-  { color: "#68412C", background: "background-color:#68412C" },
   { color: "#13442A", background: "background-color:#13442A" },
+  { color: "#68412C", background: "background-color:#68412C" },
+  { color: "#284676", background: "background-color:#284676" },
   { color: "#1D6357", background: "background-color:#1D6357" },
   { color: "#9E552E", background: "background-color:#9E552E" },
 ]);

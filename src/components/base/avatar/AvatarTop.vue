@@ -46,7 +46,7 @@
 </template>
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
-import img_url from "../../../assets/avatar-1.png";
+import img_url from "../../../assets/avatar-xx.png";
 
 interface AvatarData {
   name: string;
@@ -55,7 +55,7 @@ interface AvatarData {
 }
 const edit = ref<boolean>(false);
 const user = reactive<AvatarData>({
-  name: "张晓晓",
+  name: "张三",
   desc: "做事成功的要诀就如同钥匙开锁的道理一样，如果你不能准确对号，那麽一定无法打开成功之门",
   avatarUrl: img_url,
 });

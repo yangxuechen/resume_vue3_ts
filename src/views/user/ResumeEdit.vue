@@ -3,7 +3,7 @@
     <div class="box">
       <div class="rs-edit" id="resume" ref="resume">
         <!-- <Template01 @change=""></Template01> -->
-        <router-view></router-view>
+        <router-view @colorChange="onChange"></router-view>
       </div>
     </div>
     <div class="min-page">
@@ -11,9 +11,9 @@
       <img :src="minPage" style="width: 170px; height: 238px" v-else />
     </div>
     <div class="toolMenu">
-      <div class="item">
+      <!-- <div class="item">
         <Theme @changeTheme="onChange"></Theme>
-      </div>
+      </div> -->
       <div class="item">
         <a-button type="primary" @click="directPath" ghost>保存</a-button>
       </div>
@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onActivated, onMounted, ref } from "vue";
+import { computed, onActivated, onMounted, provide, ref } from "vue";
 import route from "../../router";
 import Template01 from "../template/Template01.vue";
 import html2canvas from "html2canvas";
@@ -114,7 +114,9 @@ function directPath() {
       break;
     case "resume-02":
       route.push("/resumeEdit/template02");
-
+      break;
+    case "resume-03":
+      route.push("/resumeEdit/template03");
       break;
     default:
       break;
@@ -149,7 +151,7 @@ function directPath() {
   .toolMenu {
     position: fixed;
     right: 80px;
-    top: 135px;
+    top: 140px;
 
     .item {
       padding: 15px;

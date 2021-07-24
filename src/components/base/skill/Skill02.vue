@@ -1,54 +1,54 @@
 <template>
   <div class="skill-02-box" @mouseenter="onFocus" @mouseleave="hiddenToop">
-    <TitleA title="技能特长" bgColor="#dededd" @btnClick="changSkill"></TitleA>
+    <TitleA title="技能特长" bgColor="#f7f7f4" @btnClick="changSkill"></TitleA>
 
     <AutoTextArea
       :data="value1"
       :edit="edit"
       v-if="state[0]"
-      bgColor="#dededd"
+      bgColor="#f7f7f4"
       shape="square"
     ></AutoTextArea>
     <AutoTextArea
       :data="value2"
       :edit="edit"
       v-if="state[1]"
-      bgColor="#dededd"
+      bgColor="#f7f7f4"
       shape="square"
     ></AutoTextArea>
     <AutoTextArea
       :data="value3"
       :edit="edit"
       v-if="state[2]"
-      bgColor="#dededd"
+      bgColor="#f7f7f4"
       shape="square"
     ></AutoTextArea>
     <AutoTextArea
       :data="value4"
       :edit="edit"
       v-if="state[3]"
-      bgColor="#dededd"
+      bgColor="#f7f7f4"
       shape="square"
     ></AutoTextArea>
     <AutoTextArea
       :data="value5"
       :edit="edit"
       v-if="state[4]"
-      bgColor="#dededd"
+      bgColor="#f7f7f4"
       shape="square"
     ></AutoTextArea>
     <AutoTextArea
       :data="value6"
       :edit="edit"
       v-if="state[5]"
-      bgColor="#dededd"
+      bgColor="#f7f7f4"
       shape="square"
     ></AutoTextArea>
     <AutoTextArea
       :data="value7"
       :edit="edit"
       v-if="state[6]"
-      bgColor="#dededd"
+      bgColor="#f7f7f4"
       shape="square"
     ></AutoTextArea>
   </div>

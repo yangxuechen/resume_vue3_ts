@@ -74,14 +74,14 @@ watch(
 .point {
   width: 10px;
   height: 10px;
-  background-color: black;
+  background-color: var(--rs-bgcolor-1);
   border-radius: 5px;
   padding: 5px;
 }
 .square {
   width: 10px;
   height: 10px;
-  background-color: black;
+  background-color: var(--rs-bgcolor-1);
   padding: 5px;
 }
 .open-source-item {

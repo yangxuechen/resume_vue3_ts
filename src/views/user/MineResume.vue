@@ -8,6 +8,7 @@
         <a-button type="primary" ghost @click="toIndex">回到首页</a-button>
       </template>
     </a-result>
+    <input type="color" class="color-input" />
   </div>
 </template>
 
@@ -49,5 +50,16 @@ const toIndex = () => {
   height: 100%;
   background-color: white;
   text-align: center;
+}
+
+.color-input {
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border: 0px;
+  margin: 0;
+  border-radius: 5px;
+  background-color: transparent;
 }
 </style>

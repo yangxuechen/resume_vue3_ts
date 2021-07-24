@@ -65,7 +65,7 @@ const title = ref<string>("基本信息");
   justify-content: left;
 }
 .input_1 {
-  background-color: #dededd;
+  background-color: #f7f7f4;
   width: auto;
   height: 20px;
   border-color: white;
@@ -73,7 +73,7 @@ const title = ref<string>("基本信息");
   border-width: 0ch;
   text-align: left;
   //  border-color: #25252a;
-  border-color: #dededd;
+  border-color: #f7f7f4;
   border-width: 1px;
   border-style: dotted;
   //  background-color: #25252a;

@@ -3,32 +3,65 @@
     <!-- <a-button goust>切换主题</a-button> -->
 
     <div class="color-box">
-      <div class="item-color-1 item" @click="changTheme('#062743')"></div>
-      <div class="item-color-2 item" @click="changTheme('#efb788')"></div>
+      <div v-for="item in colors">
+        <div
+          class="item-color-1 item"
+          :style="item.background"
+          @click="changTheme(item.color)"
+        ></div>
+      </div>
+
+      <!-- <div class="item-color-2 item" @click="changTheme('#efb788')"></div>
       <div class="item-color-3 item" @click="changTheme('#7194a9')"></div>
       <div class="item-color-4 item" @click="changTheme('#795548')"></div>
-      <div class="item-color-5 item" @click="changTheme('#907cb3')"></div>
+      <div class="item-color-5 item" @click="changTheme('#907cb3')"></div> -->
       <!-- <div class="item" @click="changTheme('#907cb3')">
        
       </div> -->
     </div>
-    <div class="drapdown-icon" @click="openPanel">
-      <MoreOutlined
+
+    <div class="drapdown-icon">
+      <!-- <MoreOutlined
         style="font-size: 20px; color: black"
         class="menu-btn"
         title="更多"
+      /> -->
+      <div style="width: 1px; height: 20px; background-color: #c1c0c0"></div>
+      <input
+        type="color"
+        class="color-input"
+        :value="colorRef"
+        @change="colorChange($event)"
+        @input="colorChange($event)"
       />
     </div>
   </div>
-  <MoreColor v-if="visible"></MoreColor>
 </template>
 
 <script lang="ts" setup>
-import { defineEmit, reactive } from "@vue/runtime-core";
+import { computed, defineEmit, defineProps, reactive } from "@vue/runtime-core";
 import { DownOutlined, MoreOutlined } from "@ant-design/icons-vue";
 import MoreColor from "../../components/base/MoreColor.vue";
 import { ref } from "vue";
+interface ColorItem {
+  color: string;
+  background: string;
+}
+const props = defineProps({
+  colors: {
+    type: Array,
+    default: [
+      { color: "#062743", background: "background-color:#062743" },
+      { color: "#7194a9", background: "background-color:#7194a9" },
+      { color: "#795548", background: "background-color:#795548" },
+      { color: "#907cb3", background: "background-color:#907cb3" },
+      { color: "#907cb3", background: "background-color:#907cb3" },
+    ],
+  },
+});
 
+const colors = computed(() => props.colors as ColorItem[]);
+const colorRef = ref<string>("#EB5505");
 const visible = ref<boolean>(false);
 const emit = defineEmit({
   changeTheme: (val: string) => Boolean,
@@ -39,10 +72,10 @@ const changTheme = (color: string) => {
   emit("changeTheme", color);
 };
 
-const openPanel = () => {
-  console.log("点击");
-
-  visible.value = true;
+const colorChange = (e: any) => {
+  // console.log(e.target.value);
+  document.body.style.setProperty("--rs-bgcolor-1", e.target.value);
+  emit("changeTheme", e.target.value);
 };
 </script>
 
@@ -84,13 +117,14 @@ button {
 
 .toop-tip-box {
   display: flex;
-  width: 230px;
+  width: 260px;
   height: 40px;
   position: fixed;
   border: 1px #e2e1e1 solid;
   right: 50px;
   top: 100px;
   align-items: center;
+  justify-content: space-around;
   .color-box {
     width: 200px;
     display: flex;
@@ -102,6 +136,7 @@ button {
     width: 30px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
 
   .drapdown-icon:hover {
@@ -114,5 +149,16 @@ button {
       background-color: #928f8a33;
     }
   }
+}
+
+.color-input {
+  padding: 0;
+  width: 20px;
+  height: 24px;
+  line-height: 30px;
+  border: 0px;
+  margin: 0;
+  border-radius: 5px;
+  background-color: transparent;
 }
 </style>
