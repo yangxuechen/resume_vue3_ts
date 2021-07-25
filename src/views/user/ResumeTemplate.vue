@@ -1,6 +1,6 @@
 <template>
   <div class="contrainer-resume">
-    <div v-for="record in resumedata" style="padding-top: 50px">
+    <div v-for="(record, index) in resumedata" style="padding-top: 50px">
       <h3>
         {{ record.title }}
       </h3>
@@ -11,6 +11,20 @@
           @click="toResumeEdit(data.name)"
         >
           <MinResume :data="data"></MinResume>
+        </div>
+
+        <div class="icon-more" @click="closePanel(index)">
+          <MinusOutlined style="font-size: 12px; color: black" />
+        </div>
+        <div
+          class="icon-more-2"
+          @click="openMaxPanel(index)"
+          v-if="record.isMax"
+        >
+          <ExpandAltOutlined style="font-size: 12px; color: black" />
+        </div>
+        <div class="icon-more-2" @click="openMinPanel(index)" v-else>
+          <ShrinkOutlined style="font-size: 12px; color: black" />
         </div>
       </div>
     </div>
@@ -25,6 +39,26 @@ import resumeImgUrl from "../../assets/resume-temp/temp-03.png";
 import resumeImgUrl2 from "../../assets/resume-temp/temp-02.png";
 import resumeImgUrl0 from "../../assets/resume-temp/temp-01.png";
 import Footer1 from "../../components/layout/Footer.vue";
+import {
+  RightOutlined,
+  ExpandAltOutlined,
+  MinusOutlined,
+  ShrinkOutlined,
+} from "@ant-design/icons-vue";
+import { reactive, ref } from "@vue/reactivity";
+import { message } from "ant-design-vue";
+import {
+  clickMaxCoder,
+  clickMaxDesigner,
+  clickMinCoder,
+  clickMinDesigner,
+  closeCoder,
+  closeDesigner,
+  getCoderResumes,
+  getMinCoderResumes,
+  getResumeData,
+} from "./ResumeDataset";
+import { computed } from "@vue/runtime-core";
 interface MinResumeData {
   imgUrl: string;
   desc: string;
@@ -33,57 +67,78 @@ interface MinResumeData {
 interface ResumeData {
   title: string;
   datalist: MinResumeData[];
+  isMax: boolean;
 }
-const dataset: MinResumeData[] = [
-  {
-    // imgUrl: "src/assets/resume-temp/resume-tem2.png",
-    imgUrl: resumeImgUrl0,
-    desc: "前端简历（清新版）",
-    name: "resume-01",
-  },
-  {
-    imgUrl: resumeImgUrl2,
-    desc: "前端简历（热火版）",
-    name: "resume-02",
-  },
-  {
-    imgUrl: resumeImgUrl,
-    desc: "前端简历（简介版）",
-    name: "resume-03",
-  },
-  // {imgUrl:'src/assets/resume-temp/resume-tem1.png', desc:'前端简历（商务版）'},
-  // {imgUrl:'src/assets/resume-temp/resume-tem1.png', desc:'前端简历（清新版）'},
-  // {imgUrl:'src/assets/resume-temp/resume-tem1.png', desc:'前端简历（清新版）'},
-  // {imgUrl:'src/assets/resume-temp/resume-tem1.png', desc:'前端简历（清新版）'},
-];
 
-const dataset2: MinResumeData[] = [
-  {
-    imgUrl: resumeImgUrl,
-    desc: "运营简历（清新版）",
-    name: "resume-前端-1",
-  },
-  {
-    imgUrl: resumeImgUrl,
-    desc: "运营简历（热火版）",
-    name: "resume-前端-1",
-  },
-];
+const state = reactive({
+  coderOpen: "min",
+  designerOpen: "min",
+});
+//let resumedata = ref<ResumeData[]>(getResumeData());
 
-const resumedata: ResumeData[] = [
-  { title: "前端开发", datalist: dataset },
-  { title: "运营设计", datalist: dataset2 },
-];
+const resumedata = computed(() => {
+  let temp: ResumeData[] = [];
+  if (state.coderOpen == "max") temp = clickMaxCoder();
+  else if (state.coderOpen == "min") temp = clickMinCoder();
+  else temp = closeCoder();
 
+  if (state.designerOpen == "max") temp = clickMaxDesigner();
+  else if (state.designerOpen == "min") temp = clickMinDesigner();
+  else temp = closeDesigner();
+  return temp;
+});
 const toResumeEdit = (resumeTitle: string) => {
   route.push({ path: "/resumeEdit/", query: { name: resumeTitle } });
+};
+
+const openMaxPanel = (i: number) => {
+  const screenWidth = window.screen.width;
+  switch (i) {
+    case 0:
+      // resumedata.value = clickMaxCoder();
+      state.coderOpen = "max";
+      break;
+    case 1:
+      state.designerOpen = "max";
+      break;
+    default:
+      break;
+  }
+};
+
+const openMinPanel = (i: number) => {
+  switch (i) {
+    case 0:
+      // resumedata.value = clickMinCoder();
+      state.coderOpen = "min";
+      break;
+    case 1:
+      state.designerOpen = "min";
+      break;
+    default:
+      break;
+  }
+};
+
+const closePanel = (i: number) => {
+  switch (i) {
+    case 0:
+      // resumedata.value = clickMinCoder();
+      state.coderOpen = "close";
+      break;
+    case 1:
+      state.designerOpen = "close";
+      break;
+    default:
+      break;
+  }
 };
 </script>
 
 <style lang="less" scoped>
 .contrainer-resume {
-  width: auto;
-  height: auto;
+  width: 100%;
+  min-height: 100vh;
   text-align: center;
   padding: 0 80px 50px 80px;
 
@@ -102,9 +157,11 @@ const toResumeEdit = (resumeTitle: string) => {
     gap: 50px;
     padding-left: 50px;
     padding-bottom: 50px;
+    padding-top: 30px;
     border-radius: 45px;
     // background: #e0e0e0;
     box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #bebebe;
+    position: relative;
     .resume-box {
       // margin: 15px 15px;
       width: 260px;
@@ -112,6 +169,37 @@ const toResumeEdit = (resumeTitle: string) => {
       padding-top: 25px;
       // background-color: cornflowerblue;
     }
+  }
+
+  .icon-more {
+    position: absolute;
+    top: 15px;
+    left: 50px;
+    width: 20px;
+    height: 20px;
+    background-color: #ea9441;
+    border: 1px #c9d8ea solid;
+    box-shadow: 0px 0px 4px #629cad, 0px 0px 4px #bad3e9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .icon-more-2 {
+    position: absolute;
+    top: 15px;
+    left: 80px;
+    width: 20px;
+    height: 20px;
+    background-color: #2bcc2d;
+    border: 1px #c9d8ea solid;
+    box-shadow: 0px 0px 4px #629cad, 0px 0px 4px #bad3e9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
 }
 </style>

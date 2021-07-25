@@ -88,6 +88,7 @@ onMounted(() => {
   directPath();
   window.scrollTo({ top: 0 });
   createMinPageImage();
+  //loading.value = false;
   setTimeout(() => {
     createMinPageImage();
 
@@ -109,14 +110,13 @@ const onChange = () => {
 function directPath() {
   switch (route.currentRoute.value.query.name) {
     case "resume-01":
-      route.push("/resumeEdit/template01");
-
+      route.push({ path: "/resumeEdit/template01" });
       break;
     case "resume-02":
-      route.push("/resumeEdit/template02");
+      route.push({ path: "/resumeEdit/template02" });
       break;
     case "resume-03":
-      route.push("/resumeEdit/template03");
+      route.push({ path: "/resumeEdit/template03" });
       break;
     default:
       break;
