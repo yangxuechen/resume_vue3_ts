@@ -14,17 +14,26 @@
         </div>
 
         <div class="icon-more" @click="closePanel(index)">
-          <MinusOutlined style="font-size: 12px; color: black" />
+          <a-tooltip>
+            <template #title>最小化</template>
+            <MinusOutlined style="font-size: 12px; color: black" />
+          </a-tooltip>
         </div>
         <div
           class="icon-more-2"
           @click="openMaxPanel(index)"
           v-if="record.isMax"
         >
-          <ExpandAltOutlined style="font-size: 12px; color: black" />
+          <a-tooltip>
+            <template #title>展开更多</template>
+            <ExpandAltOutlined style="font-size: 12px; color: black" />
+          </a-tooltip>
         </div>
         <div class="icon-more-2" @click="openMinPanel(index)" v-else>
-          <ShrinkOutlined style="font-size: 12px; color: black" />
+          <a-tooltip>
+            <template #title>收起</template>
+            <ShrinkOutlined style="font-size: 12px; color: black" />
+          </a-tooltip>
         </div>
       </div>
     </div>

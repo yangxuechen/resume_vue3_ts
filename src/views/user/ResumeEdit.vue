@@ -10,6 +10,27 @@
       <a-spin v-if="loading" />
       <img :src="minPage" style="width: 170px; height: 238px" v-else />
     </div>
+    <div
+      style="
+        position: fixed;
+        left: 265px;
+        top: 140px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      "
+    >
+      <!-- <ReloadOutlined /> -->
+      <a-tooltip>
+        <template #title>实时预览</template>
+        <EyeOutlined class="icon-btn" @click="onChange" />
+      </a-tooltip>
+
+      <a-tooltip>
+        <template #title>帮助</template>
+        <QuestionCircleOutlined class="icon-btn" />
+      </a-tooltip>
+    </div>
     <div class="toolMenu">
       <!-- <div class="item">
         <Theme @changeTheme="onChange"></Theme>
@@ -32,6 +53,11 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import Theme from "../../components/base/Theme.vue";
 import { message } from "ant-design-vue";
+import {
+  ReloadOutlined,
+  EyeOutlined,
+  QuestionCircleOutlined,
+} from "@ant-design/icons-vue";
 const msg2 = ref<string>("1");
 const loading = ref<boolean>(true);
 const resume = ref<HTMLElement>();
@@ -173,5 +199,10 @@ function directPath() {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.icon-btn {
+  color: var(--rs-bgcolor-1);
+  cursor: pointer;
 }
 </style>
