@@ -1,21 +1,25 @@
 # Vue 3 + Typescript + Vite
 
-一款web端的在线简历编辑工具，拥有大量精美的简历模版，支持在线编辑，导出pdf
+一款 web 端的在线简历编辑工具，拥有大量精美的简历模版，支持在线编辑，导出 pdf
 
-## 在线编辑简历
+![运行效果1](https://www.dxjl.cc/images/app1.png)
+
+![运行效果2](https://www.dxjl.cc/images/app2.png)
+### 预览地址 [https://wwww.dxjl.cc/](https://www.dxjl.cc/)
 
 ### 技术栈
 
-* vue3 + ant-design-vue + TypeScript + Vite 
+- vue3 + ant-design-vue 2.0 + TypeScript + Vite + less
 
-### 安装运行方式  
+### 项目运行
+
 ```
-  yarn dev  
+  git clone git@github.com:yangxuechen/resume_vue3_ts.git
+  cd resume_vue3_ts
+  yarn
+  yarn dev
 ```
-### 功能
 
-* 选择简历模版
-* 在线编辑 
-* 导出pdf
+### License
 
-
+- [Apache License 2.0](https://github.com/yangxuechen/resume_vue3_ts/blob/master/LICENSE)
