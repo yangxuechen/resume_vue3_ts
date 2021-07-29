@@ -5,7 +5,8 @@
 ![运行效果1](https://www.dxjl.cc/images/app1.png)
 
 ![运行效果2](https://www.dxjl.cc/images/app2.png)
-### 预览地址 [https://wwww.dxjl.cc/](https://www.dxjl.cc/)
+
+### 预览地址 [https://www.dxjl.cc/](https://www.dxjl.cc/)
 
 ### 技术栈
 

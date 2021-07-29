@@ -10,6 +10,7 @@ const routes: Array<RouteRecordRaw> = [
             { path:'/resumeTemplate',component: () => import('../views/user/ResumeTemplate.vue')},
             { path:'/mineResume',component: () => import('../views/user/MineResume.vue')},
             { path:'/recruitment',component: () => import('../views/user/Recruitment.vue')},
+            { path:'/privacyPolicy',component: () => import('../views/user/PrivacyPolicy.vue')},
             {
                  path:'/resumeEdit',
                  component: () => import('../views/user/ResumeEdit.vue'),

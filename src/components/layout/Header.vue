@@ -19,7 +19,7 @@
 import route from "../../router";
 
 const onClick_2 = () => {
-  route.push({ path: "/mineResume" });
+  route.push({ path: "/privacyPolicy" });
 };
 const onClick_1 = () => {
   route.push({ path: "/resumeTemplate" });
