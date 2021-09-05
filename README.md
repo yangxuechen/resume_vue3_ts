@@ -1,6 +1,6 @@
 # Vue 3 + Typescript + Vite
 
-一款 web 端的在线简历编辑工具，拥有大量精美的简历模版，支持在线编辑，导出 pdf
+一款 web 端的在线简历编辑工具，拥有大量精美的简历模版，可支持在线编辑，导出 pdf
 
 ![运行效果1](https://www.dxjl.cc/images/app1.png)
 

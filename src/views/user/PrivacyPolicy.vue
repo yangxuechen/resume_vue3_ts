@@ -37,15 +37,14 @@
 
       <h3 class="item">二、如何使用 Cookies 和本地 LocalStorage 存储</h3>
       <p>
-        大家都知道，MacWk
-        是没有会员注册功能的，为实现无账号评论、网站风格切换、浏览模式切换功能，会在您的浏览器中进行本地存储，您可以随时清除浏览器中保存的所有
+        大家都知道，大象简历是没有会员注册功能的，为实现无账号评论、网站风格切换、浏览模式切换功能，会在您的浏览器中进行本地存储，您可以随时清除浏览器中保存的所有
         Cookies 以及 LocalStorage。
       </p>
       <h3 class="item">三、如何共享、转让您的个人信息</h3>
       <li>不会与任何公司、组织和个人共享您的个人信息</li>
       <li>不会将您的个人信息转让给任何公司、组织和个人</li>
 
-      <h2 class="item">所有使用到的信息如下：</h2>
+      <h2 class="item">所有使用到的信息大致如下：</h2>
       <a-table
         :dataSource="dataset"
         :columns="columns"
@@ -107,7 +106,7 @@ const dataset = reactive<any>([
   {
     key: "2",
     name: "浏览器",
-    address: "afari 14.0.2",
+    address: "safari 14.0.2",
   },
   {
     key: "2",

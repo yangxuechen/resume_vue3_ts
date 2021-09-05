@@ -164,6 +164,8 @@ const closePanel = (i: number) => {
     justify-content: start;
     flex-wrap: wrap;
     gap: 50px;
+    column-gap: 50px;
+    -webkit-column-gap: 50px;
     padding-left: 50px;
     padding-bottom: 50px;
     padding-top: 30px;

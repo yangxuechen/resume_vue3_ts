@@ -9,7 +9,7 @@
         <div class="item" @click="onClick_3">使用教程</div>
         <div class="item" @click="onClick_1">模版中心</div>
         <div class="item" @click="onClick_2">隐私政策</div>
-        <div class="item" @click="onClick_2">联系我们</div>
+        <div class="item" @click="onClick_4">联系我们</div>
       </div>
     </div>
   </div>
@@ -28,6 +28,10 @@ const onClick_1 = () => {
 const onClick_3 = () => {
   route.push({ path: "/recruitment" });
 };
+const onClick_4 = () => {
+  route.push({ path: "/contact" });
+};
+
 const toIndex = () => {
   route.push({ path: "/" });
 };
