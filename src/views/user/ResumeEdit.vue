@@ -53,11 +53,13 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import Theme from "../../components/base/Theme.vue";
 import { message } from "ant-design-vue";
+import store from "../../store";
 import {
   ReloadOutlined,
   EyeOutlined,
   QuestionCircleOutlined,
 } from "@ant-design/icons-vue";
+import { UserInfo } from "../UserInfo";
 const msg2 = ref<string>("1");
 const loading = ref<boolean>(true);
 const resume = ref<HTMLElement>();
@@ -111,6 +113,14 @@ function createMinPageImage() {
 
 onMounted(() => {
   console.log("onMounted");
+
+  console.log(store.state.user.userInfo, "store resume");
+
+  const tempUser: UserInfo = store.state.user.userInfo;
+  tempUser.userInfoHead.name = "章三";
+  store.commit("user/setUserInfo", tempUser);
+
+  console.log(store.state.user.userInfo, "store resume 111");
   directPath();
   window.scrollTo({ top: 0 });
   createMinPageImage();
