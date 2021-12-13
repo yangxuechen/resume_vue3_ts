@@ -19,27 +19,27 @@ const dataset: MinResumeData[] = [
     {
       // imgUrl: "src/assets/resume-temp/resume-tem2.png",
       imgUrl: resumeImgUrl0,
-      desc: "前端简历（清新版）",
+      desc: "前端简历（可用）",
       name: "resume-01",
     },
     {
       imgUrl: resumeImgUrl2,
-      desc: "前端简历（热火版）",
+      desc: "前端简历（可用）",
       name: "resume-02",
     },
     {
       imgUrl: resumeImgUrl,
-      desc: "前端简历（简介版）",
+      desc: "前端简历（可用）",
       name: "resume-03",
     },
     {
       imgUrl: resumeImgUrl,
-      desc: "前端简历（简介版）",
+      desc: "前端简历（未上线）",
       name: "resume-03",
     },
     {
       imgUrl: resumeImgUrl,
-      desc: "前端简历（简介版）",
+      desc: "前端简历（未上线）",
       name: "resume-03",
     },
   ];
@@ -47,32 +47,32 @@ const dataset: MinResumeData[] = [
   const dataset2: MinResumeData[] = [
     {
       imgUrl: resumeImgUrl,
-      desc: "运营简历（清新版）",
+      desc: "运营简历（未上线）",
       name: "resume-前端-1",
     },
     {
       imgUrl: resumeImgUrl,
-      desc: "运营简历（热火版）",
+      desc: "运营简历（未上线）",
       name: "resume-前端-1",
     },
     {
         imgUrl: resumeImgUrl,
-        desc: "运营简历（清新版）",
+        desc: "运营简历（未上线）",
         name: "resume-前端-1",
       },
       {
         imgUrl: resumeImgUrl,
-        desc: "运营简历（热火版）",
+        desc: "运营简历（未上线）",
         name: "resume-前端-1",
       },
       {
         imgUrl: resumeImgUrl,
-        desc: "运营简历（清新版）",
+        desc: "运营简历（未上线）",
         name: "resume-前端-1",
       },
       {
         imgUrl: resumeImgUrl,
-        desc: "运营简历（热火版）",
+        desc: "运营简历（未上线）",
         name: "resume-前端-1",
       },
   ];

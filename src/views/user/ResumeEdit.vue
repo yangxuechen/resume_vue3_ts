@@ -42,6 +42,10 @@
         <a-button type="danger" ghost @click="downloadPdf">导出pdf</a-button>
       </div>
     </div>
+
+    <div class="toolTip">
+      <TooltipA></TooltipA>
+    </div>
   </div>
 </template>
 
@@ -58,6 +62,7 @@ import {
   EyeOutlined,
   QuestionCircleOutlined,
 } from "@ant-design/icons-vue";
+import TooltipA from "../../components/base/tooltip/TooltipA.vue";
 const msg2 = ref<string>("1");
 const loading = ref<boolean>(true);
 const resume = ref<HTMLElement>();
@@ -74,8 +79,6 @@ const downloadPdf = () => {
   const main = document.getElementById("main");
   const width: number = htmlElement?.offsetWidth || 0;
   const height: number = htmlElement?.offsetHeight || 0;
-
-  // console.log(width + " " + height);
 
   html2canvas(htmlElement!, {
     height: htmlElement?.offsetHeight,
@@ -94,26 +97,29 @@ const downloadPdf = () => {
 };
 
 function createMinPageImage() {
-  const htmlElement = document.getElementById("resume");
-  const width: number = htmlElement?.offsetWidth || 0;
-  const height: number = htmlElement?.offsetHeight || 0;
+  return new Promise((resolve) => {
+    const htmlElement = document.getElementById("resume");
+    const width: number = htmlElement?.offsetWidth || 0;
+    const height: number = htmlElement?.offsetHeight || 0;
 
-  //console.log(width + " " + height);
+    //console.log(width + " " + height);
 
-  html2canvas(htmlElement!, {
-    height: htmlElement?.offsetHeight,
-    width: htmlElement?.offsetWidth,
-  }).then((canvas) => {
-    // console.log(canvas.toDataURL());
-    minPage.value = canvas.toDataURL() + "";
+    html2canvas(htmlElement!, {
+      height: htmlElement?.offsetHeight,
+      width: htmlElement?.offsetWidth,
+    }).then((canvas) => {
+      // console.log(canvas.toDataURL());
+      minPage.value = canvas.toDataURL() + "";
+      resolve("success");
+    });
   });
 }
-
-onMounted(() => {
+directPath();
+onMounted(async () => {
   console.log("onMounted");
   directPath();
   window.scrollTo({ top: 0 });
-  createMinPageImage();
+  await createMinPageImage();
   //loading.value = false;
   setTimeout(() => {
     createMinPageImage();
@@ -204,5 +210,13 @@ function directPath() {
 .icon-btn {
   color: var(--rs-bgcolor-1);
   cursor: pointer;
+}
+
+.toolTip {
+  // width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 1160px;
+  left: calc(760px + (100vw - 756px) / 2);
 }
 </style>
