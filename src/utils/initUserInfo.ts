@@ -1,9 +1,11 @@
 import { UserInfo, UserInfoHead, UserInfoBase, Education, WorkExperience, Skill, Intention, Project } from './../views/UserInfo';
 
+import img_url from "../assets/avatar-xx.png";
+
  const userInfoHead:UserInfoHead = {
      name:'yxc',
      motto:'11',
-     avatar:'../assets/avatar-1.png'
+     avatar:img_url
 };
 
  const userInfoBase: UserInfoBase = {

@@ -1,16 +1,16 @@
+
 import { UserInfo } from './../../views/UserInfo';
 
-
-import userInfo from '../../utils/initUserInfo'
-
+const tempUserInfo = localStorage.getItem('userInfo') || '';
 export const user = {
     namespaced: true,
     state: {
-      userInfo : userInfo.userInfo
+      userInfo :  JSON.parse(tempUserInfo) 
     },
     mutations: {
       setUserInfo(state : { userInfo : UserInfo}, userInfo: UserInfo) {
         state.userInfo = userInfo;
+        localStorage.setItem('userInfo',JSON.stringify(userInfo))
       },
     },
 
