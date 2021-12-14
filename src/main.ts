@@ -13,8 +13,8 @@ import  userInfo  from './utils/initUserInfo'
 console.log(userInfo ,'userInfo main.ts');
 
 // 初始化用户信息 如果已经存在 不重新赋值
-if(!localStorage.getItem('userInfo'))
-window.localStorage.setItem('userInfo',JSON.stringify(userInfo))
+if(localStorage.getItem('userInfo')=='{}')
+window.localStorage.setItem('userInfo',JSON.stringify(userInfo.userInfo))
 
 
 

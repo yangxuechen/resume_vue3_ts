@@ -28,6 +28,8 @@ export class UserInfoBase{
     sex : String;
     // 年龄
     age : String;
+    // 最高学历
+    education : String;
     // 名族
     nameFamily : String;
     // 工作经验
@@ -41,10 +43,11 @@ export class UserInfoBase{
     // 微信
     weChat : String;
 
-    constructor(birthday:String,  sex : String, age : String,  nameFamily : String,  workExperience : String,  phoneNumber : String, email : String,  qq : String, weChat : String ){
+    constructor(birthday:String,  sex : String, age : String, education : String,  nameFamily : String,  workExperience : String,  phoneNumber : String, email : String,  qq : String, weChat : String ){
       this.birthday = birthday;
       this.sex = sex;
       this.age = age;
+      this.education = education;
       this.nameFamily = nameFamily;
       this.workExperience = workExperience;
       this.phoneNumber = phoneNumber;

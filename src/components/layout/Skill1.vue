@@ -13,19 +13,19 @@
     <div v-for="record in skilllist">
       <div class="skill-box">
         <div>
-          <input class="input_dash" :value="record.key" style="width: 5rem" />
+          <input class="input_dash" :value="record.skill" style="width: 5rem" />
         </div>
         <div>
           <input
             class="input_dash"
-            :value="record.value"
+            :value="record.degreeDesc"
             style="text-align: right; width: 5rem"
           />
         </div>
       </div>
       <div class="progress-box">
         <a-progress
-          :percent="record.process"
+          :percent="record.degree"
           :show-info="false"
           strokeColor="#9e9494"
         />
@@ -35,11 +35,11 @@
 </template>
 
 <script lang="ts">
-interface Skill {
-  key: string;
-  value: string;
-  process: number;
-}
+// interface Skill {
+//   skill: string;
+//   value: string;
+//   process: number;
+// }
 </script>
 <script lang="ts" setup>
 import {
@@ -49,22 +49,27 @@ import {
 } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
 import { reactive, ref } from "vue";
+import { useStore } from "vuex";
+import { Skill, UserInfo } from "../../views/UserInfo";
+
+const store = useStore();
 const title = ref<string>("技能特长");
-const skilllist = reactive<Skill[]>([
-  { key: "javascript", value: "良好", process: 80 },
-  { key: "html5", value: "良好", process: 50 },
-  { key: "css3", value: "良好", process: 60 },
-  { key: "node.js", value: "良好", process: 50 },
-  { key: "vue3.js", value: "良好", process: 50 },
-  { key: "java", value: "良好", process: 50 },
-]);
+
+console.log(store.state.user.userInfo.skillList, "skilllist");
+
+const skilllist = reactive<Skill[]>(store.state.user.userInfo.skillList);
 
 const addSkill = () => {
   if (skilllist.length > 10) {
     message.warning("最多允许添加10条记录");
     return;
   }
-  skilllist.push({ key: "aa", value: "ss", process: 50 });
+  skilllist.push({ skill: "aa", degreeDesc: "ss", degree: "50" });
+
+  const tempUser: UserInfo = store.state.user.userInfo;
+  tempUser.skillList = skilllist;
+  store.commit("user/setUserInfo", tempUser);
+
   message.success("添加成功");
 };
 

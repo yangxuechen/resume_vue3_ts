@@ -12,6 +12,7 @@ import img_url from "../assets/avatar-xx.png";
     birthday : '1997-12-21',
     sex : '男',
     age : '24',
+    education: '本科',
     nameFamily :'汉',
     workExperience : '2年',
     phoneNumber : '18318486111',
