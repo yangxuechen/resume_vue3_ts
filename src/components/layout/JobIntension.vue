@@ -8,11 +8,11 @@
     <div class="intension-desc">
       <div class="item">
         <UserOutlined :style="{ fontSize: '20px', color: 'black' }" />
-        <input class="input_dash" value="前端工程师" />
+        <input class="input_dash" v-model="jobPostion" />
       </div>
       <div class="item">
         <ShopFilled :style="{ fontSize: '20px', color: 'black' }" />
-        <input class="input_dash" value="成都" />
+        <input class="input_dash" v-model="workCity" />
       </div>
       <!-- <div class="item">
         <TransactionOutlined :style="{ fontSize: '20px', color: 'black' }" />
@@ -20,7 +20,7 @@
       </div> -->
       <div class="item">
         <HourglassFilled :style="{ fontSize: '20px', color: 'black' }" />
-        <input class="input_dash" value="一周内" />
+        <input class="input_dash" v-model="entryTime" />
       </div>
     </div>
   </div>
@@ -40,16 +40,45 @@ import {
   ShopFilled,
   CompassFilled,
 } from "@ant-design/icons-vue";
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
+import { useStore } from "vuex";
+import { UserInfo } from "../../views/UserInfo";
 const title = ref<string>("求职意向");
-const skilllist = reactive<Skill[]>([
-  { key: "javascript", value: "良好", process: 80 },
-  { key: "html5", value: "良好", process: 50 },
-  { key: "css3", value: "良好", process: 60 },
-  { key: "node.js", value: "良好", process: 50 },
-  { key: "vue3.js", value: "良好", process: 50 },
-  { key: "java", value: "良好", process: 50 },
-]);
+
+const store = useStore();
+
+const jobPostion = computed({
+  get() {
+    return store.state.user.userInfo.intention.jobPostion;
+  },
+  set(jobPostion: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.intention.jobPostion = jobPostion;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
+
+const workCity = computed({
+  get() {
+    return store.state.user.userInfo.intention.workCity;
+  },
+  set(workCity: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.intention.workCity = workCity;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
+
+const entryTime = computed({
+  get() {
+    return store.state.user.userInfo.intention.entryTime;
+  },
+  set(entryTime: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.intention.entryTime = entryTime;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
 </script>
 
 <style lang="less" scoped>

@@ -62,28 +62,29 @@ export class UserInfoBase{
  */
 export class Education {
     //学历
-    education :String;
+    education :string;
     // 第一学历学校
-    firstSchool :String;
-     // 第一学校经历描述
-    firstSchoolExperience :String;
+    firstSchool :string;
+    // 第一学校经历描述
+    firstSchoolExperience :string;
     // 第一学历专业
-    firstMajor :String;
+    firstMajor :string;
+    // 入学时间
+    startTime : string;
+    // 毕业时间
+    endTime : string;
+    // 学习时间
+    time: string;
 
 
-    //  // 第二学历学校
-    // secondSchool :String;
-    // // 第二学历专业
-    // secondMajor :String;
-    // // 第二学校经历描述
-    // secondSchoolExperience :String;
-
-
-    constructor(education :String, firstSchool :String, secondSchool :String, firstSchoolExperience :String, firstMajor :String){
+    constructor(education :string, firstSchool :string, secondSchool :string, firstSchoolExperience :string, firstMajor :string, startTime : string, endTime : string, time: string){
         this.education = education;
         this.firstSchool = firstSchool;
         this.firstSchoolExperience = firstSchoolExperience;
         this.firstMajor = firstMajor;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.time = time;
     }
 }
 

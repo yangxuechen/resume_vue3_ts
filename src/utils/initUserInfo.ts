@@ -28,12 +28,18 @@ import img_url from "../assets/avatar-xx.png";
     firstSchool : 'XX大学',
     firstMajor : '软件工程',
     firstSchoolExperience : '2016年于xx大学学习软件工程专业',
+    startTime : '2016-9-1',
+    endTime : '2020-7-1',
+    time : '2016-2020'
  },
  {
     education : '本科',
     firstSchool : 'XX大学',
     firstMajor : '软件工程',
     firstSchoolExperience : '2016年于xx大学学习软件工程专业',
+    startTime : '2016-9-1',
+    endTime : '2020-7-1',
+    time : '2016-2020'
  }
 ]
 

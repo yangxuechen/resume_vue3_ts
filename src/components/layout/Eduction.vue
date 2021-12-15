@@ -15,20 +15,21 @@
     </div>
 
     <div class="intension-desc">
-      <div v-for="item in state.dateset" class="item-box">
+      <div v-for="item in state" class="item-box">
         <div class="item">
-          <input class="input_dash" :value="item.date" style="width: 120px" />
+          <input class="input_dash" v-model="item.time" @change="updateStore" style="width: 120px" />
         </div>
         <div class="item">
-          <input class="input_dash" :value="item.school" style="width: 120px" />
+          <input class="input_dash" v-model="item.firstSchool" @change="updateStore" style="width: 120px" />
         </div>
         <div class="item">
-          <input class="input_dash" :value="item.major" />
+          <input class="input_dash" @change="updateStore" v-model="item.firstMajor" />
         </div>
         <div class="item">
           <input
             class="input_dash"
-            :value="item.eduction"
+            v-model="item.education"
+            @change="updateStore"
             style="width: 50px"
           />
         </div>
@@ -37,14 +38,7 @@
   </div>
 </template>
 
-<script lang="ts">
-interface Edu {
-  date: string;
-  school: string;
-  major: string;
-  eduction: string;
-}
-</script>
+<script lang="ts"></script>
 <script lang="ts" setup>
 import {
   ReadFilled,
@@ -54,38 +48,44 @@ import {
 } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
 import { reactive, ref } from "vue";
+import { useStore } from "vuex";
+import { Education } from "../../views/UserInfo";
 const title = ref<string>("教育经历");
-const state = reactive({
-  dateset: [
-    {
-      date: "2016~2020",
-      school: "行知大学",
-      major: "软件工程",
-      eduction: "本科",
-    },
-  ] as Edu[],
-});
+
+const store = useStore();
+const state = reactive<Education[]>(store.state.user.userInfo.educationList);
 
 const addEdu = () => {
-  if (state.dateset.length > 2) {
+  if (state.length > 2) {
     message.warning("最多允许添加3条记录");
   } else {
-    state.dateset.push({
-      date: "2016~2020",
-      school: "行知大学",
-      major: "软件工程",
-      eduction: "硕士",
+    state.push({
+      time: "2016~2020",
+      firstSchool: "行知大学",
+      firstMajor: "软件工程",
+      education: "硕士",
+      startTime: "2016",
+      endTime: "2020",
+      firstSchoolExperience: "于2016年就读于XX大学XXXX专业",
     });
+    updateStore();
     message.success("添加成功");
   }
 };
 
 const deleteEdu = () => {
-  if (state.dateset.length == 1) {
+  if (state.length == 1) {
     message.warning("至少需要一条记录");
   } else {
-    state.dateset.pop();
+    state.pop();
+    updateStore();
   }
+};
+
+const updateStore = () => {
+  const tempUser = store.state.user.userInfo;
+  tempUser.educationList = state;
+  store.commit("user/setUserInfo", tempUser);
 };
 </script>
 
