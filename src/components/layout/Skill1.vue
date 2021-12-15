@@ -13,12 +13,18 @@
     <div v-for="record in skilllist">
       <div class="skill-box">
         <div>
-          <input class="input_dash" :value="record.skill" style="width: 5rem" />
+          <input
+            class="input_dash"
+            v-model="record.skill"
+            @change="onChange"
+            style="width: 5rem"
+          />
         </div>
         <div>
           <input
             class="input_dash"
-            :value="record.degreeDesc"
+            v-model="record.degreeDesc"
+            @change="onChange"
             style="text-align: right; width: 5rem"
           />
         </div>
@@ -80,6 +86,16 @@ const deleteSkill = () => {
   }
   skilllist.pop();
   message.success("删除成功");
+};
+
+/**
+ * 输入框发生改变，立即更新store数据
+ */
+const onChange = () => {
+  message.info("change");
+  const tempUser: UserInfo = store.state.user.userInfo;
+  tempUser.skillList = skilllist;
+  store.commit("user/setUserInfo", tempUser);
 };
 </script>
 

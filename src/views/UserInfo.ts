@@ -129,13 +129,13 @@ export class WorkExperience{
  */
 export class Skill{
     // 技能
-    skill : String;
+    skill : string;
     // 掌握程度
-    degree : String;
+    degree : string;
     // 掌握程度描述
-    degreeDesc : String;
+    degreeDesc : string;
 
-    constructor(skill : String, degree : String, degreeDesc : String){
+    constructor(skill : string, degree : string, degreeDesc : string){
         this.skill = skill;
         this.degree = degree;
         this.degreeDesc = degreeDesc;
