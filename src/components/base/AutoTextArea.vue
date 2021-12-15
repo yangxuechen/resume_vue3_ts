@@ -7,6 +7,7 @@
         <a-textarea
           v-model:value="data"
           placeholder="请输入内容"
+          @change="onChange"
           class="myinput"
           :autoSize="{ minRows: 1, maxRows: 5 }"
         />
@@ -39,6 +40,7 @@ const props = defineProps({
   edit: { type: Boolean, default: true },
   bgColor: { type: String, dedault: "white;" },
   shape: { type: String, default: "" },
+  dataIndex: { type: Number, default: 0 },
 });
 const bgcolor = computed(() => {
   return props.bgColor;
@@ -50,13 +52,16 @@ const shape = computed(() => {
 const data = ref<string>("");
 data.value = props.data;
 const emit = defineEmit({
-  change: (value: string) => Boolean,
+  textChange: (value: string, index: Number) => Boolean,
 });
 const state = reactive({
   edit: false,
   shape: props.shape,
 });
 
+const onChange = () => {
+  emit("textChange", data.value, props.dataIndex);
+};
 watch(
   () => props.edit,
   () => {

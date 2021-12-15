@@ -10,13 +10,13 @@
         <PlusSquareOutlined @click="addSkill" />
       </div>
     </div>
-    <div v-for="record in skilllist">
+    <div v-for="(record, index) in skilllist">
       <div class="skill-box">
         <div>
           <input
             class="input_dash"
             v-model="record.skill"
-            @change="onChange"
+            @change="updateStore"
             style="width: 5rem"
           />
         </div>
@@ -24,7 +24,7 @@
           <input
             class="input_dash"
             v-model="record.degreeDesc"
-            @change="onChange"
+            @change="updateStore"
             style="text-align: right; width: 5rem"
           />
         </div>
@@ -70,12 +70,8 @@ const addSkill = () => {
     message.warning("最多允许添加10条记录");
     return;
   }
-  skilllist.push({ skill: "aa", degreeDesc: "ss", degree: "50" });
-
-  const tempUser: UserInfo = store.state.user.userInfo;
-  tempUser.skillList = skilllist;
-  store.commit("user/setUserInfo", tempUser);
-
+  skilllist.push({ skill: "javascript", degreeDesc: "良好", degree: "50" });
+  updateStore();
   message.success("添加成功");
 };
 
@@ -85,14 +81,14 @@ const deleteSkill = () => {
     return;
   }
   skilllist.pop();
+  updateStore();
   message.success("删除成功");
 };
 
 /**
  * 输入框发生改变，立即更新store数据
  */
-const onChange = () => {
-  message.info("change");
+const updateStore = () => {
   const tempUser: UserInfo = store.state.user.userInfo;
   tempUser.skillList = skilllist;
   store.commit("user/setUserInfo", tempUser);

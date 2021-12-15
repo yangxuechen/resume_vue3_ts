@@ -4,13 +4,13 @@
  */
 export class UserInfoHead{
     // 姓名
-    name : String;
+    name : string;
     // 座右铭
-    motto: String;
+    motto: string;
     // 头像地址
-    avatar: String;
+    avatar: string;
 
-    constructor(name:String,motto:String,avatar:String){
+    constructor(name:string,motto:string,avatar:string){
         this.name = name;
         this.motto = motto;
         this.avatar = avatar;
@@ -23,27 +23,27 @@ export class UserInfoHead{
  */
 export class UserInfoBase{
     // 出生日期
-    birthday : String;
+    birthday : string;
     // 性别
-    sex : String;
+    sex : string;
     // 年龄
-    age : String;
+    age : string;
     // 最高学历
-    education : String;
+    education : string;
     // 名族
-    nameFamily : String;
+    nameFamily : string;
     // 工作经验
-    workExperience : String;
+    workExperience : string;
     // 电话
-    phoneNumber : String;
+    phoneNumber : string;
     // 邮箱
-    email : String;
+    email : string;
     // qq
-    qq : String;
+    qq : string;
     // 微信
-    weChat : String;
+    weChat : string;
 
-    constructor(birthday:String,  sex : String, age : String, education : String,  nameFamily : String,  workExperience : String,  phoneNumber : String, email : String,  qq : String, weChat : String ){
+    constructor(birthday:string,  sex : string, age : string, education : string,  nameFamily : string,  workExperience : string,  phoneNumber : string, email : string,  qq : string, weChat : string ){
       this.birthday = birthday;
       this.sex = sex;
       this.age = age;
@@ -94,29 +94,32 @@ export class Education {
 export class WorkExperience{
 
     // 近期工作1公司
-    firstJobCompany : String;
+    firstJobCompany : string;
     // 近期工作1职位
-    firstJobPostion : String;
+    firstJobPostion : string;
     // 近期工作1开始时间
-    firstJobStartTime : String;
+    firstJobStartTime : string;
     // 近期工作1结束时间
-    firstJobEndTime : String;
+    firstJobEndTime : string;
+    // 近期工作时间
+    time : string;
     // 近期工作描述1
-    firstJobDesc1 : String;
+    firstJobDesc1 : string;
     // 近期工作描述2
-    firstJobDesc2 : String;
+    firstJobDesc2 : string;
     // 近期工作描述3
-    firstJobDesc3 : String;
+    firstJobDesc3 : string;
     // 近期工作描述4
-    firstJobDesc4 : String;
+    firstJobDesc4 : string;
     // 近期工作描述5
-    firstJobDesc5 : String;
+    firstJobDesc5 : string;
 
-    constructor( firstJobCompany : String, firstJobPostion : String, firstJobStartTime : String, firstJobEndTime : String, firstJobDesc1 : String, firstJobDesc2 : String, firstJobDesc3 : String, firstJobDesc4 : String, firstJobDesc5 : String){
+    constructor( firstJobCompany : string, firstJobPostion : string, firstJobStartTime : string, firstJobEndTime : string,time : string, firstJobDesc1 : string, firstJobDesc2 : string, firstJobDesc3 : string, firstJobDesc4 : string, firstJobDesc5 : string){
        this.firstJobCompany = firstJobCompany;
        this.firstJobPostion = firstJobPostion;
        this.firstJobStartTime = firstJobStartTime;
        this.firstJobEndTime = firstJobEndTime;
+       this.time = time;
        this.firstJobDesc1 = firstJobDesc1;
        this.firstJobDesc2 = firstJobDesc2;
        this.firstJobDesc3 = firstJobDesc3;
@@ -148,15 +151,15 @@ export class Skill{
  */
 export class Intention{
     // 工作城市
-    workCity : String;
+    workCity : string;
     // 职位
-    jobPostion : String;
+    jobPostion : string;
     // 薪资待遇
-    salary : String;
+    salary : string;
     // 入职时间
-    entryTime : String;
+    entryTime : string;
 
-    constructor(workCity : String, jobPostion : String,  salary : String, entryTime : String ){
+    constructor(workCity : string, jobPostion : string,  salary : string, entryTime : string ){
         this.workCity = workCity;
         this.jobPostion = jobPostion;
         this.salary = salary;
@@ -169,13 +172,13 @@ export class Intention{
  */
 export class Project{
     // 项目名
-    projectName : String;
+    projectName : string;
     // 项目描述
-    projectDesc : String;
+    projectDesc : string;
     // 项目地址
-    projectLink : String;
+    projectLink : string;
 
-    constructor( projectName : String, projectDesc : String, projectLink : String){
+    constructor( projectName : string, projectDesc : string, projectLink : string){
         this.projectName = projectName;
         this.projectDesc = projectDesc;
         this.projectLink = projectLink
@@ -187,11 +190,11 @@ export class Project{
  */
 export class AWardExperience{
     // 获奖内容
-    awardContent : String;
+    awardContent : string;
     // 获奖时间
-    awardTime : String;
+    awardTime : string;
 
-    constructor(awardContent : String,  awardTime : String){
+    constructor(awardContent : string,  awardTime : string){
         this.awardContent = awardContent;
         this.awardTime = awardTime;
     }

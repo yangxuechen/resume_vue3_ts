@@ -15,54 +15,70 @@
     <div class="workEdit-min-box">
       <div class="workEdit-item">
         <div class="item">
-          <input class="input_dash" :value="state.date" style="width: 120px" />
-        </div>
-        <div class="item">
           <input
             class="input_dash"
-            :value="state.company"
+            v-model="workExper.time"
+            @change="workExperienceDataChange"
             style="width: 120px"
           />
         </div>
         <div class="item">
           <input
             class="input_dash"
-            :value="state.position"
+            v-model="workExper.firstJobCompany"
+            @change="workExperienceDataChange"
+            style="width: 120px"
+          />
+        </div>
+        <div class="item">
+          <input
+            class="input_dash"
+            v-model="workExper.firstJobPostion"
+            @change="workExperienceDataChange"
             style="width: 80px"
           />
         </div>
       </div>
       <div>
         <AutoTextArea
-          :data="work1_desc1"
+          :data="workExper.firstJobDesc1"
           :edit="edit"
           shape="point"
           v-if="descStatus[0]"
           @focus="onFocus"
+          @textChange="onJobDesc1Change"
         ></AutoTextArea>
         <AutoTextArea
-          :data="work1_desc2"
+          :data="workExper.firstJobDesc2"
           :edit="edit"
           shape="point"
           v-if="descStatus[1]"
+          @focus="onFocus"
+          @textChange="onJobDesc2Change"
         ></AutoTextArea>
         <AutoTextArea
-          :data="work1_desc3"
+          :data="workExper.firstJobDesc3"
           :edit="edit"
           shape="point"
           v-if="descStatus[2]"
+          @focus="onFocus"
+          @textChange="onJobDesc3Change"
         ></AutoTextArea>
         <AutoTextArea
-          :data="work1_desc4"
+          :data="workExper.firstJobDesc4"
           :edit="edit"
           shape="point"
           v-if="descStatus[3]"
+          @focus="onFocus"
+          @textChange="onJobDesc4Change"
         ></AutoTextArea>
         <AutoTextArea
-          :data="work1_desc5"
+          :data="workExper.firstJobDesc5"
           :edit="edit"
           shape="point"
           v-if="descStatus[4]"
+          @focus="onFocus"
+          @textChange="onJobDesc5Change"
         ></AutoTextArea>
       </div>
     </div>
@@ -71,7 +87,7 @@
 
 <script lang="ts" setup>
 import { reactive } from "@vue/reactivity";
-import { ref } from "vue";
+import { computed, defineEmit, defineProps, ref } from "vue";
 import AutoTextArea from "../../base/AutoTextArea.vue";
 import {
   PlusOutlined,
@@ -80,6 +96,7 @@ import {
   PlusSquareOutlined,
 } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
+import { WorkExperience } from "../../../views/UserInfo";
 const state = reactive({
   date: "2019-3 ~ 2021-3",
   company: "XX科技有限公司",
@@ -89,6 +106,20 @@ const state = reactive({
   showBorder: "  border: 1px #a7a3a3 dashed;",
 });
 
+const props = defineProps({
+  workExperience: {
+    type: WorkExperience,
+    required: true,
+  },
+  dataIndex: {
+    type: Number,
+    required: true,
+  },
+});
+const emit = defineEmit({
+  workExperienceChange: (workExper: WorkExperience, index: Number) => Boolean,
+});
+const workExper = computed(() => props.workExperience);
 const edit = ref<boolean>(false);
 const descStatus = reactive<boolean[]>([true, true, true, false, false]);
 
@@ -143,6 +174,42 @@ const onFocus = () => {
 const hiddenToop = () => {
   state.showTool = " visibility: hidden;";
   edit.value = false;
+};
+
+/**
+ * 工作经历组件数据改变
+ *   -告知父组件 更新数据
+ */
+const workExperienceDataChange = () => {
+  emit("workExperienceChange", workExper.value, props.dataIndex);
+};
+
+/**
+ * 自适应文本输入框组件值发生改变 更新数据
+ */
+const onJobDesc1Change = (value: string) => {
+  workExper.value.firstJobDesc1 = value;
+  workExperienceDataChange();
+};
+
+const onJobDesc2Change = (value: string) => {
+  workExper.value.firstJobDesc2 = value;
+  workExperienceDataChange();
+};
+
+const onJobDesc3Change = (value: string) => {
+  workExper.value.firstJobDesc3 = value;
+  workExperienceDataChange();
+};
+
+const onJobDesc4Change = (value: string) => {
+  workExper.value.firstJobDesc4 = value;
+  workExperienceDataChange();
+};
+
+const onJobDesc5Change = (value: string) => {
+  workExper.value.firstJobDesc5 = value;
+  workExperienceDataChange();
 };
 </script>
 
