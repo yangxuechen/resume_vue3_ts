@@ -26,8 +26,6 @@
     <WorkEdit></WorkEdit>
   </MainLeft> -->
 </template>
-
-<script lang="ts"></script>
 <script lang="ts" setup>
 import {
   PushpinOutlined,

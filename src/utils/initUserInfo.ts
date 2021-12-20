@@ -52,8 +52,8 @@ import img_url from "../assets/avatar-xx.png";
     firstJobDesc1 : '负责相关产品的需求以及前端程序的实现，提供合理的前端架构。改进和优化开发工具、开发流程、和开发框架',
     firstJobDesc2 : 'Web前端功能设计、开发和实现，与后台工程师协作，完成数据交互、动态展现;',
     firstJobDesc3 : '从视觉和易用性角度，为网站设计提供改进建议，为网站/客户端的页面提供持续优化方案',
-    firstJobDesc4 : '负责官网的开发4',
-    firstJobDesc5 : '负责官网的开发5',
+    firstJobDesc4 : '',
+    firstJobDesc5 : '',
  }]
 
  const skillList: Skill[] = [
