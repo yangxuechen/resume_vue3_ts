@@ -17,25 +17,25 @@
         <div class="item">
           <input
             class="input_dash"
+            style="width: 120px;"
             v-model="workExper.time"
             @change="workExperienceDataChange"
-            style="width: 120px"
           />
         </div>
         <div class="item">
           <input
             class="input_dash"
+             style="width: 200px;"
             v-model="workExper.firstJobCompany"
             @change="workExperienceDataChange"
-            style="width: 120px"
           />
         </div>
         <div class="item">
           <input
             class="input_dash"
+             style="width: 120px;"
             v-model="workExper.firstJobPostion"
             @change="workExperienceDataChange"
-            style="width: 80px"
           />
         </div>
       </div>

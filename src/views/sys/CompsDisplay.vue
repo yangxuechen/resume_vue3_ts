@@ -12,7 +12,7 @@
       <a-menu-item key="2">基础信息</a-menu-item>
       <a-menu-item key="3">基础技能</a-menu-item>
       <a-menu-item key="4">教育背景</a-menu-item>
-      <a-menu-item key="5">Option 5</a-menu-item>
+      <a-menu-item key="5">工作经历</a-menu-item>
       <a-menu-item key="6">Option 6</a-menu-item>
       <a-menu-item key="7">Option 7</a-menu-item>
       <a-menu-item key="8">Option 8</a-menu-item>
@@ -51,6 +51,8 @@ const handleClick = (e: any) => {
     route.push({ path: "/compsDisplay/personSkill" });
   } else if (key == "4") {
     route.push({ path: "/compsDisplay/personEdu" });
+  } else if (key == "5") {
+    route.push({ path: "/compsDisplay/personWork" });
   }
 };
 const titleClick = (e: Event) => {

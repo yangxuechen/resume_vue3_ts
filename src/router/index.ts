@@ -19,6 +19,7 @@ const routes: Array<RouteRecordRaw> = [
                 { path:'personBaseInfo', name:'personBaseInfo',component: () => import('../views/sys/compsPage/PersonBaseInfo.vue')},
                 { path:'personSkill', name:'personSkill',component: () => import('../views/sys/compsPage/PersonSkill.vue')},
                 { path:'personEdu', name:'personEdu',component: () => import('../views/sys/compsPage/PersonEdu.vue')},
+                { path:'personWork', name:'personWork',component: () => import('../views/sys/compsPage/PersonWork.vue')},
               ]
             },
             {
