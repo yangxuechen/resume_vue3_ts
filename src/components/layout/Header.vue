@@ -9,6 +9,7 @@
         <div class="item" @click="onClick_3">使用教程</div>
         <div class="item" @click="onClick_1">模版中心</div>
         <div class="item" @click="onClick_2">隐私政策</div>
+        <div class="item" @click="onClick_5">组件库</div>
         <div class="item" @click="onClick_4">联系我们</div>
       </div>
     </div>
@@ -34,6 +35,10 @@ const onClick_4 = () => {
 
 const toIndex = () => {
   route.push({ path: "/" });
+};
+
+const onClick_5 = () => {
+  route.push({ path: "/compsDisplay" });
 };
 </script>
 

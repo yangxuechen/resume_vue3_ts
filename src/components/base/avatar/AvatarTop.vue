@@ -18,12 +18,12 @@
     </div>
     <div class="avatar-name-box">
       <div class="name-box">
-        <input class="input_dash name" v-model="user.name" />
+        <input class="input_dash name" v-model="name" />
       </div>
 
       <div>
         <a-textarea
-          v-model:value="user.desc"
+          v-model:value="motto"
           placeholder=""
           auto-size
           class="input_dash text-area"
@@ -38,15 +38,19 @@
           "
           v-else
         >
-          {{ user.desc }}
+          {{ motto }}
         </div>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
+import { useStore } from "vuex";
 import img_url from "../../../assets/avatar-xx.png";
+import { UserInfo } from "../../../views/UserInfo";
+
+const store = useStore();
 
 interface AvatarData {
   name: string;
@@ -59,6 +63,31 @@ const user = reactive<AvatarData>({
   desc: "做事成功的要诀就如同钥匙开锁的道理一样，如果你不能准确对号，那麽一定无法打开成功之门",
   avatarUrl: img_url,
 });
+
+// 绑定store中的数据
+const name = computed({
+  get() {
+    return store.state.user.userInfo.userInfoHead.name;
+  },
+  set(name: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.userInfoHead.name = name;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
+
+const motto = computed({
+  get() {
+    return store.state.user.userInfo.userInfoHead.motto;
+  },
+
+  set(motto: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.userInfoHead.motto = motto;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
+
 
 const canEdit = () => {
   edit.value = true;

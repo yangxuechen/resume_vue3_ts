@@ -12,6 +12,12 @@ const routes: Array<RouteRecordRaw> = [
             { path:'/recruitment',component: () => import('../views/user/Recruitment.vue')},
             { path:'/privacyPolicy',component: () => import('../views/user/PrivacyPolicy.vue')},
             { path:'/contact',component: () => import('../views/user/Contact.vue')},
+            { path:'/compsDisplay',name:'compsDisplay',component:() => import('../views/sys/CompsDisplay.vue'),
+              redirect:'/compsDisplay/personAvatar',
+              children: [
+                { path:'personAvatar', name:'personAvatar',component: () => import('../views/sys/compsPage/PersonAvatar.vue')},
+              ]
+            },
             {
                  path:'/resumeEdit',
                  component: () => import('../views/user/ResumeEdit.vue'),
@@ -28,6 +34,7 @@ const routes: Array<RouteRecordRaw> = [
     { path:'/test', name:'test',component: () => import('../components/Test.vue')},
     { path:'/hello', name:'hello',component: () => import('../components/HelloWorld.vue')},
     { path:'/404',name:'notFind',component:() => import('../views/sys/NotFind.vue')},
+ 
     {
         path: '/:w+',    // 此处需特别注意至于最底部
         redirect: '/404'
