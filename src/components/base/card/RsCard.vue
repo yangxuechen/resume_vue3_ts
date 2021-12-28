@@ -24,7 +24,7 @@ const props = defineProps({
 
   .tool-box {
     width: 100%;
-    height: 47px;
+
     border-top: none;
   }
 }

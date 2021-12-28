@@ -16,6 +16,9 @@ const routes: Array<RouteRecordRaw> = [
               redirect:'/compsDisplay/personAvatar',
               children: [
                 { path:'personAvatar', name:'personAvatar',component: () => import('../views/sys/compsPage/PersonAvatar.vue')},
+                { path:'personBaseInfo', name:'personBaseInfo',component: () => import('../views/sys/compsPage/PersonBaseInfo.vue')},
+                { path:'personSkill', name:'personSkill',component: () => import('../views/sys/compsPage/PersonSkill.vue')},
+                { path:'personEdu', name:'personEdu',component: () => import('../views/sys/compsPage/PersonEdu.vue')},
               ]
             },
             {

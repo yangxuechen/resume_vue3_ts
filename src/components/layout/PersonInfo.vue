@@ -147,7 +147,7 @@ const title = ref<string>("基本信息");
 <style lang="less" scoped>
 .info-box {
   width: 100%;
-  padding: 0 15px;
+  padding:  15px;
   color: white;
   .title {
     background-color: white;

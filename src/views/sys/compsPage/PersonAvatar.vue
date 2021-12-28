@@ -4,12 +4,25 @@
       <template v-slot:content>
         <Avatar class="avatar"></Avatar>
       </template>
-      <template v-slot:footer>  组件数据使用store中的用户信息。 </template>
+      <template v-slot:footer>
+        <div>
+          <div>组件数据使用store中的用户信息。</div>
+          <div>组件名: Avatar</div>
+          <div>组件地址: components/layout/Avatar.vue</div>
+        </div>
+      </template>
     </rs-card>
 
     <rs-card title="头像信息组件2" style="margin-top: 50px">
       <template v-slot:content>
         <AvatarTop></AvatarTop>
+      </template>
+      <template v-slot:footer>
+        <div>
+          <div>组件数据使用store中的用户信息。</div>
+          <div>组件名: AvatarTop</div>
+          <div>组件地址: components/base/avatar/AvatarTop.vue</div>
+        </div>
       </template>
     </rs-card>
   </div>
