@@ -13,8 +13,8 @@
       <a-menu-item key="3">基础技能</a-menu-item>
       <a-menu-item key="4">教育背景</a-menu-item>
       <a-menu-item key="5">工作经历</a-menu-item>
-      <a-menu-item key="6">Option 6</a-menu-item>
-      <a-menu-item key="7">Option 7</a-menu-item>
+      <a-menu-item key="6">获奖经历</a-menu-item>
+      <a-menu-item key="7">Option11 7</a-menu-item>
       <a-menu-item key="8">Option 8</a-menu-item>
       <a-menu-item key="9">Option 9</a-menu-item>
       <a-menu-item key="10">Option 10</a-menu-item>
