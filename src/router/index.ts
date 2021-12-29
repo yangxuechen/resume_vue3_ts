@@ -31,6 +31,7 @@ const routes: Array<RouteRecordRaw> = [
                     { path:'template01', name:'template01',component: () => import('../views/template/Template01.vue')},
                     { path:'template02', name:'template02',component: () => import('../views/template/Template02.vue')},
                     { path:'template03', name:'template03',component: () => import('../views/template/Template03.vue')},
+                    { path:'template04', name:'template04',component: () => import('../views/template/Template04.vue')},
                  ]
         },
         ]
