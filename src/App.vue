@@ -21,6 +21,7 @@ window.addEventListener("beforeunload", () => {
 <style lang="less">
 //@import "@/assets/style/main.less";
 @import url("./assets/style/main.less");
+@import url("./assets/style/svgIcon.less");
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

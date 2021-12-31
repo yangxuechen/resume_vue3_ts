@@ -20,6 +20,8 @@ const routes: Array<RouteRecordRaw> = [
                 { path:'personSkill', name:'personSkill',component: () => import('../views/sys/compsPage/PersonSkill.vue')},
                 { path:'personEdu', name:'personEdu',component: () => import('../views/sys/compsPage/PersonEdu.vue')},
                 { path:'personWork', name:'personWork',component: () => import('../views/sys/compsPage/PersonWork.vue')},
+                { path:'titlePage', name:'titlePage',component: () => import('../views/sys/compsPage/TitlePage.vue')},
+                { path:'iconList', name:'iconList',component: () => import('../views/sys/compsPage/IconList.vue')},
               ]
             },
             {

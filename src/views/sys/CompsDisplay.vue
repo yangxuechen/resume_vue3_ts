@@ -15,7 +15,7 @@
       <a-menu-item key="5">工作经历</a-menu-item>
       <a-menu-item key="6">获奖经历</a-menu-item>
       <a-menu-item key="7">标题 </a-menu-item>
-      <a-menu-item key="8">Option 8</a-menu-item>
+      <a-menu-item key="8">图标库 8</a-menu-item>
       <a-menu-item key="9">Option 9</a-menu-item>
       <a-menu-item key="10">Option 10</a-menu-item>
       <a-menu-item key="11">Option 11</a-menu-item>
@@ -53,6 +53,12 @@ const handleClick = (e: any) => {
     route.push({ path: "/compsDisplay/personEdu" });
   } else if (key == "5") {
     route.push({ path: "/compsDisplay/personWork" });
+  } else if (key == "6") {
+    route.push({ path: "/compsDisplay/titlePage" });
+  } else if (key == "7") {
+    route.push({ path: "/compsDisplay/titlePage" });
+  } else if (key == "8") {
+    route.push({ path: "/compsDisplay/iconList" });
   }
 };
 const titleClick = (e: Event) => {

@@ -150,6 +150,7 @@ function directPath() {
       break;
     case "resume-03":
       route.push({ path: "/resumeEdit/template03" });
+      break;
     case "resume-04":
       route.push({ path: "/resumeEdit/template04" });
       break;
