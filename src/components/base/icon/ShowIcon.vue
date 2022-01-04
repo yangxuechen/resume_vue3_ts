@@ -1,22 +1,16 @@
 <template>
   <div class="rs-icon">
-    <icon-font :type="iconName" @click="openTool" class="icon" />
+    <icon-font :type="iconType" @click="onClick" class="icon" />
     <div class="rs-icon-title" :title="iconType" v-if="showText">
       {{ iconType }}
     </div>
-    <icon-tool
-      :visible="visible"
-      @close="onClose"
-      @changeIcon="changeIcon"
-    ></icon-tool>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { createFromIconfontCN } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import { computed, defineProps, ref } from "vue";
-import IconTool from "./IconTool.vue";
+import { defineProps, reactive, ref } from "vue";
 
 const IconFont = createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/font_3104671_aj46ospf9wm.js",
@@ -27,23 +21,8 @@ const props = defineProps({
   showText: { type: Boolean, default: false },
 });
 
-const changeName = ref<string>(props.iconType);
-const iconName = computed(() => {
-  if (changeName.value != props.iconType) return changeName.value;
-  return props.iconType;
-});
-const visible = ref<boolean>(false);
-
-const openTool = () => {
-  visible.value = true;
-};
-
-const onClose = (bool: boolean) => {
-  visible.value = bool;
-};
-
-const changeIcon = (iconName: string) => {
-  changeName.value = iconName;
+const onClick = () => {
+  message.info(props.iconType);
 };
 </script>
 

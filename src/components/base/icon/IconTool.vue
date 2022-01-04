@@ -7,14 +7,42 @@
     :after-visible-change="afterVisibleChange"
     @close="closeDrawer"
   >
-    <p>Some contents...</p>
-    <p>Some contents...</p>
-    <p>Some contents...</p>
+    <div class="icon-list-box">
+      <icon-font
+        :type="icon"
+        @click="onOk(icon)"
+        v-for="icon in iconlist"
+        class="icon-item"
+      />
+    </div>
   </a-drawer>
 </template>
 
 <script lang="ts" setup>
-import { computed, defineEmit, defineProps, ref } from "vue";
+import { createFromIconfontCN } from "@ant-design/icons-vue";
+import { message } from "ant-design-vue";
+import { computed, defineEmit, defineProps, reactive, ref } from "vue";
+
+const IconFont = createFromIconfontCN({
+  scriptUrl: "//at.alicdn.com/t/font_3104671_aj46ospf9wm.js",
+});
+const iconlist = reactive<string[]>([
+  "icon-heart-fill",
+  "icon-Youtube-fill",
+  "icon-152error40401",
+  "icon-fire",
+  "icon-like",
+  "icon-trophy",
+  "icon-file-ppt",
+  "icon-solution",
+  "icon-team",
+  "icon-user",
+  "icon-edit-square",
+  "icon-eye",
+  "icon-setting",
+  "icon-message",
+  "icon-transaction",
+]);
 
 const props = defineProps({
   visible: { type: Boolean, required: true },
@@ -23,11 +51,16 @@ const visible = computed(() => props.visible);
 
 const emit = defineEmit({
   close: (val: Boolean) => Boolean,
+  changeIcon: (value: String) => Boolean,
 });
 
 const afterVisibleChange = (bool: boolean) => {
   console.log("visible", bool);
   // emit("close", bool);
+};
+
+const onOk = (icon: string) => {
+  emit("changeIcon", icon);
 };
 
 const showDrawer = () => {
@@ -40,4 +73,15 @@ const closeDrawer = () => {
 };
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.icon-list-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  .icon-item {
+    padding: 15px;
+    font-size: 25px;
+  }
+}
+</style>
