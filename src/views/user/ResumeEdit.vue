@@ -21,7 +21,7 @@
       "
     >
       <!-- <ReloadOutlined /> -->
-      <a-tooltip>
+      <!-- <a-tooltip>
         <template #title>实时预览</template>
         <EyeOutlined class="icon-btn" @click="onChange" />
       </a-tooltip>
@@ -29,7 +29,7 @@
       <a-tooltip>
         <template #title>帮助</template>
         <QuestionCircleOutlined class="icon-btn" />
-      </a-tooltip>
+      </a-tooltip> -->
     </div>
     <div class="toolMenu">
       <!-- <div class="item">

@@ -2,8 +2,9 @@
   <div class="rs-input-box">
     <rs-icon
       :iconType="iconName"
-      color="black"
+      :color="iconColor"
       class="rs-icon-box"
+      :style="{ fontSize: iconSize }"
       v-if="showIcon"
     ></rs-icon>
 
@@ -15,7 +16,7 @@
 
 <script lang="ts" setup>
 import { message } from "ant-design-vue";
-import { computed, defineEmit, defineProps, ref } from "vue";
+import { computed, defineEmit, defineProps, reactive, ref } from "vue";
 import RsIcon from "../icon/RsIcon.vue";
 
 const props = defineProps({
@@ -23,11 +24,14 @@ const props = defineProps({
   backgroundColor: { type: String, default: "#fff" },
   borderColor: { type: String, default: "#fff" },
   iconName: { type: String, default: "icon-nianling" },
+  iconSize: { type: String, default: "30px" },
+  iconColor: { type: String, default: "black" },
   width: { type: String, default: "120px" },
   height: { type: String, default: "30px" },
   showIcon: { type: Boolean, default: false },
   showTitle: { type: Boolean, default: false },
   title: { type: String, default: "标题" },
+  fontWeight: { type: String, default: "normal" },
 });
 
 const emit = defineEmit({
@@ -38,6 +42,8 @@ const bgColor = ref<string>(props.backgroundColor);
 const borderColor = ref<string>(props.borderColor);
 const inputWidth = ref<string>(props.width);
 const inputHeight = ref<string>(props.height);
+const iconFontSize = ref<string>(props.iconSize);
+const inputFontWeight = ref<string>(props.fontWeight);
 
 const inputValue = computed({
   get() {
@@ -57,6 +63,8 @@ const inputValue = computed({
   .rs-icon-box {
     // width: 50px;
     margin-right: 10px;
+    margin-left: 5px;
+    margin-top: 5px;
   }
 
   .label-box {
@@ -64,6 +72,7 @@ const inputValue = computed({
   }
 
   .input {
+    font-weight: v-bind(inputFontWeight);
     width: v-bind(inputWidth);
     height: v-bind(inputHeight);
     background-color: v-bind(bgColor);

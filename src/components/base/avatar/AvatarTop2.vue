@@ -17,8 +17,10 @@
             title="年龄"
             :value="age"
             width="100px"
+            icon-size="16px"
             :background-color="background"
             style="font-size: 16px; color: #fff"
+            icon-color="#fff"
             @updateVal="updateAge"
           ></RsInput>
 
@@ -29,8 +31,10 @@
             title="电话"
             :value="phoneNumber"
             width="150px"
+            icon-size="16px"
             :background-color="background"
             style="font-size: 16px; color: #fff"
+            icon-color="#fff"
             @updateVal="updatePhoneNumber"
           ></RsInput>
         </div>
@@ -43,8 +47,10 @@
             iconName="icon-gongzuojingyan"
             :value="workExperience"
             width="100px"
+            icon-size="16px"
             :background-color="background"
             style="font-size: 16px; color: #fff"
+            icon-color="#fff"
             @updateVal="updateWorkExperience"
           ></RsInput>
 
@@ -55,8 +61,10 @@
             title="邮箱"
             :value="email"
             width="200px"
+            icon-size="16px"
             :background-color="background"
             style="font-size: 16px; color: #fff"
+            icon-color="#fff"
             @updateVal="updateEmail"
           ></RsInput>
         </div>

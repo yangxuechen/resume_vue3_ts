@@ -28,8 +28,8 @@
 
     <rs-card>
       <template v-slot:content>
-        <rs-icon iconType="icon-heart-fill"></rs-icon>
-        <!-- <TitleC></TitleC> -->
+        <!-- <rs-icon iconType="icon-heart-fill"></rs-icon> -->
+        <TitleC></TitleC>
       </template>
       <template v-slot:footer>
         <div>
