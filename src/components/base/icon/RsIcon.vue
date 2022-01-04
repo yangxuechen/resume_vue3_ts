@@ -4,7 +4,7 @@
       :type="iconName"
       @click="openTool"
       class="icon"
-      :style="{ color: color }"
+      :style="{ color: changeColor }"
     />
     <div class="rs-icon-title" :title="iconType" v-if="showText">
       {{ iconType }}
@@ -13,6 +13,7 @@
       :visible="visible"
       @close="onClose"
       @changeIcon="changeIcon"
+      @changeIconColor="changeIconColor"
     ></icon-tool>
   </div>
 </template>
@@ -34,9 +35,14 @@ const props = defineProps({
 });
 
 const changeName = ref<string>(props.iconType);
+const changeColor = ref<string>(props.color);
 const iconName = computed(() => {
   if (changeName.value != props.iconType) return changeName.value;
   return props.iconType;
+});
+const iconColor = computed(() => {
+  if (changeColor.value != props.color) return changeColor.value;
+  return props.color;
 });
 const visible = ref<boolean>(false);
 
@@ -50,6 +56,10 @@ const onClose = (bool: boolean) => {
 
 const changeIcon = (iconName: string) => {
   changeName.value = iconName;
+};
+
+const changeIconColor = (color: string) => {
+  changeColor.value = color;
 };
 </script>
 
