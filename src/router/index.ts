@@ -22,6 +22,7 @@ const routes: Array<RouteRecordRaw> = [
                 { path:'personWork', name:'personWork',component: () => import('../views/sys/compsPage/PersonWork.vue')},
                 { path:'titlePage', name:'titlePage',component: () => import('../views/sys/compsPage/TitlePage.vue')},
                 { path:'iconList', name:'iconList',component: () => import('../views/sys/compsPage/IconList.vue')},
+                { path:'inputPage', name:'inputPage',component: () => import('../views/sys/compsPage/InputPage.vue')},
               ]
             },
             {

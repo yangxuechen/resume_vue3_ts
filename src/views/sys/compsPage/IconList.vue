@@ -42,6 +42,17 @@ const iconlist = reactive<string[]>([
   "icon-setting",
   "icon-message",
   "icon-transaction",
+  "icon-jingyan",
+  "icon-dianhua",
+  "icon-nianling",
+  "icon-24gl-telephone2",
+  "icon-youxiang2",
+  "icon-youxiang1",
+  "icon-gongzuojingyan2",
+  "icon-gongzuojingyan1",
+  "icon-gongzuojingyan",
+  "icon-youxiang",
+  "icon-huchudianhua",
 ]);
 </script>
 

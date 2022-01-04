@@ -1,6 +1,11 @@
 <template>
   <div class="rs-icon">
-    <icon-font :type="iconName" @click="openTool" class="icon" />
+    <icon-font
+      :type="iconName"
+      @click="openTool"
+      class="icon"
+      :style="{ color: color }"
+    />
     <div class="rs-icon-title" :title="iconType" v-if="showText">
       {{ iconType }}
     </div>
@@ -19,12 +24,13 @@ import { computed, defineProps, ref } from "vue";
 import IconTool from "./IconTool.vue";
 
 const IconFont = createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_3104671_aj46ospf9wm.js",
+  scriptUrl: "//at.alicdn.com/t/font_3104671_qu0xf3bqpl.js",
 });
 
 const props = defineProps({
   iconType: { type: String, required: true },
   showText: { type: Boolean, default: false },
+  color: { type: String, default: "black" },
 });
 
 const changeName = ref<string>(props.iconType);

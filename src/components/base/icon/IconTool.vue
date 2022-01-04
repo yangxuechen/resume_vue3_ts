@@ -24,7 +24,7 @@ import { message } from "ant-design-vue";
 import { computed, defineEmit, defineProps, reactive, ref } from "vue";
 
 const IconFont = createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_3104671_aj46ospf9wm.js",
+  scriptUrl: "//at.alicdn.com/t/font_3104671_qu0xf3bqpl.js",
 });
 const iconlist = reactive<string[]>([
   "icon-heart-fill",
@@ -42,6 +42,17 @@ const iconlist = reactive<string[]>([
   "icon-setting",
   "icon-message",
   "icon-transaction",
+  "icon-jingyan",
+  "icon-dianhua",
+  "icon-nianling",
+  "icon-24gl-telephone2",
+  "icon-youxiang2",
+  "icon-youxiang1",
+  "icon-gongzuojingyan2",
+  "icon-gongzuojingyan1",
+  "icon-gongzuojingyan",
+  "icon-youxiang",
+  "icon-huchudianhua",
 ]);
 
 const props = defineProps({

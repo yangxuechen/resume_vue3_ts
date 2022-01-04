@@ -9,31 +9,56 @@
             <input class="input_dash name job-postion" v-model="jobPostion"
           /></span>
         </div>
-        <div style="color: #fff; font-size: 15px; padding: 30px 0 10px 0">
-          <CarryOutOutlined
-            style="color: #fff; font-size: 15px; margin: 0 15px"
-          />
-          <label style="width: 100px"
-            >年龄:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label
-          >
-          <span style="margin-right: 30px">18岁</span>
+        <div class="base-info-box" style="margin-top: 25px">
+          <RsInput
+            showIcon
+            showTitle
+            iconName="icon-nianling"
+            title="年龄"
+            :value="age"
+            width="100px"
+            :background-color="background"
+            style="font-size: 16px; color: #fff"
+            @updateVal="updateAge"
+          ></RsInput>
 
-          <PhoneOutlined style="color: #fff; font-size: 15px; margin: 0 15px" />
-          <span style="width: 100px"
-            >电话:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
-          >
-          <span style="margin-right: 30px">18岁</span>
+          <RsInput
+            showIcon
+            showTitle
+            iconName="icon-dianhua"
+            title="电话"
+            :value="phoneNumber"
+            width="150px"
+            :background-color="background"
+            style="font-size: 16px; color: #fff"
+            @updateVal="updatePhoneNumber"
+          ></RsInput>
         </div>
-        <div style="color: #fff; font-size: 15px">
-          <CarryOutOutlined
-            style="color: #fff; font-size: 15px; margin: 0 15px"
-          />
-          <span style="width: 100px">工作经验:</span>
-          <span style="margin-right: 30px">18岁</span>
 
-          <PhoneOutlined style="color: #fff; font-size: 15px; margin: 0 15px" />
-          <span>邮箱:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <span style="margin-right: 30px">18岁</span>
+        <div class="base-info-box">
+          <RsInput
+            showIcon
+            showTitle
+            title="工作经验"
+            iconName="icon-gongzuojingyan"
+            :value="workExperience"
+            width="100px"
+            :background-color="background"
+            style="font-size: 16px; color: #fff"
+            @updateVal="updateWorkExperience"
+          ></RsInput>
+
+          <RsInput
+            showIcon
+            showTitle
+            iconName="icon-youxiang"
+            title="邮箱"
+            :value="email"
+            width="200px"
+            :background-color="background"
+            style="font-size: 16px; color: #fff"
+            @updateVal="updateEmail"
+          ></RsInput>
         </div>
       </div>
     </div>
@@ -48,6 +73,9 @@ import { useStore } from "vuex";
 import img_url from "../../../assets/avatar-xx.png";
 import { UserInfo } from "../../../views/UserInfo";
 import { CarryOutOutlined, PhoneOutlined } from "@ant-design/icons-vue";
+import RsIcon from "../icon/RsIcon.vue";
+import RsInput from "../input/RsInput.vue";
+import { message } from "ant-design-vue";
 const props = defineProps({
   background: { type: String, default: "salmon" },
 });
@@ -83,6 +111,41 @@ const jobPostion = computed({
     store.commit("user/setUserInfo", tempUser);
   },
 });
+
+const age = computed(() => store.state.user.userInfo.userInfoBase.age);
+const phoneNumber = computed(
+  () => store.state.user.userInfo.userInfoBase.phoneNumber
+);
+
+const workExperience = computed(
+  () => store.state.user.userInfo.userInfoBase.workExperience
+);
+
+const email = computed(() => store.state.user.userInfo.userInfoBase.email);
+
+const updateAge = (val: string) => {
+  const tempUser: UserInfo = store.state.user.userInfo;
+  tempUser.userInfoBase.age = val;
+  store.commit("user/setUserInfo", tempUser);
+};
+
+const updatePhoneNumber = (val: string) => {
+  const tempUser: UserInfo = store.state.user.userInfo;
+  tempUser.userInfoBase.phoneNumber = val;
+  store.commit("user/setUserInfo", tempUser);
+};
+
+const updateWorkExperience = (val: string) => {
+  const tempUser: UserInfo = store.state.user.userInfo;
+  tempUser.userInfoBase.workExperience = val;
+  store.commit("user/setUserInfo", tempUser);
+};
+
+const updateEmail = (val: string) => {
+  const tempUser: UserInfo = store.state.user.userInfo;
+  tempUser.userInfoBase.email = val;
+  store.commit("user/setUserInfo", tempUser);
+};
 </script>
 
 <style lang="less" scoped>
@@ -130,6 +193,11 @@ const jobPostion = computed({
       .job-postion {
         font-size: 16px !important;
         font-weight: bold !important;
+      }
+
+      .base-info-box {
+        display: flex;
+        flex-wrap: wrap;
       }
     }
   }
