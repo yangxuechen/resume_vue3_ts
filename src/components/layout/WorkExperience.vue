@@ -1,19 +1,12 @@
 <template>
   <div class="info-box">
-    <div class="title">
-      <div style="display: flex; align-items: center; gap: 10px">
-        <SignalFilled :style="{ fontSize: '24px', color: 'white' }" />
-        <input type="text" v-model="title" class="input_title" />
-      </div>
-      <!-- <div style="padding-right: 25px" class="btn-box">
-        <a-button type="link" @click="deleteWork" class="btn">删除</a-button>
-        <a-button type="link" @click="addWork" class="btn">添加</a-button>
-      </div> -->
-      <div class="btn-box">
-        <MinusSquareOutlined @click="deleteWork" />
-        <PlusSquareOutlined @click="addWork" />
-      </div>
-    </div>
+    
+    <TitleB
+      title="工作经历"
+      iconName="icon-work-filling"
+      backgroundColor="#062743"
+      @btnClick="onBtnClick"
+    ></TitleB>
     <div v-for="(workExperience, index) in workExperienceList">
       <WorkEdit
         :workExperience="workExperience"
@@ -40,6 +33,7 @@ import { UserInfo, WorkExperience } from "../../views/UserInfo";
 import MainLeft from "./MainLeft.vue";
 import WorkEdit from "./work/WorkEdit.vue";
 import user from "../../utils/initUserInfo";
+import TitleB from "../base/title/TitleB.vue";
 
 const title = ref<string>("工作经历");
 const workStatus = reactive<boolean[]>([true, false, false]);
@@ -82,6 +76,14 @@ const updateStore = () => {
   const tempUser: UserInfo = store.state.user.userInfo;
   tempUser.workExperienceList = workExperienceList;
   store.commit("user/setUserInfo", tempUser);
+};
+
+const onBtnClick = (val: string) => {
+  if (val == "add") {
+   addWork();
+  } else {
+    deleteWork();
+  }
 };
 </script>
 

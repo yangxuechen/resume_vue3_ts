@@ -25,7 +25,7 @@ import { computed, defineProps, ref } from "vue";
 import IconTool from "./IconTool.vue";
 
 const IconFont = createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_3104671_qu0xf3bqpl.js",
+  scriptUrl: "//at.alicdn.com/t/font_3104671_6dwvuvl0o8c.js",
 });
 
 const props = defineProps({

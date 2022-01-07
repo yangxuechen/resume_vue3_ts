@@ -3,14 +3,15 @@
     <RsInput
       :show-icon="true"
       :backgroundColor="backgroundColor"
-      icon-color="#fff"
+      :border-color="borderColor"
+      icon-color="color"
       :icon-name="iconName"
       :value="title"
       fontWeight="bold"
-      style="color: white"
+      :style="{ color: color, fontSize: fontSize }"
     ></RsInput>
 
-    <div class="btn-box">
+    <div class="btn-box" v-if="showTool">
       <MinusSquareOutlined @click="btnClick('delete')" />
       <PlusSquareOutlined @click="btnClick('add')" />
     </div>
@@ -29,8 +30,13 @@ import RsInput from "../input/RsInput.vue";
 
 const props = defineProps({
   backgroundColor: { type: String, default: "#062743" },
+  borderColor: { type: String, default: "#fff" },
+  iconColor: { type: String, default: "black" },
   iconName: { type: String, default: "icon-youxiang" },
   title: { type: String, default: "标题" },
+  showTool: { type: Boolean, default: true },
+  color: { type: String, default: "white" },
+  fontSize: { type: String, default: "16px" },
 });
 const emit = defineEmit({
   btnClick: (value: string) => Boolean,

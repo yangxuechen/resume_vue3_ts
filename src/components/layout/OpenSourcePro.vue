@@ -1,20 +1,12 @@
 <template>
   <div class="info-box" @mouseenter="onFocus" @mouseleave="hiddenToop">
-    <div class="title">
-      <div style="display: flex; align-items: center; gap: 10px">
-        <GithubFilled :style="{ fontSize: '24px', color: 'white' }" />
-
-        <input type="text" class="input_title" v-model="title" />
-      </div>
-      <!-- <div style="padding-right: 25px" class="btn-box">
-        <a-button type="link" @click="deleteDesc" class="btn">删除</a-button>
-        <a-button type="link" @click="addDesc" class="btn">添加</a-button>
-      </div> -->
-      <div class="btn-box">
-        <MinusSquareOutlined @click="deleteDesc" />
-        <PlusSquareOutlined @click="addDesc" />
-      </div>
-    </div>
+   
+    <TitleB
+      title="开源项目"
+      iconName="icon-github-fill"
+      backgroundColor="#062743"
+      @btnClick="onBtnClick"
+    ></TitleB>
 
     <div
       style="width: 100%; padding: 25px 0 0 15px"
@@ -44,6 +36,7 @@ import { useStore } from "vuex";
 import { Project, UserInfo } from "../../views/UserInfo";
 import AutoTextArea from "../base/AutoTextArea.vue";
 import user from "../../utils/initUserInfo";
+import TitleB from "../base/title/TitleB.vue";
 const title = ref<string>("开源项目");
 const edit = ref<boolean>(false);
 const state = reactive([true, true, true]);
@@ -97,6 +90,14 @@ const onChange = (value: String, index: Number) => {
   const tempUser: UserInfo = store.state.user.userInfo;
   tempUser.projectList[i].projectDesc = value.toString();
   store.commit("user/setUserInfo", tempUser);
+};
+
+const onBtnClick = (val: string) => {
+  if (val == "add") {
+   addDesc();
+  } else {
+    deleteDesc();
+  }
 };
 </script>
 

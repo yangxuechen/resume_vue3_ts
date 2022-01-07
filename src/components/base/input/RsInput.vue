@@ -62,7 +62,7 @@ const inputValue = computed({
 
   .rs-icon-box {
     // width: 50px;
-    margin-right: 10px;
+    margin-right: 3px;
     margin-left: 5px;
     margin-top: 5px;
   }

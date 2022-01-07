@@ -9,7 +9,9 @@
     @close="closeDrawer"
   >
     <div style="display: flex; align-items: center">
-      <span style="font-size: 16px;font-weight: bolder;padding-right: 10px;">修改颜色:</span>
+      <span style="font-size: 16px; font-weight: bolder; padding-right: 10px"
+        >修改颜色:</span
+      >
       <IconTheme @changeTheme="onChange" :colors="colors"></IconTheme>
     </div>
 
@@ -35,9 +37,11 @@ interface ColorItem {
   background: string;
 }
 const IconFont = createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_3104671_wcwsntsstu.js",
+  scriptUrl: "//at.alicdn.com/t/font_3104671_6dwvuvl0o8c.js",
 });
 const iconlist = reactive<string[]>([
+  "icon-github-fill",
+  "icon-work-filling",
   "icon-education1",
   "icon-star-fill",
   "icon-education",
