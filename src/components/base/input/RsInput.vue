@@ -8,9 +8,9 @@
       v-if="showIcon"
     ></rs-icon>
 
-    <input class="input label-box" v-if="showTitle" v-model="title" />
+    <input class="rs-input label-box" v-if="showTitle" v-model="title" />
 
-    <input class="input" v-model="inputValue" />
+    <input class="rs-input" v-model="inputValue" />
   </div>
 </template>
 
@@ -71,7 +71,7 @@ const inputValue = computed({
     width: 80px !important;
   }
 
-  .input {
+  .rs-input {
     font-weight: v-bind(inputFontWeight);
     width: v-bind(inputWidth);
     height: v-bind(inputHeight);
@@ -81,7 +81,7 @@ const inputValue = computed({
     border-style: dotted;
   }
 
-  .input:focus {
+  .rs-input:focus {
     background: none;
     outline: none;
     border: 0px;

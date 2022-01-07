@@ -1,9 +1,13 @@
 <template>
   <div class="info-box">
-    <div class="title">
-      <CompassFilled :style="{ fontSize: '24px', color: 'white' }" />
-      <input type="text" class="input_title" v-model="title" />
-    </div>
+    <!-- <CompassFilled :style="{ fontSize: '24px', color: 'white' }" />
+      <input type="text" class="input_title" v-model="title" /> -->
+    <TitleB
+      title="求职意向"
+      iconName="icon-star-fill"
+      backgroundColor="#062743"
+      @btnClick="onBtnClick"
+    ></TitleB>
 
     <div class="intension-desc">
       <div class="item">
@@ -40,9 +44,11 @@ import {
   ShopFilled,
   CompassFilled,
 } from "@ant-design/icons-vue";
+import { message } from "ant-design-vue";
 import { computed, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { UserInfo } from "../../views/UserInfo";
+import TitleB from "../base/title/TitleB.vue";
 const title = ref<string>("求职意向");
 
 const store = useStore();
@@ -79,6 +85,10 @@ const entryTime = computed({
     store.commit("user/setUserInfo", tempUser);
   },
 });
+
+const onBtnClick = () => {
+  message.info("该模块不支持添加和删除!");
+};
 </script>
 
 <style lang="less" scoped>

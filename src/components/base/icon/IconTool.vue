@@ -35,9 +35,12 @@ interface ColorItem {
   background: string;
 }
 const IconFont = createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_3104671_qu0xf3bqpl.js",
+  scriptUrl: "//at.alicdn.com/t/font_3104671_wcwsntsstu.js",
 });
 const iconlist = reactive<string[]>([
+  "icon-education1",
+  "icon-star-fill",
+  "icon-education",
   "icon-heart-fill",
   "icon-Youtube-fill",
   "icon-152error40401",

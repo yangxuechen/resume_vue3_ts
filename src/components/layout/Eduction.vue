@@ -1,29 +1,36 @@
 <template>
   <div class="info-box">
-    <div class="title">
-      <div style="display: flex; align-items: center; gap: 10px">
-        <ReadFilled :style="{ fontSize: '24px', color: 'white' }" />
-        <input type="text" class="input_title" v-model="title" />
-      </div>
-      <div style="padding-right: 25px" class="btn-box">
-        <!-- <a-button type="link" @click="addEdu" class="btn"
-          >添加教育经历</a-button
-        > -->
-        <MinusSquareOutlined @click="deleteEdu" />
-        <PlusSquareOutlined @click="addEdu" />
-      </div>
-    </div>
+    <TitleB
+      title="教育背景"
+      iconName="icon-education"
+      backgroundColor="#062743"
+      @btnClick="onBtnClick"
+    ></TitleB>
 
     <div class="intension-desc">
       <div v-for="item in state" class="item-box">
         <div class="item">
-          <input class="input_dash" v-model="item.time" @change="updateStore" style="width: 120px" />
+          <input
+            class="input_dash"
+            v-model="item.time"
+            @change="updateStore"
+            style="width: 120px"
+          />
         </div>
         <div class="item">
-          <input class="input_dash" v-model="item.firstSchool" @change="updateStore" style="width: 120px" />
+          <input
+            class="input_dash"
+            v-model="item.firstSchool"
+            @change="updateStore"
+            style="width: 120px"
+          />
         </div>
         <div class="item">
-          <input class="input_dash" @change="updateStore" v-model="item.firstMajor" />
+          <input
+            class="input_dash"
+            @change="updateStore"
+            v-model="item.firstMajor"
+          />
         </div>
         <div class="item">
           <input
@@ -50,6 +57,7 @@ import { message } from "ant-design-vue";
 import { reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { Education } from "../../views/UserInfo";
+import TitleB from "../base/title/TitleB.vue";
 const title = ref<string>("教育经历");
 
 const store = useStore();
@@ -86,6 +94,14 @@ const updateStore = () => {
   const tempUser = store.state.user.userInfo;
   tempUser.educationList = state;
   store.commit("user/setUserInfo", tempUser);
+};
+
+const onBtnClick = (val: string) => {
+  if (val == "add") {
+    addEdu();
+  } else {
+    deleteEdu();
+  }
 };
 </script>
 

@@ -1,13 +1,15 @@
 <template>
   <div class="title">
-    <div style="display: flex; align-items: center; gap: 10px">
-      <SignalFilled :style="{ fontSize: '24px', color: 'white' }" />
-      <input type="text" v-model="title" class="input_title" />
-    </div>
-    <!-- <div style="padding-right: 25px" class="btn-box">
-        <a-button type="link" @click="deleteWork" class="btn">删除</a-button>
-        <a-button type="link" @click="addWork" class="btn">添加</a-button>
-      </div> -->
+    <RsInput
+      :show-icon="true"
+      :backgroundColor="backgroundColor"
+      icon-color="#fff"
+      :icon-name="iconName"
+      :value="title"
+      fontWeight="bold"
+      style="color: white"
+    ></RsInput>
+
     <div class="btn-box">
       <MinusSquareOutlined @click="btnClick('delete')" />
       <PlusSquareOutlined @click="btnClick('add')" />
@@ -16,15 +18,20 @@
 </template>
 
 <script lang="ts" setup>
-import { defineEmit, ref } from "vue";
+import { defineEmit, defineProps, ref } from "vue";
 import {
   PushpinOutlined,
   SignalFilled,
   MinusSquareOutlined,
   PlusSquareOutlined,
 } from "@ant-design/icons-vue";
-const title = ref<string>("工作经历");
+import RsInput from "../input/RsInput.vue";
 
+const props = defineProps({
+  backgroundColor: { type: String, default: "#062743" },
+  iconName: { type: String, default: "icon-youxiang" },
+  title: { type: String, default: "标题" },
+});
 const emit = defineEmit({
   btnClick: (value: string) => Boolean,
 });
