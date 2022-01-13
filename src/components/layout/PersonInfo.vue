@@ -9,6 +9,7 @@
       title="个人信息"
       iconName="icon-github-fill"
       backgroundColor="#fff"
+      :backgroundColorChange="false"
       borderColor="”black“"
       font-size="14px"
       :show-tool="false"

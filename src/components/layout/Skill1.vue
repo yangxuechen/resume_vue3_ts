@@ -1,6 +1,6 @@
 <template>
   <div class="info-box">
-    <div class="title">
+    <!-- <div class="title">
       <div style="display: flex; align-items: center; width: 120px">
         <PushpinOutlined :style="{ fontSize: '20px', color: 'black' }" />
         <input type="text" class="input_title_bgWhite" v-model="title" />
@@ -9,7 +9,20 @@
         <MinusSquareOutlined @click="deleteSkill" />
         <PlusSquareOutlined @click="addSkill" />
       </div>
-    </div>
+    </div> -->
+
+    <TitleB
+      title="基础技能"
+      iconName="icon-education"
+      backgroundColor="#fff"
+      :backgroundColorChange="false"
+      borderColor="”black“"
+      font-size="14px"
+      :show-tool="true"
+      size="small"
+      color="black"
+      @btnClick="onBtnClick"
+    ></TitleB>
     <div v-for="(record, index) in skilllist">
       <div class="skill-box">
         <div>
@@ -57,6 +70,7 @@ import { message } from "ant-design-vue";
 import { reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { Skill, UserInfo } from "../../views/UserInfo";
+import TitleB from "../base/title/TitleB.vue";
 
 const store = useStore();
 const title = ref<string>("技能特长");
