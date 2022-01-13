@@ -38,8 +38,8 @@ const emit = defineEmit({
   updateVal: (value: String) => Boolean,
 });
 
-const bgColor = ref<string>(props.backgroundColor);
-const borderColor = ref<string>(props.borderColor);
+const bgColor =  computed(() => props.backgroundColor);
+const borderColor = computed(() => props.borderColor);
 const inputWidth = ref<string>(props.width);
 const inputHeight = ref<string>(props.height);
 const iconFontSize = ref<string>(props.iconSize);

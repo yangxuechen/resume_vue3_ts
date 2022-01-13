@@ -9,13 +9,12 @@
       title="个人信息"
       iconName="icon-github-fill"
       backgroundColor="#fff"
-      borderColor=”black“
+      borderColor="”black“"
       font-size="14px"
       :show-tool="false"
       color="black"
-     
     ></TitleB>
-    <div class="info" style="margin-top: 15px;">
+    <div class="info" style="margin-top: 15px">
       <div><ManOutlined /></div>
       <div class="info-desc">
         <input class="input_dash name" v-model="sex" />
@@ -160,6 +159,8 @@ const email = computed({
 });
 
 const title = ref<string>("基本信息");
+
+
 </script>
 
 <style lang="less" scoped>

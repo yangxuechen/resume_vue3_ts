@@ -1,10 +1,9 @@
 <template>
   <div class="info-box" @mouseenter="onFocus" @mouseleave="hiddenToop">
-   
     <TitleB
       title="开源项目"
       iconName="icon-github-fill"
-      backgroundColor="#062743"
+      :backgroundColor="bgColor"
       @btnClick="onBtnClick"
     ></TitleB>
 
@@ -94,11 +93,13 @@ const onChange = (value: String, index: Number) => {
 
 const onBtnClick = (val: string) => {
   if (val == "add") {
-   addDesc();
+    addDesc();
   } else {
     deleteDesc();
   }
 };
+
+const bgColor = computed(() => store.state.app.themeColor);
 </script>
 
 <style lang="less" scoped>

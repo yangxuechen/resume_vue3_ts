@@ -63,6 +63,8 @@ const title = ref<string>("教育经历");
 const store = useStore();
 const state = reactive<Education[]>(store.state.user.userInfo.educationList);
 
+console.log(store.state.app.themeColor, "color");
+
 const addEdu = () => {
   if (state.length > 2) {
     message.warning("最多允许添加3条记录");

@@ -32,6 +32,7 @@ import AutoTextArea from "../../components/base/AutoTextArea.vue";
 import { reactive } from "@vue/reactivity";
 import Theme from "../../components/base/Theme.vue";
 import { defineEmit, inject, onMounted } from "@vue/runtime-core";
+import { useStore } from "vuex";
 interface AvatarData {
   name: string;
   desc: string;
@@ -55,11 +56,14 @@ const emit = defineEmit({
 const onChange = () => {
   // console.log("color change");
   emit("colorChange", "ii");
+  store.commit("app/setThemeColor", colors[0].color);
 };
-
+const store = useStore();
 onMounted(() => {
   document.body.style.setProperty("--rs-bgcolor-1", colors[0].color);
 });
+
+store.commit("app/setThemeColor", colors[0].color);
 </script>
 
 <style lang="less" scoped>
