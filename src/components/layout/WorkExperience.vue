@@ -1,12 +1,19 @@
 <template>
   <div class="info-box">
-    
     <TitleB
       title="工作经历"
-      iconName="icon-work-filling"
-      backgroundColor="#062743"
+      iconName="icon-education"
+      :backgroundColorChange="true"
+      borderColor="#fff"
+      font-size="14px"
+      :show-tool="true"
+      :titleType="props.titleType"
+      :size="titleSize"
+      color="#fff"
+      :style="{ width: titleWidth }"
       @btnClick="onBtnClick"
     ></TitleB>
+
     <div v-for="(workExperience, index) in workExperienceList">
       <WorkEdit
         :workExperience="workExperience"
@@ -27,13 +34,19 @@ import {
   PlusSquareOutlined,
 } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import { defineEmit, reactive, ref } from "vue";
+import { defineEmit, defineProps, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { UserInfo, WorkExperience } from "../../views/UserInfo";
 import MainLeft from "./MainLeft.vue";
 import WorkEdit from "./work/WorkEdit.vue";
 import user from "../../utils/initUserInfo";
 import TitleB from "../base/title/TitleB.vue";
+
+const props = defineProps({
+  titleType: { type: String, default: "title-01" },
+  titleSize: { type: String, default: "normal" },
+  titleWidth: { type: String, default: "100%" },
+});
 
 const title = ref<string>("工作经历");
 const workStatus = reactive<boolean[]>([true, false, false]);
@@ -80,9 +93,11 @@ const updateStore = () => {
 
 const onBtnClick = (val: string) => {
   if (val == "add") {
-   addWork();
+    addWork();
+    message.success("添加成功!");
   } else {
     deleteWork();
+    message.success("删除成功!");
   }
 };
 </script>
@@ -90,7 +105,7 @@ const onBtnClick = (val: string) => {
 <style lang="less" scoped>
 .info-box {
   width: 100%;
-  padding: 0 15px;
+
   margin: 15px auto;
   color: white;
   .title {

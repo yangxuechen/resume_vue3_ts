@@ -76,6 +76,9 @@ const minPage = ref<string>("");
 const downloadPdf = () => {
   window.scrollTo({ top: 0 });
   const htmlElement = document.getElementById("resume");
+
+  console.log(htmlElement);
+
   const main = document.getElementById("main");
   const width: number = htmlElement?.offsetWidth || 0;
   const height: number = htmlElement?.offsetHeight || 0;
@@ -85,10 +88,14 @@ const downloadPdf = () => {
   html2canvas(htmlElement!, {
     height: htmlElement?.offsetHeight,
     width: htmlElement?.offsetWidth,
+    useCORS: true,
+    allowTaint: true,
   }).then((canvas) => {
     const doc = new jsPDF();
 
-    //document.body.appendChild(canvas);
+    document.body.appendChild(canvas);
+
+    return;
     doc.addImage(canvas, "image/jpeg", 0, 0, 210, 297); //单位是毫米
     minPage.value = canvas.toDataURL as unknown as string;
     //  console.log(minPage);

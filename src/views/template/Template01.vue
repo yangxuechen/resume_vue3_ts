@@ -71,6 +71,7 @@ store.commit("app/setThemeColor", colors[0].color);
   width: 100%;
   //  margin-left: 15%;
   min-height: 1086px;
+
   //  background-color: cadetblue;
   display: flex;
 
@@ -82,6 +83,7 @@ store.commit("app/setThemeColor", colors[0].color);
 
   .right-box {
     width: 70%;
+    padding-left: 15px;
     background-color: white;
   }
 }

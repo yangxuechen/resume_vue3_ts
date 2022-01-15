@@ -90,7 +90,7 @@ const props = defineProps({
 
 const avatarUrl = ref<string>(img_url);
 const store = useStore();
-const bgColor = props.background;
+const bgColor = computed(() => props.background);
 
 const uploadImg = () => {
   const input_img = document.getElementById("btn_upload");
@@ -215,7 +215,7 @@ const updateEmail = (val: string) => {
     height: 200px;
     background-color: antiquewhite;
     border-radius: 50%;
-    border: 1px salmon solid;
+    border: 1px v-bind(bgColor) solid;
   }
 }
 </style>

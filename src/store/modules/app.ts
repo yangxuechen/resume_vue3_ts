@@ -1,7 +1,7 @@
 export const app = {
     namespaced: true,
     state: {
-      themeColor :  '#fff'
+      themeColor :  '#062743'
     },
     mutations: {
       setThemeColor(state : { themeColor : String}, color: String) {

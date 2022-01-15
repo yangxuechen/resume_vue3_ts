@@ -94,7 +94,7 @@ const onBtnClick = () => {
 <style lang="less" scoped>
 .info-box {
   width: 100%;
-  padding: 0 15px;
+
   margin: 15px auto;
   color: white;
 

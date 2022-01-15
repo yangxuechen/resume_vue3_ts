@@ -32,11 +32,9 @@ const title = ref<string>("标题C");
   height: 35px;
   background-color: v-bind(bgColor);
   border-radius: 12px;
+  padding-left: 10px;
   display: flex;
   align-items: center;
 
-  .title-c-icon {
-    margin: 5px 10px 0 10px;
-  }
 }
 </style>

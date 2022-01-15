@@ -20,17 +20,29 @@ import { computed, defineEmit, defineProps, reactive, ref } from "vue";
 import RsIcon from "../icon/RsIcon.vue";
 
 const props = defineProps({
+  /**input输入框的值 */
   value: { type: String, default: "" },
+  /**input输入框的背景颜色 */
   backgroundColor: { type: String, default: "#fff" },
+  /**input输入框的边框颜色 */
   borderColor: { type: String, default: "#fff" },
+  /**输入框前面的图标名字 */
   iconName: { type: String, default: "icon-nianling" },
+  /**输入框前面的图标大小 */
   iconSize: { type: String, default: "30px" },
+  /**输入框前面的图标颜色 */
   iconColor: { type: String, default: "black" },
+  /**输入框的宽度 */
   width: { type: String, default: "120px" },
+  /**输入框的高度 */
   height: { type: String, default: "30px" },
+  /**是否展示图标 */
   showIcon: { type: Boolean, default: false },
+  /**是否展示标签 */
   showTitle: { type: Boolean, default: false },
+  /**标签的值 */
   title: { type: String, default: "标题" },
+  /**字体是否加粗 */
   fontWeight: { type: String, default: "normal" },
 });
 
@@ -38,10 +50,10 @@ const emit = defineEmit({
   updateVal: (value: String) => Boolean,
 });
 
-const bgColor =  computed(() => props.backgroundColor);
+const bgColor = computed(() => props.backgroundColor);
 const borderColor = computed(() => props.borderColor);
 const inputWidth = ref<string>(props.width);
-const inputHeight = ref<string>(props.height);
+const inputHeight = computed(() => props.height);
 const iconFontSize = ref<string>(props.iconSize);
 const inputFontWeight = ref<string>(props.fontWeight);
 

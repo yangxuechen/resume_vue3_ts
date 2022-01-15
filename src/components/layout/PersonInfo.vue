@@ -10,8 +10,9 @@
       iconName="icon-github-fill"
       backgroundColor="#fff"
       :backgroundColorChange="false"
-      borderColor="”black“"
+      borderColor="black"
       font-size="14px"
+      size="small"
       :show-tool="false"
       color="black"
     ></TitleB>
@@ -160,8 +161,6 @@ const email = computed({
 });
 
 const title = ref<string>("基本信息");
-
-
 </script>
 
 <style lang="less" scoped>
@@ -169,21 +168,6 @@ const title = ref<string>("基本信息");
   width: 100%;
   padding: 15px;
   color: white;
-  .title {
-    background-color: white;
-    width: 100%;
-    height: 40px;
-    //   line-height: 30px;
-    border-bottom-left-radius: 50px;
-    border-top-left-radius: 50px;
-    padding-left: 10px;
-    display: flex;
-    align-items: center;
-
-    h4 {
-      margin: 0 0 0 5px;
-    }
-  }
 
   .info {
     width: 100%;

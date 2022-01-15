@@ -8,6 +8,7 @@ import 'ant-design-vue/dist/antd.css';
 import store from './store';
 
 import  userInfo  from './utils/initUserInfo'
+import  SvgIcon from './components/base/icon/SvgIcon.vue'
 
 
 console.log(userInfo ,'userInfo main.ts');
@@ -21,5 +22,5 @@ window.localStorage.setItem('userInfo',JSON.stringify(userInfo.userInfo))
 
 
 createApp(App).use(route)
-.use(Antd).use(store)
+.use(Antd).use(store).component('svg-icon',SvgIcon)
 .mount('#app')

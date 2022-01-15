@@ -3,7 +3,14 @@
     <TitleB
       title="教育背景"
       iconName="icon-education"
-      backgroundColor="#062743"
+      :backgroundColorChange="true"
+      borderColor="#fff"
+      font-size="14px"
+      :show-tool="true"
+      :titleType="props.titleType"
+      :size="titleSize"
+      color="#fff"
+      :style="{ width: titleWidth }"
       @btnClick="onBtnClick"
     ></TitleB>
 
@@ -54,10 +61,17 @@ import {
   MinusSquareOutlined,
 } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import { reactive, ref } from "vue";
+import { defineProps, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { Education } from "../../views/UserInfo";
 import TitleB from "../base/title/TitleB.vue";
+
+const props = defineProps({
+  titleType: { type: String, default: "title-01" },
+  titleSize: { type: String, default: "normal" },
+  titleWidth: { type: String, default: "100%" },
+});
+
 const title = ref<string>("教育经历");
 
 const store = useStore();
@@ -89,6 +103,7 @@ const deleteEdu = () => {
   } else {
     state.pop();
     updateStore();
+    message.success("删除成功");
   }
 };
 
@@ -110,7 +125,7 @@ const onBtnClick = (val: string) => {
 <style lang="less" scoped>
 .info-box {
   width: 100%;
-  padding: 0 15px;
+  // padding: 0 15px;
   margin: 15px auto;
   color: white;
   .title {

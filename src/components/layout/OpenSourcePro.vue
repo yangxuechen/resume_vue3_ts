@@ -3,7 +3,14 @@
     <TitleB
       title="开源项目"
       iconName="icon-github-fill"
-      :backgroundColor="bgColor"
+      :backgroundColorChange="true"
+      borderColor="#fff"
+      font-size="14px"
+      :show-tool="true"
+      :titleType="props.titleType"
+      :size="titleSize"
+      color="#fff"
+      :style="{ width: titleWidth }"
       @btnClick="onBtnClick"
     ></TitleB>
 
@@ -30,12 +37,18 @@ import {
   PlusSquareOutlined,
 } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import { computed, reactive, ref } from "vue";
+import { computed, defineProps, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { Project, UserInfo } from "../../views/UserInfo";
 import AutoTextArea from "../base/AutoTextArea.vue";
 import user from "../../utils/initUserInfo";
 import TitleB from "../base/title/TitleB.vue";
+
+const props = defineProps({
+  titleType: { type: String, default: "title-01" },
+  titleSize: { type: String, default: "normal" },
+  titleWidth: { type: String, default: "100%" },
+});
 const title = ref<string>("开源项目");
 const edit = ref<boolean>(false);
 const state = reactive([true, true, true]);
@@ -105,7 +118,7 @@ const bgColor = computed(() => store.state.app.themeColor);
 <style lang="less" scoped>
 .info-box {
   width: 100%;
-  padding: 0 15px;
+
   margin: 15px auto;
   color: white;
   .title {

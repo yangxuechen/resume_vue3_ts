@@ -16,7 +16,7 @@
       iconName="icon-education"
       backgroundColor="#fff"
       :backgroundColorChange="false"
-      borderColor="”black“"
+      borderColor="black"
       font-size="14px"
       :show-tool="true"
       size="small"
@@ -99,6 +99,10 @@ const deleteSkill = () => {
   message.success("删除成功");
 };
 
+const onBtnClick = (btnname: String) => {
+  if (btnname == "add") addSkill();
+  else deleteSkill();
+};
 /**
  * 输入框发生改变，立即更新store数据
  */
@@ -115,21 +119,6 @@ const updateStore = () => {
   padding: 15px;
   margin: 15px auto;
   color: white;
-  .title {
-    background-color: white;
-    width: 100%;
-    height: 30px;
-    //   line-height: 30px;
-    border-bottom-left-radius: 50px;
-    border-top-left-radius: 50px;
-    padding-left: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    h4 {
-      margin: 0 0 0 5px;
-    }
-  }
 
   .info {
     width: 100%;
