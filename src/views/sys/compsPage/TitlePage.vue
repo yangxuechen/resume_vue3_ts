@@ -94,6 +94,22 @@
         <!-- <rs-icon iconType="icon-heart-fill"></rs-icon> -->
         <svg-icon name="wechat-fill" color="red"></svg-icon>
         <svg-icon name="wechat-fill" color="black"></svg-icon>
+        <svg-icon name="star" color="black"></svg-icon>
+      </template>
+      <template v-slot:footer>
+        <div>
+          <div>组件数据使用store中的用户信息。</div>
+          <div>组件名: SvgIcon test</div>
+          <div>组件地址: /components/base/title/TitleC.vue</div>
+        </div>
+      </template>
+    </rs-card>
+
+    <rs-card>
+      <template v-slot:content>
+        <!-- <rs-icon iconType="icon-heart-fill"></rs-icon> -->
+       
+        <Test></Test>
       </template>
       <template v-slot:footer>
         <div>
@@ -107,12 +123,14 @@
 </template>
 
 <script lang="ts" setup>
+import { Icon } from "../../../components/base/icon/Icon";
 import TitleA from "../../../components/base/title/TitleA.vue";
 import RsCard from "../../../components/base/card/RsCard.vue";
 import TitleB from "../../../components/base/title/TitleB.vue";
 import TitleC from "../../../components/base/title/TitleC.vue";
 import RsIcon from "../../../components/base/icon/RsIcon.vue";
 import SvgIcon from "../../../components/base/icon/SvgIcon.vue";
+import Test from "./Test.vue";
 </script>
 
 <style lang="less" scoped>

@@ -1,12 +1,20 @@
 <template>
   <div class="rs-input-box">
-    <rs-icon
+    <rs-svg-icon name="star" :color="iconColor"  class="rs-icon-box"></rs-svg-icon>
+    <!-- <svg-icon
+      name="star"
+      :color="iconColor"
+      class="rs-icon-box"
+      :style="{ fontSize: iconSize }"
+      v-if="showIcon"
+    ></svg-icon> -->
+    <!-- <rs-icon
       :iconType="iconName"
       :color="iconColor"
       class="rs-icon-box"
       :style="{ fontSize: iconSize }"
       v-if="showIcon"
-    ></rs-icon>
+    ></rs-icon> -->
 
     <input class="rs-input label-box" v-if="showTitle" v-model="title" />
 
@@ -18,6 +26,8 @@
 import { message } from "ant-design-vue";
 import { computed, defineEmit, defineProps, reactive, ref } from "vue";
 import RsIcon from "../icon/RsIcon.vue";
+import SvgIcon from "../icon/SvgIcon.vue";
+import RsSvgIcon from "../icon/RsSvgIcon.vue";
 
 const props = defineProps({
   /**input输入框的值 */
@@ -76,6 +86,7 @@ const inputValue = computed({
     // width: 50px;
     margin-right: 3px;
     margin-left: 5px;
+    // margin-bottom: 4px;
     margin-top: 5px;
   }
 

@@ -4,7 +4,7 @@
       :show-icon="true"
       :backgroundColor="bgColor"
       :border-color="borderColor"
-      icon-color="color"
+      :icon-color="color"
       :icon-name="iconName"
       :value="title"
       :width="width"
