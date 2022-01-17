@@ -2,7 +2,7 @@
   <div class="info-box" @mouseenter="onFocus" @mouseleave="hiddenToop">
     <TitleB
       title="开源项目"
-      iconName="icon-github-fill"
+      iconName="github"
       :backgroundColorChange="true"
       borderColor="#fff"
       font-size="14px"

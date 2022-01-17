@@ -13,7 +13,7 @@
 
     <TitleB
       title="基础技能"
-      iconName="icon-education"
+      iconName="tool"
       backgroundColor="#fff"
       :backgroundColorChange="false"
       borderColor="black"

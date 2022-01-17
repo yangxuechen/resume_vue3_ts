@@ -133,9 +133,8 @@ const downloadPdf = () => {
   }).then((canvas) => {
     const doc = new jsPDF();
 
-    document.body.appendChild(canvas);
+    //  document.body.appendChild(canvas);
 
-   
     doc.addImage(canvas, "image/jpeg", 0, 0, 210, 297); //单位是毫米
     minPage.value = canvas.toDataURL as unknown as string;
     //  console.log(minPage);

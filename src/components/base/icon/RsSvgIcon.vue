@@ -6,12 +6,18 @@
         {{ name }}
       </div>
 
-      <svg-tool
+      <RsSvgTool
         :visible="visible"
         @close="onClose"
         @changeIcon="changeIcon"
         @changeIconColor="changeIconColor"
-      ></svg-tool>
+      ></RsSvgTool>
+      <!-- <svg-tool
+        :visible="visible"
+        @close="onClose"
+        @changeIcon="changeIcon"
+        @changeIconColor="changeIconColor"
+      ></svg-tool> -->
     </div>
   </div>
 </template>
@@ -20,6 +26,11 @@
 import { computed, defineProps, ref } from "vue";
 import SvgTool from "./SvgTool.vue";
 import { getSvgPath } from "../../../utils/svgUtil";
+import svgList from "./svgList";
+import RsSvgTool from "./RsSvgTool.vue";
+
+console.log(svgList.iconlist, "iconlist");
+
 const props = defineProps({
   name: { type: String, default: "star" },
   width: { type: String, default: "30px" },
@@ -53,7 +64,18 @@ const loadFile = function (name: string) {
 
 const svgSrc = computed(() => {
   const svgPre = "";
-  let svg = loadFile(`/src/assets/svg/${iconName.value}.svg`);
+
+  const iconlist = svgList.iconlist;
+  let httpUrl = "";
+  iconlist.map((icon) => {
+    if (iconName.value == icon.name) {
+      httpUrl = icon.src;
+    }
+  });
+
+  let svg = loadFile(httpUrl);
+
+  //  let svg = loadFile(`@/assets/svg/${iconName.value}.svg`);
   const path = getSvgPath(svg || "");
 
   const label = `<svg

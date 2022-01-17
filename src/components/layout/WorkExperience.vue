@@ -2,7 +2,7 @@
   <div class="info-box">
     <TitleB
       title="工作经历"
-      iconName="icon-education"
+      iconName="work-filling"
       :backgroundColorChange="true"
       borderColor="#fff"
       font-size="14px"

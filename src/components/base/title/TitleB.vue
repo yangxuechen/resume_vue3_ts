@@ -11,6 +11,7 @@
       :height="toolFontSize"
       fontWeight="bold"
       :style="{ color: color, fontSize: fontSize }"
+      :size="props.size"
     ></RsInput>
 
     <div class="btn-box" v-if="showTool">

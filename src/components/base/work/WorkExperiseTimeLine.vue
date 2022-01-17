@@ -1,7 +1,19 @@
 <template>
   <div>
-    <div style="padding: 0 15px">
-      <TitleB @btnClick="onBtnClick"></TitleB>
+    <div>
+      <TitleB
+        title="工作经历"
+        iconName="work-filling"
+        :backgroundColorChange="true"
+        borderColor="#fff"
+        font-size="14px"
+        :show-tool="true"
+        :titleType="props.titleType"
+        :size="titleSize"
+        color="#fff"
+        :style="{ width: titleWidth }"
+        @btnClick="onBtnClick"
+      ></TitleB>
     </div>
     <div v-for="(workExperience, index) in workExperienceList">
       <WorkEditTimeline
@@ -16,14 +28,18 @@
 <script lang="ts" setup>
 import { reactive } from "@vue/reactivity";
 import { message } from "ant-design-vue";
-import { ref } from "vue";
+import { defineProps, ref } from "vue";
 import { useStore } from "vuex";
 import TitleB from "../../../components/base/title/TitleB.vue";
 import { UserInfo, WorkExperience } from "../../../views/UserInfo";
 import WorkEditTimeline from "../../layout/work/WorkEditTimeline.vue";
 import user from "../../../utils/initUserInfo";
 const state = reactive<boolean[]>([true, false, false]);
-
+const props = defineProps({
+  titleType: { type: String, default: "title-01" },
+  titleSize: { type: String, default: "normal" },
+  titleWidth: { type: String, default: "100%" },
+});
 const store = useStore();
 const workExperienceList = reactive<WorkExperience[]>(
   store.state.user.userInfo.workExperienceList

@@ -1,6 +1,11 @@
 <template>
   <div class="rs-input-box">
-    <rs-svg-icon name="star" :color="iconColor"  class="rs-icon-box"></rs-svg-icon>
+    <rs-svg-icon
+      :name="iconName"
+      :color="iconColor"
+      :width="iconWidth"
+      class="rs-icon-box"
+    ></rs-svg-icon>
     <!-- <svg-icon
       name="star"
       :color="iconColor"
@@ -18,7 +23,11 @@
 
     <input class="rs-input label-box" v-if="showTitle" v-model="title" />
 
-    <input class="rs-input" v-model="inputValue" />
+    <input
+      class="rs-input"
+      v-model="inputValue"
+      @input="onChange(inputValue)"
+    />
   </div>
 </template>
 
@@ -27,7 +36,6 @@ import { message } from "ant-design-vue";
 import { computed, defineEmit, defineProps, reactive, ref } from "vue";
 import RsIcon from "../icon/RsIcon.vue";
 import SvgIcon from "../icon/SvgIcon.vue";
-import RsSvgIcon from "../icon/RsSvgIcon.vue";
 
 const props = defineProps({
   /**input输入框的值 */
@@ -37,7 +45,7 @@ const props = defineProps({
   /**input输入框的边框颜色 */
   borderColor: { type: String, default: "#fff" },
   /**输入框前面的图标名字 */
-  iconName: { type: String, default: "icon-nianling" },
+  iconName: { type: String, default: "star" },
   /**输入框前面的图标大小 */
   iconSize: { type: String, default: "30px" },
   /**输入框前面的图标颜色 */
@@ -54,11 +62,17 @@ const props = defineProps({
   title: { type: String, default: "标题" },
   /**字体是否加粗 */
   fontWeight: { type: String, default: "normal" },
+  /**输入框的大小 */
+  size: { type: String, default: "normal" },
 });
 
 const emit = defineEmit({
-  updateVal: (value: String) => Boolean,
+  "updateVal:value": (value: String) => Boolean,
 });
+
+const onChange = (val: string) => {
+  emit("updateVal:value", val);
+};
 
 const bgColor = computed(() => props.backgroundColor);
 const borderColor = computed(() => props.borderColor);
@@ -74,6 +88,16 @@ const inputValue = computed({
   set(val: string) {
     emit("updateVal", val);
   },
+});
+
+const iconWidth = computed(() => {
+  if (props.size == "small") {
+    return "25px";
+  } else if (props.size == "normal") {
+    return "30px";
+  } else {
+    return "40px";
+  }
 });
 </script>
 

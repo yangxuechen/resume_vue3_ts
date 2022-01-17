@@ -2,18 +2,31 @@
   <div class="info-box">
     <!-- <CompassFilled :style="{ fontSize: '24px', color: 'white' }" />
       <input type="text" class="input_title" v-model="title" /> -->
+
     <TitleB
       title="求职意向"
-      iconName="icon-star-fill"
+      iconName="job"
       backgroundColor="#062743"
+      :backgroundColorChange="true"
+      borderColor="#fff"
+      font-size="14px"
+      :show-tool="true"
+      size="normal"
+      color="white"
       @btnClick="onBtnClick"
     ></TitleB>
 
     <div class="intension-desc">
-      <div class="item">
+      <rs-input
+        v-model:value="jobPostion"
+        borderColor="black"
+        size="small"
+        inputHeight="30px"
+      ></rs-input>
+      <!-- <div class="item">
         <UserOutlined :style="{ fontSize: '20px', color: 'black' }" />
         <input class="input_dash" v-model="jobPostion" />
-      </div>
+      </div> -->
       <div class="item">
         <ShopFilled :style="{ fontSize: '20px', color: 'black' }" />
         <input class="input_dash" v-model="workCity" />
@@ -166,6 +179,7 @@ const onBtnClick = () => {
 }
 
 .intension-desc {
+  color: black;
   display: flex;
   justify-content: space-around;
   padding: 20px 1px;

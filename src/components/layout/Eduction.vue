@@ -2,7 +2,7 @@
   <div class="info-box">
     <TitleB
       title="教育背景"
-      iconName="icon-education"
+      iconName="education"
       :backgroundColorChange="true"
       borderColor="#fff"
       font-size="14px"

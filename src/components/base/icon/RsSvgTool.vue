@@ -16,13 +16,21 @@
     </div>
 
     <div class="icon-list-box">
-      <svg-icon
+      <rs-svg-icon
         v-for="icon in iconlist"
         :name="icon"
         :showTool="false"
         @click="onOk(icon)"
         class="icon-item"
-      ></svg-icon>
+      >
+      </rs-svg-icon>
+      <!-- <svg-icon
+        v-for="icon in iconlist"
+        :name="icon"
+        :showTool="false"
+        @click="onOk(icon)"
+        class="icon-item"
+      ></svg-icon> -->
     </div>
   </a-drawer>
 </template>
@@ -45,7 +53,12 @@ const iconlist = reactive<string[]>([
   "star",
   "loop",
   "education",
-  "user"
+  "user",
+  "tool",
+  "tool_brief",
+  "job",
+  "work-filling",
+  "github"
 ]);
 
 const colors = reactive<ColorItem[]>([

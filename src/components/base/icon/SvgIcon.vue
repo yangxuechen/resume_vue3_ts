@@ -1,4 +1,4 @@
- <!-- html文档上svg 为引用use 下载没有图标 -->
+<!-- html文档上svg 为引用use 下载没有图标 -->
 <template>
   <div>
     <svg
@@ -37,7 +37,7 @@ import SvgTool from "./SvgTool.vue";
 const props = defineProps({
   color: {
     type: String,
-    default: "red",
+    default: "black",
   },
   name: {
     type: String,

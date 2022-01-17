@@ -7,7 +7,7 @@
 
     <TitleB
       title="个人信息"
-      iconName="icon-github-fill"
+      iconName="user"
       backgroundColor="#fff"
       :backgroundColorChange="false"
       borderColor="black"
