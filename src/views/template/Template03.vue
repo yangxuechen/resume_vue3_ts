@@ -52,9 +52,10 @@ const emit = defineEmit({
   colorChange: (value: string) => Boolean,
 });
 
-const onChange = () => {
+const onChange = (color: string) => {
   // console.log("color change");
   emit("colorChange", "ii");
+  store.commit("app/setThemeColor", color);
 };
 
 onMounted(() => {

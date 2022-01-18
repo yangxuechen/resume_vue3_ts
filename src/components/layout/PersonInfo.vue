@@ -17,43 +17,43 @@
       color="black"
     ></TitleB>
     <div class="info" style="margin-top: 15px">
-      <div><ManOutlined /></div>
+      <rs-svg-icon name="sexm" color="#fff" width="15px"></rs-svg-icon>
       <div class="info-desc">
         <input class="input_dash name" v-model="sex" />
       </div>
     </div>
     <div class="info">
-      <div><PaperClipOutlined /></div>
+      <rs-svg-icon name="nianling" color="#fff" width="15px"></rs-svg-icon>
       <div class="info-desc">
         <input class="input_dash name" v-model="age" />
       </div>
     </div>
     <div class="info">
-      <div><UsergroupAddOutlined /></div>
+      <rs-svg-icon name="earth" color="#fff" width="15px"></rs-svg-icon>
       <div class="info-desc">
         <input class="input_dash name" v-model="nameFamily" />
       </div>
     </div>
     <div class="info">
-      <div><SolutionOutlined /></div>
+      <rs-svg-icon name="education" color="#fff" width="15px"></rs-svg-icon>
       <div class="info-desc">
         <input class="input_dash name" v-model="education" />
       </div>
     </div>
     <div class="info">
-      <div><HourglassOutlined /></div>
+      <rs-svg-icon name="work-filling" color="#fff" width="15px"></rs-svg-icon>
       <div class="info-desc">
         <input class="input_dash name" v-model="workExperience" />
       </div>
     </div>
     <div class="info">
-      <div><PhoneOutlined /></div>
+      <rs-svg-icon name="phone" color="#fff" width="15px"></rs-svg-icon>
       <div class="info-desc">
         <input class="input_dash name" v-model="phoneNumber" />
       </div>
     </div>
     <div class="info">
-      <div><MailOutlined /></div>
+      <rs-svg-icon name="email" color="#fff" width="15px"></rs-svg-icon>
       <div class="info-desc">
         <input class="input_dash name" v-model="email" />
       </div>

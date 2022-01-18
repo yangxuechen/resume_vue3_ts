@@ -6,7 +6,7 @@
     <TitleB
       title="求职意向"
       iconName="job"
-      backgroundColor="#062743"
+      :backgroundColor="bgColor"
       :backgroundColorChange="true"
       borderColor="#fff"
       font-size="14px"
@@ -18,27 +18,44 @@
 
     <div class="intension-desc">
       <rs-input
-        v-model:value="jobPostion"
+        :value="jobPostion"
         borderColor="black"
+        iconName="user"
         size="small"
         inputHeight="30px"
+        @updateVal="updataJobPostion"
       ></rs-input>
+
+      <rs-input
+        :value="workCity"
+        borderColor="black"
+        iconName="city"
+        size="small"
+        inputHeight="30px"
+        @updateVal="updataWorkCity"
+      ></rs-input>
+
+      <rs-input
+        :value="entryTime"
+        borderColor="black"
+        iconName="clock"
+        size="small"
+        inputHeight="30px"
+        @updateVal="updataEntryTime"
+      ></rs-input>
+
       <!-- <div class="item">
-        <UserOutlined :style="{ fontSize: '20px', color: 'black' }" />
-        <input class="input_dash" v-model="jobPostion" />
-      </div> -->
-      <div class="item">
         <ShopFilled :style="{ fontSize: '20px', color: 'black' }" />
         <input class="input_dash" v-model="workCity" />
-      </div>
+      </div> -->
       <!-- <div class="item">
         <TransactionOutlined :style="{ fontSize: '20px', color: 'black' }" />
         <input class="input_dash" value="15k" />
       </div> -->
-      <div class="item">
+      <!-- <div class="item">
         <HourglassFilled :style="{ fontSize: '20px', color: 'black' }" />
         <input class="input_dash" v-model="entryTime" />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -102,6 +119,21 @@ const entryTime = computed({
 const onBtnClick = () => {
   message.info("该模块不支持添加和删除!");
 };
+
+const updataJobPostion = (val: string) => {
+  jobPostion.value = val;
+};
+
+const updataWorkCity = (val: string) => {
+  workCity.value = val;
+};
+const updataEntryTime = (val: string) => {
+  entryTime.value = val;
+};
+
+const bgColor = computed(() => {
+  return store.state.app.themeColor;
+});
 </script>
 
 <style lang="less" scoped>

@@ -23,11 +23,7 @@
 
     <input class="rs-input label-box" v-if="showTitle" v-model="title" />
 
-    <input
-      class="rs-input"
-      v-model="inputValue"
-      @input="onChange(inputValue)"
-    />
+    <input class="rs-input" v-model="inputValue" />
   </div>
 </template>
 
@@ -67,12 +63,8 @@ const props = defineProps({
 });
 
 const emit = defineEmit({
-  "updateVal:value": (value: String) => Boolean,
+  updateVal: (value: String) => Boolean,
 });
-
-const onChange = (val: string) => {
-  emit("updateVal:value", val);
-};
 
 const bgColor = computed(() => props.backgroundColor);
 const borderColor = computed(() => props.borderColor);
@@ -86,13 +78,15 @@ const inputValue = computed({
     return props.value;
   },
   set(val: string) {
+    console.log(val,'set');
+    
     emit("updateVal", val);
   },
 });
 
 const iconWidth = computed(() => {
   if (props.size == "small") {
-    return "25px";
+    return "23px";
   } else if (props.size == "normal") {
     return "30px";
   } else {

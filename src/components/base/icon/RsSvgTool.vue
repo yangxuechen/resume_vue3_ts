@@ -58,7 +58,16 @@ const iconlist = reactive<string[]>([
   "tool_brief",
   "job",
   "work-filling",
-  "github"
+  "github",
+  "jobPostion",
+  "city",
+  "clock",
+  "sexm",
+  "sexw",
+  "nianling",
+  "earth",
+  "phone",
+  "email",
 ]);
 
 const colors = reactive<ColorItem[]>([
