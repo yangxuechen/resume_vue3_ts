@@ -13,21 +13,22 @@
           <RsInput
             showIcon
             showTitle
-            iconName="icon-nianling"
+            iconName="nianling"
             title="年龄"
             :value="age"
             width="100px"
-            icon-size="16px"
+            icon-size="13px"
             :background-color="background"
             style="font-size: 16px; color: #fff"
             icon-color="#fff"
+            size="small"
             @updateVal="updateAge"
           ></RsInput>
 
           <RsInput
             showIcon
             showTitle
-            iconName="icon-dianhua"
+            iconName="phone"
             title="电话"
             :value="phoneNumber"
             width="150px"
@@ -35,6 +36,7 @@
             :background-color="background"
             style="font-size: 16px; color: #fff"
             icon-color="#fff"
+            size="small"
             @updateVal="updatePhoneNumber"
           ></RsInput>
         </div>
@@ -44,20 +46,21 @@
             showIcon
             showTitle
             title="工作经验"
-            iconName="icon-gongzuojingyan"
+            iconName="work-filling"
             :value="workExperience"
             width="100px"
             icon-size="16px"
             :background-color="background"
             style="font-size: 16px; color: #fff"
             icon-color="#fff"
+            size="small"
             @updateVal="updateWorkExperience"
           ></RsInput>
 
           <RsInput
             showIcon
             showTitle
-            iconName="icon-youxiang"
+            iconName="email"
             title="邮箱"
             :value="email"
             width="200px"
@@ -65,6 +68,7 @@
             :background-color="background"
             style="font-size: 16px; color: #fff"
             icon-color="#fff"
+            size="small"
             @updateVal="updateEmail"
           ></RsInput>
         </div>
