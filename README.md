@@ -5,9 +5,9 @@
 - :one:支持数据本地持久化(不删除 localStorage) :heavy_check_mark:
 - :two:支持模版数据一次填写，每个模版复用 :heavy_check_mark:
 - :three:支持导出 pdf 文件 :heavy_check_mark:
-- :one:支持更换图标 :heavy_check_mark:
-- :four:支持更换主题颜色 :heavy_check_mark:
-- :five:支持拖拽调整模块位置 :heavy_check_mark:
+- :four:支持更换图标 :heavy_check_mark:
+- :five:支持更换主题颜色 :heavy_check_mark:
+- :six:支持拖拽调整模块位置 :heavy_check_mark:
 
 
 ![运行效果1](https://www.dxjl.cc/images/app1.png)
