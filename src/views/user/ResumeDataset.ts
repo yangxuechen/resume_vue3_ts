@@ -34,13 +34,13 @@ const dataset: MinResumeData[] = [
     },
     {
       imgUrl: resumeImgUrl,
-      desc: "前端简历（未上线）",
-      name: "resume-03",
+      desc: "前端简历（简介版）",
+      name: "resume-04",
     },
     {
       imgUrl: resumeImgUrl,
-      desc: "前端简历（未上线）",
-      name: "resume-03",
+      desc: "前端简历（简介版）",
+      name: "resume-05",
     },
   ];
 

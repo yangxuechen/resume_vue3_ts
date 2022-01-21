@@ -1,27 +1,61 @@
 <template>
   <div class="info-box">
-    <div class="title">
-      <CompassFilled :style="{ fontSize: '24px', color: 'white' }" />
-      <input type="text" class="input_title" v-model="title" />
-    </div>
+    <!-- <CompassFilled :style="{ fontSize: '24px', color: 'white' }" />
+      <input type="text" class="input_title" v-model="title" /> -->
+
+    <TitleB
+      title="求职意向"
+      iconName="job"
+      :backgroundColor="bgColor"
+      :backgroundColorChange="true"
+      borderColor="#fff"
+      font-size="14px"
+      :show-tool="true"
+      size="normal"
+      color="white"
+      @btnClick="onBtnClick"
+    ></TitleB>
 
     <div class="intension-desc">
-      <div class="item">
-        <UserOutlined :style="{ fontSize: '20px', color: 'black' }" />
-        <input class="input_dash" value="前端工程师" />
-      </div>
-      <div class="item">
+      <rs-input
+        :value="jobPostion"
+        borderColor="black"
+        iconName="user"
+        size="small"
+        inputHeight="30px"
+        @updateVal="updataJobPostion"
+      ></rs-input>
+
+      <rs-input
+        :value="workCity"
+        borderColor="black"
+        iconName="city"
+        size="small"
+        inputHeight="30px"
+        @updateVal="updataWorkCity"
+      ></rs-input>
+
+      <rs-input
+        :value="entryTime"
+        borderColor="black"
+        iconName="clock"
+        size="small"
+        inputHeight="30px"
+        @updateVal="updataEntryTime"
+      ></rs-input>
+
+      <!-- <div class="item">
         <ShopFilled :style="{ fontSize: '20px', color: 'black' }" />
-        <input class="input_dash" value="成都" />
-      </div>
+        <input class="input_dash" v-model="workCity" />
+      </div> -->
       <!-- <div class="item">
         <TransactionOutlined :style="{ fontSize: '20px', color: 'black' }" />
         <input class="input_dash" value="15k" />
       </div> -->
-      <div class="item">
+      <!-- <div class="item">
         <HourglassFilled :style="{ fontSize: '20px', color: 'black' }" />
-        <input class="input_dash" value="一周内" />
-      </div>
+        <input class="input_dash" v-model="entryTime" />
+      </div> -->
     </div>
   </div>
 </template>
@@ -40,22 +74,72 @@ import {
   ShopFilled,
   CompassFilled,
 } from "@ant-design/icons-vue";
-import { reactive, ref } from "vue";
+import { message } from "ant-design-vue";
+import { computed, reactive, ref } from "vue";
+import { useStore } from "vuex";
+import { UserInfo } from "../../views/UserInfo";
+import TitleB from "../base/title/TitleB.vue";
 const title = ref<string>("求职意向");
-const skilllist = reactive<Skill[]>([
-  { key: "javascript", value: "良好", process: 80 },
-  { key: "html5", value: "良好", process: 50 },
-  { key: "css3", value: "良好", process: 60 },
-  { key: "node.js", value: "良好", process: 50 },
-  { key: "vue3.js", value: "良好", process: 50 },
-  { key: "java", value: "良好", process: 50 },
-]);
+
+const store = useStore();
+
+const jobPostion = computed({
+  get() {
+    return store.state.user.userInfo.intention.jobPostion;
+  },
+  set(jobPostion: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.intention.jobPostion = jobPostion;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
+
+const workCity = computed({
+  get() {
+    return store.state.user.userInfo.intention.workCity;
+  },
+  set(workCity: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.intention.workCity = workCity;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
+
+const entryTime = computed({
+  get() {
+    return store.state.user.userInfo.intention.entryTime;
+  },
+  set(entryTime: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.intention.entryTime = entryTime;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
+
+const onBtnClick = () => {
+  message.info("该模块不支持添加和删除!");
+};
+
+const updataJobPostion = (val: string) => {
+  jobPostion.value = val;
+};
+
+const updataWorkCity = (val: string) => {
+  workCity.value = val;
+};
+const updataEntryTime = (val: string) => {
+  entryTime.value = val;
+};
+
+const bgColor = computed(() => {
+  return store.state.app.themeColor;
+});
 </script>
 
 <style lang="less" scoped>
 .info-box {
   width: 100%;
-  padding: 0 15px;
+
   margin: 15px auto;
   color: white;
 
@@ -127,6 +211,7 @@ const skilllist = reactive<Skill[]>([
 }
 
 .intension-desc {
+  color: black;
   display: flex;
   justify-content: space-around;
   padding: 20px 1px;

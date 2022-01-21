@@ -6,42 +6,44 @@
     <a-divider style="height: 2px; background-color: black; margin: 8px 0" />
     <div class="info">
       <div><ManOutlined /></div>
-      <div class="info-desc"><input class="input_1 name" value="男" /></div>
+      <div class="info-desc"><input class="input_1 name" v-model="sex" /></div>
     </div>
     <div class="info">
       <div><PaperClipOutlined /></div>
-      <div class="info-desc"><input class="input_1 name" value="24" /></div>
+      <div class="info-desc"><input class="input_1 name" v-model="age" /></div>
     </div>
     <div class="info">
       <div><UsergroupAddOutlined /></div>
-      <div class="info-desc"><input class="input_1 name" value="汉" /></div>
+      <div class="info-desc">
+        <input class="input_1 name" v-model="nameFamily" />
+      </div>
     </div>
     <div class="info">
       <div><SolutionOutlined /></div>
       <div class="info-desc">
-        <input class="input_1 name" value="本科" />
+        <input class="input_1 name" v-model="education"/>
       </div>
     </div>
     <div class="info">
       <div><HourglassOutlined /></div>
-      <div class="info-desc"><input class="input_1 name" value="2年" /></div>
+      <div class="info-desc"><input class="input_1 name" v-model="workExperience" /></div>
     </div>
     <div class="info">
       <div><PhoneOutlined /></div>
       <div class="info-desc">
-        <input class="input_1 name" value="18328486111" />
+        <input class="input_1 name" v-model="phoneNumber" />
       </div>
     </div>
     <div class="info">
       <div><MailOutlined /></div>
       <div class="info-desc">
-        <input class="input_1 name" value="88888888@qq.com" />
+        <input class="input_1 name" v-model="email" />
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import {
   UserOutlined,
   ManOutlined,
@@ -52,7 +54,94 @@ import {
   PhoneOutlined,
   MailOutlined,
 } from "@ant-design/icons-vue";
+import { useStore } from "vuex";
+import { UserInfo } from "../../../views/UserInfo";
 const title = ref<string>("基本信息");
+
+const store = useStore();
+const sex = computed({
+  get() {
+    return store.state.user.userInfo.userInfoBase.sex || "";
+  },
+
+  set(sex: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.userInfoBase.sex = sex;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
+
+const age = computed({
+  get() {
+    return store.state.user.userInfo.userInfoBase.age || "";
+  },
+
+  set(age: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.userInfoBase.age = age;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
+
+const nameFamily = computed({
+  get() {
+    return store.state.user.userInfo.userInfoBase.nameFamily || "";
+  },
+
+  set(nameFamily: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.userInfoBase.nameFamily = nameFamily;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
+
+const education = computed({
+  get() {
+    return store.state.user.userInfo.userInfoBase.education || "";
+  },
+
+  set(education: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.userInfoBase.education = education;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
+
+const workExperience = computed({
+  get() {
+    return store.state.user.userInfo.userInfoBase.workExperience || "";
+  },
+
+  set(workExperience: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.userInfoBase.workExperience = workExperience;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
+
+const phoneNumber = computed({
+  get() {
+    return store.state.user.userInfo.userInfoBase.phoneNumber || "";
+  },
+  set(phoneNumber: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.userInfoBase.phoneNumber = phoneNumber;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
+
+const email = computed({
+  get() {
+    return store.state.user.userInfo.userInfoBase.email || "";
+  },
+  set(email: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.userInfoBase.email = email;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
+
+
 </script>
 <style lang="less" scoped>
 .baseinfo-box {

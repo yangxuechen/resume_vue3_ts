@@ -6,10 +6,18 @@
       <Skill1></Skill1>
     </div>
     <div class="right-box">
-      <JobIntension></JobIntension>
-      <Eduction></Eduction>
-      <WorkExperience></WorkExperience>
-      <OpenSourcePro></OpenSourcePro>
+      <VueDraggableNext v-model="list">
+        <transition-group>
+          <div v-for="element in list" :key="element">
+            <Drag :component-name="element.componentName"></Drag>
+          </div>
+          <!-- <JobIntension></JobIntension>
+          <Eduction></Eduction>
+          <WorkExperience></WorkExperience>
+          <OpenSourcePro></OpenSourcePro> -->
+        </transition-group>
+      </VueDraggableNext>
+
       <!-- <AutoInput></AutoInput>
       <AutoTextArea></AutoTextArea> -->
     </div>
@@ -32,6 +40,10 @@ import AutoTextArea from "../../components/base/AutoTextArea.vue";
 import { reactive } from "@vue/reactivity";
 import Theme from "../../components/base/Theme.vue";
 import { defineEmit, inject, onMounted } from "@vue/runtime-core";
+import { useStore } from "vuex";
+import { VueDraggableNext } from "vue-draggable-next";
+import { ref } from "vue";
+import Drag from "../../components/base/drag/Drag.vue";
 interface AvatarData {
   name: string;
   desc: string;
@@ -48,18 +60,28 @@ const colors = reactive<ColorItem[]>([
   { color: "#1D6357", background: "background-color:#1D6357" },
   { color: "#9E552E", background: "background-color:#9E552E" },
 ]);
+
+const list = ref<any[]>([
+  { componentName: "JobIntension" },
+  { componentName: "Eduction" },
+  { componentName: "WorkExperience" },
+  { componentName: "OpenSourcePro" },
+]);
 const emit = defineEmit({
   colorChange: (value: string) => Boolean,
 });
 
-const onChange = () => {
-  // console.log("color change");
+const onChange = (color: String) => {
+  console.log("color change", color);
   emit("colorChange", "ii");
+  store.commit("app/setThemeColor", color);
 };
-
+const store = useStore();
 onMounted(() => {
   document.body.style.setProperty("--rs-bgcolor-1", colors[0].color);
 });
+
+store.commit("app/setThemeColor", colors[0].color);
 </script>
 
 <style lang="less" scoped>
@@ -67,6 +89,7 @@ onMounted(() => {
   width: 100%;
   //  margin-left: 15%;
   min-height: 1086px;
+
   //  background-color: cadetblue;
   display: flex;
 
@@ -78,6 +101,7 @@ onMounted(() => {
 
   .right-box {
     width: 70%;
+    padding-left: 15px;
     background-color: white;
   }
 }

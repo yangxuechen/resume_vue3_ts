@@ -21,7 +21,7 @@
       "
     >
       <!-- <ReloadOutlined /> -->
-      <a-tooltip>
+      <!-- <a-tooltip>
         <template #title>实时预览</template>
         <EyeOutlined class="icon-btn" @click="onChange" />
       </a-tooltip>
@@ -29,7 +29,7 @@
       <a-tooltip>
         <template #title>帮助</template>
         <QuestionCircleOutlined class="icon-btn" />
-      </a-tooltip>
+      </a-tooltip> -->
     </div>
     <div class="toolMenu">
       <!-- <div class="item">
@@ -55,14 +55,19 @@ import route from "../../router";
 import Template01 from "../template/Template01.vue";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+import Canvg, { presets } from "canvg";
 import Theme from "../../components/base/Theme.vue";
 import { message } from "ant-design-vue";
+
 import {
   ReloadOutlined,
   EyeOutlined,
   QuestionCircleOutlined,
 } from "@ant-design/icons-vue";
-import TooltipA from "../../components/base/tooltip/TooltipA.vue";
+import { UserInfo } from "../UserInfo";
+import { useStore } from "vuex";
+
+const store = useStore();
 const msg2 = ref<string>("1");
 const loading = ref<boolean>(true);
 const resume = ref<HTMLElement>();
@@ -73,9 +78,51 @@ const msg = computed(() => {
   return route.currentRoute.value.query.name;
 });
 const minPage = ref<string>("");
+
+const svgToCanvans = async () => {
+  console.log("canvg...");
+
+  //以下是对svg的处理
+  const svgElem = document.getElementsByTagName("svg") as unknown as Array<any>;
+
+  console.log(svgElem[3]);
+
+  for (let i = 0; i < svgElem.length; i++) {
+    console.log(i);
+    //获取svg的父节点
+    let node = svgElem[i];
+    const parentNode = node.parentNode;
+    //获取svg的html代码
+    const svg = node.outerHTML.trim();
+    //创建一个<canvas>，用于放置转换后的元素
+    const canvas = document.createElement("canvas");
+    const g = canvas.getContext("2d");
+    //将svg元素转换为canvas元素
+    //将svg元素转换为canvas元素
+    //将svg元素转换为canvas元素
+    //将svg元素转换为canvas元素
+
+    await Canvg.from(canvas, svg);
+    // Canvg(canvas, svg);
+    //设置新canvas元素的位置
+    if (node.style.position) {
+      canvas.style.position += node.style.position;
+      canvas.style.left += node.style.left;
+      canvas.style.top += node.style.top;
+    }
+
+    //删除svg元素
+    parentNode.removeChild(node);
+    //增加canvas元素
+    parentNode.appendChild(canvas);
+  }
+};
 const downloadPdf = () => {
   window.scrollTo({ top: 0 });
   const htmlElement = document.getElementById("resume");
+
+  console.log(htmlElement);
+
   const main = document.getElementById("main");
   const width: number = htmlElement?.offsetWidth || 0;
   const height: number = htmlElement?.offsetHeight || 0;
@@ -83,10 +130,13 @@ const downloadPdf = () => {
   html2canvas(htmlElement!, {
     height: htmlElement?.offsetHeight,
     width: htmlElement?.offsetWidth,
+    useCORS: true,
+    allowTaint: true,
   }).then((canvas) => {
     const doc = new jsPDF();
 
-    //document.body.appendChild(canvas);
+    //  document.body.appendChild(canvas);
+
     doc.addImage(canvas, "image/jpeg", 0, 0, 210, 297); //单位是毫米
     minPage.value = canvas.toDataURL as unknown as string;
     //  console.log(minPage);
@@ -117,6 +167,8 @@ function createMinPageImage() {
 directPath();
 onMounted(async () => {
   console.log("onMounted");
+
+  console.log(store.state.user.userInfo, "store resume 111");
   directPath();
   window.scrollTo({ top: 0 });
   await createMinPageImage();
@@ -149,6 +201,9 @@ function directPath() {
       break;
     case "resume-03":
       route.push({ path: "/resumeEdit/template03" });
+      break;
+    case "resume-04":
+      route.push({ path: "/resumeEdit/template04" });
       break;
     default:
       break;

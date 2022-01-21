@@ -35,42 +35,47 @@
       <a-timeline style="padding-top: 0px; padding-left: 15px">
         <a-timeline-item class="line-time" v-if="descStatus[0]">
           <AutoTextArea
-            :data="work1_desc1"
+            :data="workExper.firstJobDesc1"
             :edit="edit"
             shape="no"
             style="position: relative; top: -10px; left: -10px"
+             @textChange="onJobDesc1Change"
           ></AutoTextArea>
         </a-timeline-item>
         <a-timeline-item class="line-time" v-if="descStatus[1]">
           <AutoTextArea
-            :data="work1_desc2"
+           :data="workExper.firstJobDesc2"
             :edit="edit"
             shape="no"
             style="position: relative; top: -10px; left: -10px"
+             @textChange="onJobDesc2Change"
           ></AutoTextArea>
         </a-timeline-item>
         <a-timeline-item class="line-time" v-if="descStatus[2]"
           ><AutoTextArea
-            :data="work1_desc3"
+            :data="workExper.firstJobDesc3"
             :edit="edit"
             shape="no"
             style="position: relative; top: -10px; left: -10px"
+              @textChange="onJobDesc3Change"
           ></AutoTextArea
         ></a-timeline-item>
         <a-timeline-item class="line-time" v-if="descStatus[3]"
           ><AutoTextArea
-            :data="work1_desc4"
+            :data="workExper.firstJobDesc4"
             :edit="edit"
             shape="no"
             style="position: relative; top: -10px; left: -10px"
+              @textChange="onJobDesc4Change"
           ></AutoTextArea
         ></a-timeline-item>
         <a-timeline-item class="line-time" v-if="descStatus[4]"
           ><AutoTextArea
-            :data="work1_desc5"
+            :data="workExper.firstJobDesc5"
             :edit="edit"
             shape="no"
             style="position: relative; top: -10px; left: -10px"
+              @textChange="onJobDesc5Change"
           ></AutoTextArea
         ></a-timeline-item>
       </a-timeline>
@@ -79,16 +84,17 @@
 </template>
 
 <script lang="ts" setup>
+import { reactive } from "@vue/reactivity";
+import { computed, defineEmit, defineProps, ref } from "vue";
+import AutoTextArea from "../../base/AutoTextArea.vue";
 import {
   PlusOutlined,
   MinusOutlined,
   MinusSquareOutlined,
   PlusSquareOutlined,
 } from "@ant-design/icons-vue";
-
-import AutoTextArea from "../../base/AutoTextArea.vue";
-import { reactive, ref } from "vue";
 import { message } from "ant-design-vue";
+import { WorkExperience } from "../../../views/UserInfo";
 const state = reactive({
   date: "2019-3 ~ 2021-3",
   company: "XX科技有限公司",
@@ -98,31 +104,22 @@ const state = reactive({
   showBorder: "  border: 1px #a7a3a3 dashed;",
 });
 
-const color = ref<string>("");
-const work1_desc1 = ref<string>(
-  "负责相关产品的需求以及前端程序的实现，提供合理的前端架构。改进和优化开发工具、开发流程、和开发框架。"
-);
-const work1_desc2 = ref<string>(
-  "Web前端功能设计、开发和实现，与后台工程师协作，完成数据交互、动态展现;"
-);
-const work1_desc3 = ref<string>(
-  "从视觉和易用性角度，为网站设计提供改进建议，为网站/客户端的页面提供持续优化方案;"
-);
-const work1_desc4 = ref<string>("请输入...");
-const work1_desc5 = ref<string>("请输入...");
+const props = defineProps({
+  workExperience: {
+    type: WorkExperience,
+    required: true,
+  },
+  dataIndex: {
+    type: Number,
+    required: true,
+  },
+});
+const emit = defineEmit({
+  workExperienceChange: (workExper: WorkExperience, index: Number) => Boolean,
+});
+const workExper = computed(() => props.workExperience);
 const edit = ref<boolean>(false);
 const descStatus = reactive<boolean[]>([true, true, true, false, false]);
-
-const onFocus = () => {
-  // message.success("获得焦点");
-  state.showTool = " visibility: visible;";
-  edit.value = true;
-};
-
-const hiddenToop = () => {
-  state.showTool = " visibility: hidden;";
-  edit.value = false;
-};
 
 const addDesc = () => {
   for (let i = 0; i < 5; i++) {
@@ -152,6 +149,53 @@ const deleteDesc = () => {
     message.warn("至少需要1条数据");
     state.descNum = 0;
   }
+};
+
+const onFocus = () => {
+  // message.success("获得焦点");
+  state.showTool = " visibility: visible;";
+  edit.value = true;
+};
+
+const hiddenToop = () => {
+  state.showTool = " visibility: hidden;";
+  edit.value = false;
+};
+
+/**
+ * 工作经历组件数据改变
+ *   -告知父组件 更新数据
+ */
+const workExperienceDataChange = () => {
+  emit("workExperienceChange", workExper.value, props.dataIndex);
+};
+
+/**
+ * 自适应文本输入框组件值发生改变 更新数据
+ */
+const onJobDesc1Change = (value: string) => {
+  workExper.value.firstJobDesc1 = value;
+  workExperienceDataChange();
+};
+
+const onJobDesc2Change = (value: string) => {
+  workExper.value.firstJobDesc2 = value;
+  workExperienceDataChange();
+};
+
+const onJobDesc3Change = (value: string) => {
+  workExper.value.firstJobDesc3 = value;
+  workExperienceDataChange();
+};
+
+const onJobDesc4Change = (value: string) => {
+  workExper.value.firstJobDesc4 = value;
+  workExperienceDataChange();
+};
+
+const onJobDesc5Change = (value: string) => {
+  workExper.value.firstJobDesc5 = value;
+  workExperienceDataChange();
 };
 </script>
 

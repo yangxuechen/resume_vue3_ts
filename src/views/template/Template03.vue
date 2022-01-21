@@ -31,6 +31,7 @@ import AutoTextArea from "../../components/base/AutoTextArea.vue";
 import { reactive } from "@vue/reactivity";
 import Theme from "../../components/base/Theme.vue";
 import { defineEmit, onMounted } from "vue";
+import { useStore } from "vuex";
 interface ColorItem {
   color: string;
   background: string;
@@ -51,14 +52,19 @@ const emit = defineEmit({
   colorChange: (value: string) => Boolean,
 });
 
-const onChange = () => {
+const onChange = (color: string) => {
   // console.log("color change");
   emit("colorChange", "ii");
+  store.commit("app/setThemeColor", color);
 };
 
 onMounted(() => {
   document.body.style.setProperty("--rs-bgcolor-1", colors[0].color);
 });
+const store = useStore();
+
+// 设置主题颜色
+store.commit("app/setThemeColor", colors[0].color);
 </script>
 
 <style lang="less" scoped>
@@ -77,6 +83,7 @@ onMounted(() => {
 
   .right-box {
     width: 70%;
+    padding-left: 15px;
     background-color: white;
   }
 }

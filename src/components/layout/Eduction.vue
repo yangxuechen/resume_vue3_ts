@@ -1,34 +1,49 @@
 <template>
   <div class="info-box">
-    <div class="title">
-      <div style="display: flex; align-items: center; gap: 10px">
-        <ReadFilled :style="{ fontSize: '24px', color: 'white' }" />
-        <input type="text" class="input_title" v-model="title" />
-      </div>
-      <div style="padding-right: 25px" class="btn-box">
-        <!-- <a-button type="link" @click="addEdu" class="btn"
-          >添加教育经历</a-button
-        > -->
-        <MinusSquareOutlined @click="deleteEdu" />
-        <PlusSquareOutlined @click="addEdu" />
-      </div>
-    </div>
+    <TitleB
+      title="教育背景"
+      iconName="education"
+      :backgroundColorChange="true"
+      borderColor="#fff"
+      font-size="14px"
+      :show-tool="true"
+      :titleType="props.titleType"
+      :size="titleSize"
+      color="#fff"
+      :style="{ width: titleWidth }"
+      @btnClick="onBtnClick"
+    ></TitleB>
 
     <div class="intension-desc">
-      <div v-for="item in state.dateset" class="item-box">
+      <div v-for="item in state" class="item-box">
         <div class="item">
-          <input class="input_dash" :value="item.date" style="width: 120px" />
-        </div>
-        <div class="item">
-          <input class="input_dash" :value="item.school" style="width: 120px" />
-        </div>
-        <div class="item">
-          <input class="input_dash" :value="item.major" />
+          <input
+            class="input_dash"
+            v-model="item.time"
+            @change="updateStore"
+            style="width: 120px"
+          />
         </div>
         <div class="item">
           <input
             class="input_dash"
-            :value="item.eduction"
+            v-model="item.firstSchool"
+            @change="updateStore"
+            style="width: 120px"
+          />
+        </div>
+        <div class="item">
+          <input
+            class="input_dash"
+            @change="updateStore"
+            v-model="item.firstMajor"
+          />
+        </div>
+        <div class="item">
+          <input
+            class="input_dash"
+            v-model="item.education"
+            @change="updateStore"
             style="width: 50px"
           />
         </div>
@@ -37,14 +52,7 @@
   </div>
 </template>
 
-<script lang="ts">
-interface Edu {
-  date: string;
-  school: string;
-  major: string;
-  eduction: string;
-}
-</script>
+<script lang="ts"></script>
 <script lang="ts" setup>
 import {
   ReadFilled,
@@ -53,38 +61,63 @@ import {
   MinusSquareOutlined,
 } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import { reactive, ref } from "vue";
-const title = ref<string>("教育经历");
-const state = reactive({
-  dateset: [
-    {
-      date: "2016~2020",
-      school: "行知大学",
-      major: "软件工程",
-      eduction: "本科",
-    },
-  ] as Edu[],
+import { defineProps, reactive, ref } from "vue";
+import { useStore } from "vuex";
+import { Education } from "../../views/UserInfo";
+import TitleB from "../base/title/TitleB.vue";
+
+const props = defineProps({
+  titleType: { type: String, default: "title-01" },
+  titleSize: { type: String, default: "normal" },
+  titleWidth: { type: String, default: "100%" },
 });
 
+const title = ref<string>("教育经历");
+
+const store = useStore();
+const state = reactive<Education[]>(store.state.user.userInfo.educationList);
+
+console.log(store.state.app.themeColor, "color");
+
 const addEdu = () => {
-  if (state.dateset.length > 2) {
+  if (state.length > 2) {
     message.warning("最多允许添加3条记录");
   } else {
-    state.dateset.push({
-      date: "2016~2020",
-      school: "行知大学",
-      major: "软件工程",
-      eduction: "硕士",
+    state.push({
+      time: "2016~2020",
+      firstSchool: "行知大学",
+      firstMajor: "软件工程",
+      education: "硕士",
+      startTime: "2016",
+      endTime: "2020",
+      firstSchoolExperience: "于2016年就读于XX大学XXXX专业",
     });
+    updateStore();
     message.success("添加成功");
   }
 };
 
 const deleteEdu = () => {
-  if (state.dateset.length == 1) {
+  if (state.length == 1) {
     message.warning("至少需要一条记录");
   } else {
-    state.dateset.pop();
+    state.pop();
+    updateStore();
+    message.success("删除成功");
+  }
+};
+
+const updateStore = () => {
+  const tempUser = store.state.user.userInfo;
+  tempUser.educationList = state;
+  store.commit("user/setUserInfo", tempUser);
+};
+
+const onBtnClick = (val: string) => {
+  if (val == "add") {
+    addEdu();
+  } else {
+    deleteEdu();
   }
 };
 </script>
@@ -92,7 +125,7 @@ const deleteEdu = () => {
 <style lang="less" scoped>
 .info-box {
   width: 100%;
-  padding: 0 15px;
+  // padding: 0 15px;
   margin: 15px auto;
   color: white;
   .title {

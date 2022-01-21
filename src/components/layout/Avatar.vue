@@ -2,14 +2,17 @@
   <div class="avatat-box" @mouseenter="canEdit" @mouseleave="notEdit">
     <a-avatar size="default" class="avatar" @click="uploadImg">
       <template #icon
-        ><img :src="user.avatarUrl" style="width: 80px; height: 80px"
+        ><img
+          :src="user.avatarUrl"
+          style="width: 80px; height: 80px"
+          @error="onError"
       /></template>
     </a-avatar>
-    <h3><input class="input_dash name" v-model="user.name" /></h3>
+    <h3><input class="input_dash name" v-model="name" /></h3>
 
     <div>
       <a-textarea
-        v-model:value="user.desc"
+        v-model:value="motto"
         v-if="edit"
         placeholder=""
         auto-size
@@ -17,7 +20,7 @@
       />
 
       <div style="padding: 5px; border: 1px var(--rs-bgcolor-1) solid" v-else>
-        {{ user.desc }}
+        {{ motto }}
       </div>
     </div>
     <div class="btn-box">
@@ -34,21 +37,56 @@
 
 <script lang="ts" setup>
 import { computed, defineProps, reactive, ref } from "vue";
+import { useStore } from "vuex";
 import img_url from "../../assets/avatar-xx.png";
-import { avatarUrl } from "../../utils/data";
+
+import { UserInfo, UserInfoHead } from "../../views/UserInfo";
+
 interface AvatarData {
   name: string;
   desc: string;
   avatarUrl: string;
 }
 
-avatarUrl.value = img_url;
+const store = useStore();
+
+console.log(
+  store.state.user.userInfo.userInfoHead.name,
+  "store.state.user.userInfo.name avatar"
+);
+
 const user = reactive<AvatarData>({
   name: "张三",
   desc: "用爱心来做事，用感恩的心做人",
   avatarUrl: img_url,
 });
 const edit = ref<boolean>(false);
+
+// 绑定store中的数据
+const name = computed({
+  get() {
+    return store.state.user.userInfo.userInfoHead.name;
+  },
+  set(name: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.userInfoHead.name = name;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
+
+const motto = computed({
+  get() {
+    return store.state.user.userInfo.userInfoHead.motto;
+  },
+
+  set(motto: string) {
+    const tempUser: UserInfo = store.state.user.userInfo;
+    tempUser.userInfoHead.motto = motto;
+    store.commit("user/setUserInfo", tempUser);
+  },
+});
+
+const avatarUrl = computed(() => store.state.user.userInfo.userInfoHead.avatar);
 
 const uploadImg = () => {
   const input_img = document.getElementById("btn_upload");
@@ -68,7 +106,10 @@ const preView = (e: any) => {
   console.log(src);
 
   user.avatarUrl = src;
-  avatarUrl.value = src;
+
+  const tempUser: UserInfo = store.state.user.userInfo;
+  tempUser.userInfoHead.avatar = src;
+  store.commit("user/setUserInfo", tempUser);
 };
 
 const canEdit = () => {
@@ -77,6 +118,14 @@ const canEdit = () => {
 
 const notEdit = () => {
   edit.value = false;
+};
+
+const onError = () => {
+  console.log("图片加载出错！");
+
+  // const tempUser: UserInfo = store.state.user.userInfo;
+  // tempUser.userInfoHead.avatar = 'kkkk';
+  // store.commit("user/setUserInfo", tempUser);
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="info-box">
-    <div class="title">
+    <!-- <div class="title">
       <div style="display: flex; align-items: center; width: 120px">
         <PushpinOutlined :style="{ fontSize: '20px', color: 'black' }" />
         <input type="text" class="input_title_bgWhite" v-model="title" />
@@ -9,23 +9,42 @@
         <MinusSquareOutlined @click="deleteSkill" />
         <PlusSquareOutlined @click="addSkill" />
       </div>
-    </div>
-    <div v-for="record in skilllist">
+    </div> -->
+
+    <TitleB
+      title="基础技能"
+      iconName="tool"
+      backgroundColor="#fff"
+      :backgroundColorChange="false"
+      borderColor="black"
+      font-size="14px"
+      :show-tool="true"
+      size="small"
+      color="black"
+      @btnClick="onBtnClick"
+    ></TitleB>
+    <div v-for="(record, index) in skilllist">
       <div class="skill-box">
         <div>
-          <input class="input_dash" :value="record.key" style="width: 5rem" />
+          <input
+            class="input_dash"
+            v-model="record.skill"
+            @change="updateStore"
+            style="width: 5rem"
+          />
         </div>
         <div>
           <input
             class="input_dash"
-            :value="record.value"
+            v-model="record.degreeDesc"
+            @change="updateStore"
             style="text-align: right; width: 5rem"
           />
         </div>
       </div>
       <div class="progress-box">
         <a-progress
-          :percent="record.process"
+          :percent="record.degree"
           :show-info="false"
           strokeColor="#9e9494"
         />
@@ -35,11 +54,11 @@
 </template>
 
 <script lang="ts">
-interface Skill {
-  key: string;
-  value: string;
-  process: number;
-}
+// interface Skill {
+//   skill: string;
+//   value: string;
+//   process: number;
+// }
 </script>
 <script lang="ts" setup>
 import {
@@ -49,22 +68,24 @@ import {
 } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
 import { reactive, ref } from "vue";
+import { useStore } from "vuex";
+import { Skill, UserInfo } from "../../views/UserInfo";
+import TitleB from "../base/title/TitleB.vue";
+
+const store = useStore();
 const title = ref<string>("技能特长");
-const skilllist = reactive<Skill[]>([
-  { key: "javascript", value: "良好", process: 80 },
-  { key: "html5", value: "良好", process: 50 },
-  { key: "css3", value: "良好", process: 60 },
-  { key: "node.js", value: "良好", process: 50 },
-  { key: "vue3.js", value: "良好", process: 50 },
-  { key: "java", value: "良好", process: 50 },
-]);
+
+console.log(store.state.user.userInfo.skillList, "skilllist");
+
+const skilllist = reactive<Skill[]>(store.state.user.userInfo.skillList);
 
 const addSkill = () => {
   if (skilllist.length > 10) {
     message.warning("最多允许添加10条记录");
     return;
   }
-  skilllist.push({ key: "aa", value: "ss", process: 50 });
+  skilllist.push({ skill: "javascript", degreeDesc: "良好", degree: "50" });
+  updateStore();
   message.success("添加成功");
 };
 
@@ -74,31 +95,30 @@ const deleteSkill = () => {
     return;
   }
   skilllist.pop();
+  updateStore();
   message.success("删除成功");
+};
+
+const onBtnClick = (btnname: String) => {
+  if (btnname == "add") addSkill();
+  else deleteSkill();
+};
+/**
+ * 输入框发生改变，立即更新store数据
+ */
+const updateStore = () => {
+  const tempUser: UserInfo = store.state.user.userInfo;
+  tempUser.skillList = skilllist;
+  store.commit("user/setUserInfo", tempUser);
 };
 </script>
 
 <style lang="less" scoped>
 .info-box {
   width: 100%;
-  padding: 0 15px;
+  padding: 15px;
   margin: 15px auto;
   color: white;
-  .title {
-    background-color: white;
-    width: 100%;
-    height: 30px;
-    //   line-height: 30px;
-    border-bottom-left-radius: 50px;
-    border-top-left-radius: 50px;
-    padding-left: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    h4 {
-      margin: 0 0 0 5px;
-    }
-  }
 
   .info {
     width: 100%;
