@@ -6,10 +6,18 @@
       <Skill1></Skill1>
     </div>
     <div class="right-box">
-      <JobIntension></JobIntension>
-      <Eduction></Eduction>
-      <WorkExperience></WorkExperience>
-      <OpenSourcePro></OpenSourcePro>
+      <VueDraggableNext v-model="list">
+        <transition-group>
+          <div v-for="element in list" :key="element">
+            <Drag :component-name="element.componentName"></Drag>
+          </div>
+          <!-- <JobIntension></JobIntension>
+          <Eduction></Eduction>
+          <WorkExperience></WorkExperience>
+          <OpenSourcePro></OpenSourcePro> -->
+        </transition-group>
+      </VueDraggableNext>
+
       <!-- <AutoInput></AutoInput>
       <AutoTextArea></AutoTextArea> -->
     </div>
@@ -33,6 +41,9 @@ import { reactive } from "@vue/reactivity";
 import Theme from "../../components/base/Theme.vue";
 import { defineEmit, inject, onMounted } from "@vue/runtime-core";
 import { useStore } from "vuex";
+import { VueDraggableNext } from "vue-draggable-next";
+import { ref } from "vue";
+import Drag from "../../components/base/drag/Drag.vue";
 interface AvatarData {
   name: string;
   desc: string;
@@ -48,6 +59,13 @@ const colors = reactive<ColorItem[]>([
   { color: "#13442A", background: "background-color:#13442A" },
   { color: "#1D6357", background: "background-color:#1D6357" },
   { color: "#9E552E", background: "background-color:#9E552E" },
+]);
+
+const list = ref<any[]>([
+  { componentName: "JobIntension" },
+  { componentName: "Eduction" },
+  { componentName: "WorkExperience" },
+  { componentName: "OpenSourcePro" },
 ]);
 const emit = defineEmit({
   colorChange: (value: string) => Boolean,
