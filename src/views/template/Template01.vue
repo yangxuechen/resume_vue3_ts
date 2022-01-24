@@ -9,7 +9,10 @@
       <VueDraggableNext v-model="list">
         <transition-group>
           <div v-for="element in list" :key="element">
-            <Drag :component-name="element.componentName"></Drag>
+            <Drag
+              :component-name="element.componentName"
+              @removeComps="onRemove"
+            ></Drag>
           </div>
           <!-- <JobIntension></JobIntension>
           <Eduction></Eduction>
@@ -17,9 +20,6 @@
           <OpenSourcePro></OpenSourcePro> -->
         </transition-group>
       </VueDraggableNext>
-
-      <!-- <AutoInput></AutoInput>
-      <AutoTextArea></AutoTextArea> -->
     </div>
 
     <Theme @changeTheme="onChange" :colors="colors"></Theme>
@@ -44,6 +44,7 @@ import { useStore } from "vuex";
 import { VueDraggableNext } from "vue-draggable-next";
 import { ref } from "vue";
 import Drag from "../../components/base/drag/Drag.vue";
+import { message } from "ant-design-vue";
 interface AvatarData {
   name: string;
   desc: string;
@@ -63,7 +64,7 @@ const colors = reactive<ColorItem[]>([
 
 const list = ref<any[]>([
   { componentName: "JobIntension" },
-  { componentName: "Eduction" },
+  { componentName: "Education" },
   { componentName: "WorkExperience" },
   { componentName: "OpenSourcePro" },
 ]);
@@ -80,6 +81,13 @@ const store = useStore();
 onMounted(() => {
   document.body.style.setProperty("--rs-bgcolor-1", colors[0].color);
 });
+
+const onRemove = (compsName: String) => {
+  const templist = list.value;
+  list.value = templist.filter((comp) => compsName != comp.componentName);
+
+  message.success(`删除${compsName}模块成功!`);
+};
 
 store.commit("app/setThemeColor", colors[0].color);
 </script>

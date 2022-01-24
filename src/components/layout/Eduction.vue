@@ -61,7 +61,7 @@ import {
   MinusSquareOutlined,
 } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import { defineProps, reactive, ref } from "vue";
+import { defineComponent, defineEmit, defineProps, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { Education } from "../../views/UserInfo";
 import TitleB from "../base/title/TitleB.vue";
@@ -71,7 +71,9 @@ const props = defineProps({
   titleSize: { type: String, default: "normal" },
   titleWidth: { type: String, default: "100%" },
 });
-
+const emit = defineEmit({
+  remove: (value: String) => Boolean,
+});
 const title = ref<string>("教育经历");
 
 const store = useStore();
@@ -116,10 +118,13 @@ const updateStore = () => {
 const onBtnClick = (val: string) => {
   if (val == "add") {
     addEdu();
-  } else {
+  } else if (val == "delete") {
     deleteEdu();
+  } else if (val == "remove") {
+    emit("remove", "Education");
   }
 };
+
 </script>
 
 <style lang="less" scoped>

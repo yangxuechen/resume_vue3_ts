@@ -19,6 +19,7 @@
       borderColor="black"
       font-size="14px"
       :show-tool="true"
+      :showDelete="false"
       size="small"
       color="black"
       @btnClick="onBtnClick"

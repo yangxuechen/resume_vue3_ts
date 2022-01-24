@@ -10,7 +10,15 @@
           @click="changTheme(item.color)"
         ></div>
       </div>
-
+      <div class="drapdown-icon">
+        <input
+          type="color"
+          class="color-input"
+          :value="colorRef"
+          @change="colorChange($event)"
+          @input="colorChange($event)"
+        />
+      </div>
       <!-- <div class="item-color-2 item" @click="changTheme('#efb788')"></div>
       <div class="item-color-3 item" @click="changTheme('#7194a9')"></div>
       <div class="item-color-4 item" @click="changTheme('#795548')"></div>
@@ -18,22 +26,6 @@
       <!-- <div class="item" @click="changTheme('#907cb3')">
        
       </div> -->
-    </div>
-
-    <div class="drapdown-icon">
-      <!-- <MoreOutlined
-        style="font-size: 20px; color: black"
-        class="menu-btn"
-        title="更多"
-      /> -->
-      <div style="width: 1px; height: 20px; background-color: #c1c0c0"></div>
-      <input
-        type="color"
-        class="color-input"
-        :value="colorRef"
-        @change="colorChange($event)"
-        @input="colorChange($event)"
-      />
     </div>
   </div>
 </template>
@@ -106,6 +98,7 @@ button {
 .item {
   width: 16px;
   height: 16px;
+  margin: 10px 0;
 }
 
 .item:hover {
@@ -117,8 +110,9 @@ button {
 
 .toop-tip-box {
   display: flex;
-  width: 260px;
-  height: 40px;
+  flex-direction: column;
+  width: 40px;
+  height: 260px;
   position: fixed;
   border: 1px #e2e1e1 solid;
   right: 50px;
@@ -126,14 +120,15 @@ button {
   align-items: center;
   justify-content: space-around;
   .color-box {
-    width: 200px;
+    width: 40px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
   }
 
   .drapdown-icon {
-    width: 30px;
+    // width: 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -157,7 +152,7 @@ button {
   height: 24px;
   line-height: 30px;
   border: 0px;
-  margin: 0;
+  margin: 10px;
   border-radius: 5px;
   background-color: transparent;
 }

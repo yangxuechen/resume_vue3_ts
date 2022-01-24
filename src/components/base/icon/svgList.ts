@@ -19,6 +19,11 @@ import nianling from "../../../assets/svg/nianling.svg"
 import earth from "../../../assets/svg/earth.svg"
 import phone from "../../../assets/svg/phone.svg"
 import email from "../../../assets/svg/email.svg"
+import exportIcon from "../../../assets/svg/exportIcon.svg"
+import add from "../../../assets/svg/add.svg"
+import preview from "../../../assets/svg/preview.svg"
+import preview2 from "../../../assets/svg/preview2.svg"
+import deleteIcon from "../../../assets/svg/deleteIcon.svg"
 
 const iconlist =  [
     {src:star,name:'star'},
@@ -40,5 +45,10 @@ const iconlist =  [
     {src:earth,name:'earth'},
     {src:phone,name:'phone'},
     {src:email,name:'email'},
+    {src:exportIcon,name:'exportIcon'},
+    {src:add,name:'add'},
+    {src:preview,name:'preview'},
+    {src:preview2,name:'preview2'},
+    {src:deleteIcon,name:'deleteIcon'},
 ]
 export  default {iconlist}

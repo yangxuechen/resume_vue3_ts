@@ -68,6 +68,7 @@ const iconlist = reactive<string[]>([
   "earth",
   "phone",
   "email",
+  "exportIcon",
 ]);
 
 const colors = reactive<ColorItem[]>([

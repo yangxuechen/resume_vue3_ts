@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="icon" @click="openTool">
+    <div class="icon"  @click="openTool">
       <div v-html="svgSrc"></div>
       <div class="rs-icon-title" :title="name" v-if="showText">
-        {{ name }}
+        {{ props.title }}
       </div>
 
       <RsSvgTool
@@ -40,10 +40,13 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  hoverEffect: { type: Boolean, default: true },
+  title: { type: String, default: "star" },
 });
 const visible = ref<boolean>(false);
 const changeName = ref<string>(props.name);
 const changeColor = ref<string>(props.color);
+
 const iconName = computed(() => {
   if (changeName.value != props.name) return `${changeName.value}`;
   return `${props.name}`;
@@ -94,8 +97,6 @@ const svgSrc = computed(() => {
 });
 
 const openTool = () => {
-  console.log("111");
-
   if (props.showTool) visible.value = true;
 };
 
@@ -114,8 +115,15 @@ const changeIconColor = (color: string) => {
 
 <style lang="less" scoped>
 .icon:hover {
-  transform: scale(1.2);
   cursor: pointer;
+}
+
+.icon-hover-effect {
+  cursor: pointer;
+}
+
+.icon-hover-effect:hover {
+  transform: scale(1.2);
 }
 
 .rs-icon-title {

@@ -98,7 +98,7 @@ const notEdit = () => {
 };
 
 const preView = (e: any) => {
-  console.log(e.target.files[0]);
+  
   const src = window.URL.createObjectURL(e.target.files[0]);
 
   const reader = new FileReader();
@@ -107,7 +107,7 @@ const preView = (e: any) => {
     console.log(e.target!.result);
     user.avatarUrl = e.target!.result as string;
   };
-  console.log(src);
+ 
 
   user.avatarUrl = src;
 };

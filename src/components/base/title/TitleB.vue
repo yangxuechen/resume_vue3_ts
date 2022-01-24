@@ -15,8 +15,20 @@
     ></RsInput>
 
     <div class="btn-box" v-if="showTool">
-      <MinusSquareOutlined @click="btnClick('delete')" />
-      <PlusSquareOutlined @click="btnClick('add')" />
+      <a-tooltip>
+        <template #title>删除一条记录</template>
+        <MinusSquareOutlined @click="btnClick('delete')" />
+      </a-tooltip>
+
+      <a-tooltip>
+        <template #title>添加一条记录</template>
+        <PlusSquareOutlined @click="btnClick('add')" />
+      </a-tooltip>
+
+      <a-tooltip>
+        <template #title>移除该模块</template>
+        <DeleteOutlined v-if="props.showDelete" @click="btnClick('remove')" />
+      </a-tooltip>
     </div>
   </div>
 </template>
@@ -24,8 +36,7 @@
 <script lang="ts" setup>
 import { computed, defineEmit, defineProps, ref } from "vue";
 import {
-  PushpinOutlined,
-  SignalFilled,
+  DeleteOutlined,
   MinusSquareOutlined,
   PlusSquareOutlined,
 } from "@ant-design/icons-vue";
@@ -55,6 +66,7 @@ const props = defineProps({
   size: { type: String, default: "normal" },
   /**标题的样式 */
   titleType: { type: String, default: "title-01" },
+  showDelete: { type: Boolean, default: true },
 });
 
 const store = useStore();
