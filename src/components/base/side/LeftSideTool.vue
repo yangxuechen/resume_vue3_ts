@@ -23,7 +23,7 @@
         <div>添加</div>
       </div>
 
-      <div class="icon-item" @click="openAddModal">
+      <div class="icon-item" @click="previewPdf">
         <rs-svg-icon
           name="preview2"
           :showTool="false"
@@ -43,6 +43,7 @@ import { defineEmit, ref } from "vue";
 const emit = defineEmit({
   exportPdf: () => Boolean,
   openAddModal: () => Boolean,
+  previewPdf: () => Boolean,
 });
 
 const exportPdf = () => {
@@ -51,6 +52,10 @@ const exportPdf = () => {
 
 const openAddModal = () => {
   emit("openAddModal");
+};
+
+const previewPdf = () => {
+  emit("previewPdf");
 };
 </script>
 

@@ -24,6 +24,7 @@ import add from "../../../assets/svg/add.svg"
 import preview from "../../../assets/svg/preview.svg"
 import preview2 from "../../../assets/svg/preview2.svg"
 import deleteIcon from "../../../assets/svg/deleteIcon.svg"
+import enlarge from "../../../assets/svg/enlarge.svg"
 
 const iconlist =  [
     {src:star,name:'star'},
@@ -50,5 +51,6 @@ const iconlist =  [
     {src:preview,name:'preview'},
     {src:preview2,name:'preview2'},
     {src:deleteIcon,name:'deleteIcon'},
+    {src:enlarge,name:'enlarge'},
 ]
 export  default {iconlist}

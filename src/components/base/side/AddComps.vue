@@ -9,10 +9,23 @@
     :after-visible-change="afterVisibleChange"
     @close="onCancel"
   >
-    <p>Some contents...</p>
-    <p>Some contents...</p>
-    <p>Some contents...</p>
-
+    <a-tabs
+      :tab-position="mode"
+      :style="{ height: '70px' }"
+      @prevClick="callback"
+      @nextClick="callback"
+      @change="onTabChange"
+      v-model:activeKey="activeKey"
+    >
+      <a-tab-pane
+        v-for="comp in compsList"
+        :key="comp.name"
+        :tab="comp.desc"
+      ></a-tab-pane>
+    </a-tabs>
+    <CompsDisplay>
+      <OpenSourcePro></OpenSourcePro>
+    </CompsDisplay>
     <div
       :style="{
         position: 'absolute',
@@ -33,8 +46,22 @@
 </template>
 
 <script lang="ts" setup>
+import { message } from "ant-design-vue";
 import { computed, defineEmit, defineProps, ref } from "vue";
+import { TemplateComps } from "./TemplateComps";
+import CompsDisplay from "./CompsDisplay.vue";
+import OpenSourcePro from "../../layout/OpenSourcePro.vue";
 
+const mode = ref("top");
+const activeKey = ref("All");
+
+const compsList = ref<TemplateComps[]>([
+  { name: "All", desc: "全部", type: "1" },
+  { name: "JobIntension", desc: "求职意向", type: "1" },
+  { name: "Education", desc: "教育背景", type: "1" },
+  { name: "WorkExperience", desc: "工作经历", type: "1" },
+  { name: "OpenSourcePro", desc: "开源项目", type: "1" },
+]);
 const props = defineProps({
   visible: { type: Boolean, default: false },
 });
@@ -44,12 +71,19 @@ const emit = defineEmit({
 const visibleDrawer = computed(() => props.visible);
 
 const afterVisibleChange = (bool: boolean) => {
-  //console.log("visible", bool);
   emit("changeDrawer", bool);
 };
 
 const onCancel = () => {
   emit("changeDrawer", false);
+};
+
+const callback = (val: string) => {
+  console.log(val);
+};
+
+const onTabChange = (activeKey: String) => {
+  message.info(activeKey);
 };
 </script>
 

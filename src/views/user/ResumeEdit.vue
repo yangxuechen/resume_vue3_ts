@@ -3,8 +3,12 @@
     <LeftSideTool
       @exportPdf="showConfirm"
       @openAddModal="onOpenAddModal"
+      @previewPdf="openPreViewModal"
     ></LeftSideTool>
-    <AddComps :visible="addModalVisible" @changeDrawer="onAddCompsChange"></AddComps>
+    <AddComps
+      :visible="addModalVisible"
+      @changeDrawer="onAddCompsChange"
+    ></AddComps>
     <div class="box">
       <div class="rs-edit" id="resume" ref="resume">
         <Template01
@@ -31,17 +35,25 @@
       <img :src="minPage" style="width: 170px; height: 238px" v-else />
     </div> -->
 
-    <div class="toolMenu">
-      <!-- <div class="item">
-        <Theme @changeTheme="onChange"></Theme>
-      </div> -->
-      <!-- <div class="item">
-        <a-button type="primary" @click="directPath" ghost>保存</a-button>
-      </div> -->
-      <!-- <div class="item">
-        <a-button type="danger" ghost @click="downloadPdf">导出pdf</a-button>
-      </div> -->
-    </div>
+    <a-modal
+      v-model:visible="previewVisible"
+      title="预览"
+      @ok="previewHandleOk"
+      width="100%"
+      height="100vh"
+      wrapClassName="full-modal"
+    >
+      <div class="modal-img-box">
+        <div style="position: absolute; right: 100px">
+          <PreViewTool @enlarge="onEnlarge"></PreViewTool>
+        </div>
+        <img
+          :src="minPage"
+          style="border: 1px #c8bdbd solid"
+          :style="{ width: previewImgWidth, height: previewImgHeight }"
+        />
+      </div>
+    </a-modal>
   </div>
 </template>
 
@@ -58,7 +70,7 @@ import route from "../../router";
 import Template01 from "../template/Template01.vue";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import Canvg, { presets } from "canvg";
+
 import Theme from "../../components/base/Theme.vue";
 import { message, Modal } from "ant-design-vue";
 
@@ -75,12 +87,16 @@ import Template02 from "../template/Template02.vue";
 import Template03 from "../template/Template03.vue";
 import Template04 from "../template/Template04.vue";
 import AddComps from "../../components/base/side/AddComps.vue";
+import PreViewTool from "../../components/base/tool/PreViewTool.vue";
 
 const store = useStore();
 const msg2 = ref<string>("1");
 const loading = ref<boolean>(true);
 const resume = ref<HTMLElement>();
 const key = ref<number>(0);
+const previewVisible = ref<boolean>(false);
+const previewImgWidth = ref<string>("340px");
+const previewImgHeight = ref<string>("476px");
 const msg = computed(() => {
   console.log(route.currentRoute.value.query, "currentRoute");
 
@@ -141,24 +157,69 @@ const downloadPdf = () => {
       minPage.value = canvas.toDataURL as unknown as string;
       doc.save("resume.pdf");
       resolve("success");
-      //  createMinPageImage();
+      createMinPageImage();
     });
   });
 };
 
+/** 打开预览窗口 */
+const openPreViewModal = () => {
+  previewVisible.value = true;
+  createMinPageImage();
+};
+
+/** 预览窗口确认 */
+const previewHandleOk = () => {
+  previewVisible.value = false;
+};
+
+/** 放大预览图片 */
+const onEnlarge = (value: string) => {
+  if (value == "downloadPdf") {
+    showConfirm();
+    return;
+  }
+  const widthArr = previewImgWidth.value.split("px");
+  const heightArr = previewImgHeight.value.split("px");
+  let width = 0;
+  let height = 0;
+  if (value == "zoomOut") {
+    width = Number(widthArr[0]) * 1.2;
+    height = Number(heightArr[0]) * 1.2;
+    console.log(width, "width");
+  } else if (value == "zoomIn") {
+    width = Number(widthArr[0]) / 1.2;
+    height = Number(heightArr[0]) / 1.2;
+  }
+  if (width > 800) {
+    message.info("已放到最大!");
+    return;
+  }
+  if (width < 200) {
+    message.info("已放到最小!");
+    return;
+  }
+
+  previewImgWidth.value = `${width}px`;
+  previewImgHeight.value = `${height}px`;
+};
+
 function createMinPageImage() {
-  const htmlElement = document.getElementById("resume");
-  const width: number = htmlElement?.offsetWidth || 0;
-  const height: number = htmlElement?.offsetHeight || 0;
+  return new Promise((resolve, reject) => {
+    const htmlElement = document.getElementById("resume");
+    const width: number = htmlElement?.offsetWidth || 0;
+    const height: number = htmlElement?.offsetHeight || 0;
 
-  //console.log(width + " " + height);
+    //console.log(width + " " + height);
 
-  html2canvas(htmlElement!, {
-    height: htmlElement?.offsetHeight,
-    width: htmlElement?.offsetWidth,
-  }).then((canvas) => {
-    // console.log(canvas.toDataURL());
-    minPage.value = canvas.toDataURL() + "";
+    html2canvas(htmlElement!, {
+      height: htmlElement?.offsetHeight,
+      width: htmlElement?.offsetWidth,
+    }).then((canvas) => {
+      // console.log(canvas.toDataURL());
+      minPage.value = canvas.toDataURL() + "";
+      resolve("success");
+    });
   });
 }
 
@@ -265,5 +326,13 @@ function directPath() {
 .icon-btn {
   color: var(--rs-bgcolor-1);
   cursor: pointer;
+}
+
+.modal-img-box {
+  width: 100%;
+  height: calc(100vh - 200px);
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
 }
 </style>
