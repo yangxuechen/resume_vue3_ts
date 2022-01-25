@@ -5,23 +5,9 @@
       :color="iconColor"
       :width="iconWidth"
       class="rs-icon-box"
+      v-if="props.showIcon"
     ></rs-svg-icon>
-    <!-- <svg-icon
-      name="star"
-      :color="iconColor"
-      class="rs-icon-box"
-      :style="{ fontSize: iconSize }"
-      v-if="showIcon"
-    ></svg-icon> -->
-    <!-- <rs-icon
-      :iconType="iconName"
-      :color="iconColor"
-      class="rs-icon-box"
-      :style="{ fontSize: iconSize }"
-      v-if="showIcon"
-    ></rs-icon> -->
-
-    <input class="rs-input label-box" v-if="showTitle" v-model="title" />
+    <input class="rs-input label-box" v-if="props.showTitle" v-model="title" />
 
     <input class="rs-input" v-model="inputValue" />
   </div>
@@ -78,8 +64,8 @@ const inputValue = computed({
     return props.value;
   },
   set(val: string) {
-    console.log(val,'set');
-    
+    console.log(val, "set");
+
     emit("updateVal", val);
   },
 });
@@ -109,7 +95,7 @@ const iconWidth = computed(() => {
   }
 
   .label-box {
-    width: 80px !important;
+    width: 40px !important;
   }
 
   .rs-input {

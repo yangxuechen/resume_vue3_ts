@@ -179,6 +179,6 @@ const btnClick = (btnname: string) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 6px 6px 3px rgb(228, 178, 102);
+  //box-shadow: 6px 6px 3px rgb(228, 178, 102);
 }
 </style>
