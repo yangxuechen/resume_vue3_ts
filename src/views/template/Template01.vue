@@ -14,10 +14,6 @@
               @removeComps="onRemove"
             ></Drag>
           </div>
-          <!-- <JobIntension></JobIntension>
-          <Eduction></Eduction>
-          <WorkExperience></WorkExperience>
-          <OpenSourcePro></OpenSourcePro> -->
         </transition-group>
       </VueDraggableNext>
     </div>

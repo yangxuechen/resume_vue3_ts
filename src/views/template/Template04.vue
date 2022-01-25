@@ -1,23 +1,28 @@
 <template>
   <div class="temp04-box">
-    <AvatarTop2 :background="colors[0].color"></AvatarTop2>
+    <AvatarTop2 :background="bgColor"></AvatarTop2>
 
-    <Eduction
-      titleType="title-03"
-      titleSize="small"
-      titleWidth="40%"
-    ></Eduction>
-    <WorkExperience
-      titleType="title-03"
-      titleSize="small"
-      titleWidth="40%"
-    ></WorkExperience>
+    <VueDraggableNext v-model="list">
+      <transition-group>
+        <div v-for="element in list" :key="element">
+          <Drag
+            :component-name="element.componentName"
+            titleType="title-03"
+            titleWidth="35%"
+            titleSize="small"
+            @removeComps="onRemove"
+          ></Drag>
+        </div>
+      </transition-group>
+    </VueDraggableNext>
 
-    <OpenSourcePro
+    <!-- <Eduction
       titleType="title-03"
       titleSize="small"
       titleWidth="40%"
-    ></OpenSourcePro>
+    ></Eduction> -->
+
+    <Theme @changeTheme="onChange" :colors="colors"></Theme>
   </div>
 </template>
 
@@ -25,15 +30,24 @@
 import AvatarTop2 from "../../components/base/avatar/AvatarTop2.vue";
 import TitleC from "../../components/base/title/TitleC.vue";
 import TitleB from "../../components/base/title/TitleB.vue";
-import { reactive } from "vue";
+import { computed, defineEmit, reactive, ref } from "vue";
 import Eduction from "../../components/layout/Eduction.vue";
 import WorkExperience from "../../components/layout/WorkExperience.vue";
 import OpenSourcePro from "../../components/layout/OpenSourcePro.vue";
+import Theme from "../../components/base/Theme.vue";
+import { useStore } from "vuex";
+import { VueDraggableNext } from "vue-draggable-next";
+import Drag from "../../components/base/drag/Drag.vue";
+import { message } from "ant-design-vue";
 
 interface ColorItem {
   color: string;
   background: string;
 }
+
+const emit = defineEmit({
+  colorChange: (value: string) => Boolean,
+});
 const colors = reactive<ColorItem[]>([
   { color: "#062743", background: "background-color:#062743" },
   { color: "salmon", background: "background-color:salmon" },
@@ -41,6 +55,29 @@ const colors = reactive<ColorItem[]>([
   { color: "#1D6357", background: "background-color:#1D6357" },
   { color: "#9E552E", background: "background-color:#9E552E" },
 ]);
+
+const list = ref<any[]>([
+  { componentName: "JobIntension" },
+  { componentName: "Education" },
+  { componentName: "WorkExperience" },
+  { componentName: "OpenSourcePro" },
+]);
+const store = useStore();
+
+const onChange = (color: String) => {
+  console.log("color change", color);
+  emit("colorChange", "ii");
+  store.commit("app/setThemeColor", color);
+};
+const onRemove = (compsName: String) => {
+  const templist = list.value;
+  list.value = templist.filter((comp) => compsName != comp.componentName);
+
+  message.success(`删除${compsName}模块成功!`);
+};
+const bgColor = computed(() => store.state.app.themeColor);
+
+store.commit("app/setThemeColor", colors[0].color);
 </script>
 
 <style lang="less" scoped>

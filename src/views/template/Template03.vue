@@ -6,10 +6,16 @@
       <Skill1></Skill1>
     </div>
     <div class="right-box">
-      <JobIntension></JobIntension>
-      <Eduction></Eduction>
-      <WorkExperiseTimeLine></WorkExperiseTimeLine>
-      <OpenSourcePro></OpenSourcePro>
+      <VueDraggableNext v-model="list">
+        <transition-group>
+          <div v-for="element in list" :key="element">
+            <Drag
+              :component-name="element.componentName"
+              @removeComps="onRemove"
+            ></Drag>
+          </div>
+        </transition-group>
+      </VueDraggableNext>
     </div>
   </div>
 
@@ -28,10 +34,13 @@ import WorkExperiseTimeLine from "../../components/base/work/WorkExperiseTimeLin
 import OpenSourcePro from "../../components/layout/OpenSourcePro.vue";
 import AutoInput from "../../components/base/AutoInput.vue";
 import AutoTextArea from "../../components/base/AutoTextArea.vue";
+import { VueDraggableNext } from "vue-draggable-next";
+import Drag from "../../components/base/drag/Drag.vue";
 import { reactive } from "@vue/reactivity";
 import Theme from "../../components/base/Theme.vue";
-import { defineEmit, onMounted } from "vue";
+import { defineEmit, onMounted, ref } from "vue";
 import { useStore } from "vuex";
+import { message } from "ant-design-vue";
 interface ColorItem {
   color: string;
   background: string;
@@ -48,6 +57,13 @@ const colors = reactive<ColorItem[]>([
   { color: "#1D6357", background: "background-color:#1D6357" },
   { color: "#9E552E", background: "background-color:#9E552E" },
 ]);
+
+const list = ref<any[]>([
+  { componentName: "JobIntension" },
+  { componentName: "Education" },
+  { componentName: "WorkExperience" },
+  { componentName: "OpenSourcePro" },
+]);
 const emit = defineEmit({
   colorChange: (value: string) => Boolean,
 });
@@ -57,7 +73,12 @@ const onChange = (color: string) => {
   emit("colorChange", "ii");
   store.commit("app/setThemeColor", color);
 };
+const onRemove = (compsName: String) => {
+  const templist = list.value;
+  list.value = templist.filter((comp) => compsName != comp.componentName);
 
+  message.success(`删除${compsName}模块成功!`);
+};
 onMounted(() => {
   document.body.style.setProperty("--rs-bgcolor-1", colors[0].color);
 });
