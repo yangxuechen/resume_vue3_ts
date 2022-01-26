@@ -2,12 +2,6 @@
   <div class="title">
     <input type="text" v-model="title" class="input_1 info-title" />
     <div class="tool">
-      <!-- <div class="icon-box" @click="addDesc">
-          <PlusOutlined :style="{ fontSize: '24px', color: '#eae4e4' }" />
-        </div>
-        <div class="icon-box" @click="deleteDesc">
-          <MinusOutlined :style="{ fontSize: '24px', color: '#eae4e4' }" />
-        </div> -->
       <PlusSquareOutlined @click="btnClick('add')" />
       <MinusSquareOutlined @click="btnClick('delete')" />
     </div>

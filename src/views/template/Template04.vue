@@ -84,5 +84,8 @@ store.commit("app/setThemeColor", colors[0].color);
 .temp04-box {
   width: 100%;
   min-height: 1086px;
+  // background-image: url('../../assets/bg/bg-notebook.png');
+  // background-size: 100% 100%;
+  // background-repeat: no-repeat;
 }
 </style>

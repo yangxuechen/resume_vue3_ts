@@ -14,7 +14,11 @@
       :size="props.size"
     ></RsInput>
 
-    <div class="btn-box" v-if="showTool">
+    <div :class="toolBoxClass" v-if="showTool">
+      <!-- <a-tooltip>
+        <template #title>调整标题样式</template>
+        <SettingOutlined v-if="props.showSet" @click="btnClick('setting')" />
+      </a-tooltip> -->
       <a-tooltip>
         <template #title>删除一条记录</template>
         <MinusSquareOutlined @click="btnClick('delete')" />
@@ -31,6 +35,10 @@
       </a-tooltip>
     </div>
   </div>
+  <a-divider
+    v-if="props.titleType == 'title-04'"
+    style="height: 2px; background-color: black; margin: 8px 0"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -39,6 +47,7 @@ import {
   DeleteOutlined,
   MinusSquareOutlined,
   PlusSquareOutlined,
+  SettingOutlined,
 } from "@ant-design/icons-vue";
 import RsInput from "../input/RsInput.vue";
 import { useStore } from "vuex";
@@ -66,7 +75,10 @@ const props = defineProps({
   size: { type: String, default: "normal" },
   /**标题的样式 */
   titleType: { type: String, default: "title-01" },
+  /**是否展示删除按钮图标 */
   showDelete: { type: Boolean, default: true },
+  /**是否展示设置图标 */
+  showSet: { type: Boolean, default: true },
 });
 
 const store = useStore();
@@ -80,7 +92,28 @@ const bgColor = computed(() =>
     : props.backgroundColor
 );
 
-const titleClass = computed(() => props.titleType);
+const titleStyle = ref<string>("");
+/**
+ * 标题的样式
+ */
+const titleClass = computed(() => {
+  if (titleStyle.value == "") {
+    return props.titleType;
+  } else {
+    return titleStyle.value;
+  }
+});
+
+/**
+ * 工具栏的样式 如果无背景的标题 工具栏样式默认不可见（白色） 反之（颜色与背景保持一致）
+ */
+const toolBoxClass = computed(() => {
+  if (props.titleType == "title-04") {
+    return "btn-box-no-bgcolor";
+  } else {
+    return "btn-box";
+  }
+});
 /**
  * 工具栏的图标颜色 hover之后的颜色
  */
@@ -130,7 +163,12 @@ const emit = defineEmit({
   btnClick: (value: string) => Boolean,
 });
 const btnClick = (btnname: string) => {
-  emit("btnClick", btnname);
+  if (btnname == "setting") {
+    titleStyle.value = "title-04";
+    return;
+  } else {
+    emit("btnClick", btnname);
+  }
 };
 </script>
 
@@ -155,9 +193,21 @@ const btnClick = (btnname: string) => {
   font-size: v-bind(toolFontSize);
   gap: 10px;
 }
-
 .btn-box:hover {
   color: v-bind(toolBoxColor);
+  cursor: pointer;
+}
+
+.btn-box-no-bgcolor {
+  padding-right: 25px;
+  color: #fff;
+  display: flex;
+  font-size: v-bind(toolFontSize);
+  gap: 10px;
+}
+
+.btn-box-no-bgcolor:hover {
+  color: black;
   cursor: pointer;
 }
 
@@ -174,6 +224,15 @@ const btnClick = (btnname: string) => {
 
 .title-03 {
   background-color: v-bind(bgColor);
+  width: 100%;
+  height: v-bind(titleHight);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  //box-shadow: 6px 6px 3px rgb(228, 178, 102);
+}
+
+.title-04 {
   width: 100%;
   height: v-bind(titleHight);
   display: flex;

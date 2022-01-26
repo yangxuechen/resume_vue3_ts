@@ -23,9 +23,24 @@
         :tab="comp.desc"
       ></a-tab-pane>
     </a-tabs>
-    <CompsDisplay>
+    <!-- <CompsDisplay>
       <OpenSourcePro></OpenSourcePro>
-    </CompsDisplay>
+    </CompsDisplay> -->
+
+    <VueDraggableNext
+      v-model="list1"
+      :group="{ name: 'people', pull: 'clone', put: true }"
+      :sort="true"
+    >
+      <transition-group>
+        <div v-for="element in list1" :key="element">
+          <Drag
+            :component-name="element.componentName"
+            dragType="display"
+          ></Drag>
+        </div>
+      </transition-group>
+    </VueDraggableNext>
     <div
       :style="{
         position: 'absolute',
@@ -51,6 +66,8 @@ import { computed, defineEmit, defineProps, ref } from "vue";
 import { TemplateComps } from "./TemplateComps";
 import CompsDisplay from "./CompsDisplay.vue";
 import OpenSourcePro from "../../layout/OpenSourcePro.vue";
+import { VueDraggableNext } from "vue-draggable-next";
+import Drag from "../drag/Drag.vue";
 
 const mode = ref("top");
 const activeKey = ref("All");
@@ -62,6 +79,18 @@ const compsList = ref<TemplateComps[]>([
   { name: "WorkExperience", desc: "工作经历", type: "1" },
   { name: "OpenSourcePro", desc: "开源项目", type: "1" },
 ]);
+const list1 = ref<any[]>([
+  { componentName: "JobIntension" },
+  { componentName: "Education" },
+  { componentName: "WorkExperience" },
+  { componentName: "OpenSourcePro" },
+  // { componentName: "Avatar" },
+  // { componentName: "PersonInfo" },
+  // { componentName: "Skill1" },
+  { componentName: "AvatarTop" },
+  { componentName: "AvatarTop2" },
+]);
+
 const props = defineProps({
   visible: { type: Boolean, default: false },
 });

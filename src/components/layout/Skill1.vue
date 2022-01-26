@@ -20,6 +20,7 @@
       font-size="14px"
       :show-tool="true"
       :showDelete="false"
+      :show-set="false"
       size="small"
       color="black"
       @btnClick="onBtnClick"

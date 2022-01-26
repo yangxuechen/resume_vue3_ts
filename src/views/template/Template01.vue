@@ -1,12 +1,34 @@
 <template>
   <div class="temp01-box">
     <div class="left-box">
-      <Avatar></Avatar>
+      <VueDraggableNext
+        v-model="list1"
+        :group="{ name: 'people', pull: 'clone', put: true }"
+        :sort="true"
+        @change="log"
+        :move="checkMove"
+      >
+        <transition-group>
+          <div v-for="element in list1" :key="element">
+            <Drag
+              :component-name="element.componentName"
+              @removeComps="onRemove"
+            ></Drag>
+          </div>
+        </transition-group>
+      </VueDraggableNext>
+
+      <!-- <Avatar></Avatar>
       <PersonInfo></PersonInfo>
-      <Skill1></Skill1>
+      <Skill1></Skill1> -->
     </div>
     <div class="right-box">
-      <VueDraggableNext v-model="list">
+      <VueDraggableNext
+        v-model="list"
+        :group="{ name: 'people', pull: 'clone', put: true }"
+        @change="log"
+        :move="checkMove"
+      >
         <transition-group>
           <div v-for="element in list" :key="element">
             <Drag
@@ -38,6 +60,8 @@ import Theme from "../../components/base/Theme.vue";
 import { defineEmit, inject, onMounted } from "@vue/runtime-core";
 import { useStore } from "vuex";
 import { VueDraggableNext } from "vue-draggable-next";
+
+import Draggable from "vuedraggable";
 import { ref } from "vue";
 import Drag from "../../components/base/drag/Drag.vue";
 import { message } from "ant-design-vue";
@@ -58,12 +82,19 @@ const colors = reactive<ColorItem[]>([
   { color: "#9E552E", background: "background-color:#9E552E" },
 ]);
 
+const list1 = ref<any[]>([
+  { componentName: "Avatar" },
+  { componentName: "PersonInfo" },
+  { componentName: "Skill1" },
+]);
+
 const list = ref<any[]>([
   { componentName: "JobIntension" },
   { componentName: "Education" },
   { componentName: "WorkExperience" },
   { componentName: "OpenSourcePro" },
 ]);
+
 const emit = defineEmit({
   colorChange: (value: string) => Boolean,
 });
@@ -83,6 +114,18 @@ const onRemove = (compsName: String) => {
   list.value = templist.filter((comp) => compsName != comp.componentName);
 
   message.success(`删除${compsName}模块成功!`);
+};
+
+const log = (evt: EventTarget) => {
+  window.console.log(evt);
+};
+const onClone = (original: any) => {
+  console.log(original, "clone");
+};
+
+const checkMove = (event: any) => {
+  console.log("checkMove", event.draggedContext);
+  console.log("Future index: " + event.draggedContext.futureIndex);
 };
 
 store.commit("app/setThemeColor", colors[0].color);

@@ -17,7 +17,7 @@
       <template v-slot:content>
         <TitleB
           title="基础技能"
-          iconName="icon-education"
+          iconName="user"
           backgroundColor="#062743"
           :backgroundColorChange="true"
           borderColor="#fff"
@@ -42,7 +42,7 @@
         <!-- <rs-icon iconType="icon-heart-fill"></rs-icon> -->
         <TitleB
           title="基础技能"
-          iconName="icon-education"
+          iconName="loop"
           backgroundColor="black"
           :backgroundColorChange="true"
           borderColor="#fff"
@@ -57,8 +57,8 @@
       <template v-slot:footer>
         <div>
           <div>组件数据使用store中的用户信息。</div>
-          <div>组件名: TitleC</div>
-          <div>组件地址: /components/base/title/TitleC.vue</div>
+          <div>组件名: TitleB</div>
+          <div>组件地址: /components/base/title/TitleB.vue</div>
         </div>
       </template>
     </rs-card>
@@ -68,7 +68,7 @@
         <!-- <rs-icon iconType="icon-heart-fill"></rs-icon> -->
         <TitleB
           title="基础技能"
-          iconName="icon-education"
+          iconName="star"
           backgroundColor="black"
           :backgroundColorChange="true"
           borderColor="#fff"
@@ -83,24 +83,33 @@
       <template v-slot:footer>
         <div>
           <div>组件数据使用store中的用户信息。</div>
-          <div>组件名: TitleC</div>
-          <div>组件地址: /components/base/title/TitleC.vue</div>
+          <div>组件名: TitleB</div>
+          <div>组件地址: /components/base/title/TitleB.vue</div>
         </div>
       </template>
     </rs-card>
 
     <rs-card>
       <template v-slot:content>
-        <!-- <rs-icon iconType="icon-heart-fill"></rs-icon> -->
-        <svg-icon name="wechat-fill" color="red"></svg-icon>
-        <svg-icon name="wechat-fill" color="black"></svg-icon>
-        <svg-icon name="star" color="black"></svg-icon>
+        <TitleB
+          title="基础技能"
+          iconName="star"
+          backgroundColor="#fff"
+          :backgroundColorChange="false"
+          borderColor="black"
+          font-size="14px"
+          :show-tool="true"
+          titleType="title-04"
+          size="small"
+          color="black"
+          @btnClick=""
+        ></TitleB>
       </template>
       <template v-slot:footer>
         <div>
           <div>组件数据使用store中的用户信息。</div>
-          <div>组件名: SvgIcon test</div>
-          <div>组件地址: /components/base/title/TitleC.vue</div>
+          <div>组件名: TitleB</div>
+          <div>组件地址: /components/base/title/TitleB.vue</div>
         </div>
       </template>
     </rs-card>
@@ -108,7 +117,7 @@
     <rs-card>
       <template v-slot:content>
         <!-- <rs-icon iconType="icon-heart-fill"></rs-icon> -->
-       
+
         <Test></Test>
       </template>
       <template v-slot:footer>
