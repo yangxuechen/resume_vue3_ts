@@ -27,6 +27,7 @@
         v-model="list"
         :group="{ name: 'people', pull: 'clone', put: true }"
         @change="log"
+        @choose="onChoose"
         :move="checkMove"
       >
         <transition-group>
@@ -39,7 +40,7 @@
         </transition-group>
       </VueDraggableNext>
     </div>
-
+    <RemoveDrag @removeComponent="onRemove"></RemoveDrag>
     <Theme @changeTheme="onChange" :colors="colors"></Theme>
   </div>
 </template>
@@ -65,6 +66,7 @@ import Draggable from "vuedraggable";
 import { ref } from "vue";
 import Drag from "../../components/base/drag/Drag.vue";
 import { message } from "ant-design-vue";
+import RemoveDrag from "../../components/base/drag/RemoveDrag.vue";
 interface AvatarData {
   name: string;
   desc: string;
@@ -113,6 +115,9 @@ const onRemove = (compsName: String) => {
   const templist = list.value;
   list.value = templist.filter((comp) => compsName != comp.componentName);
 
+  const templist1 = list1.value;
+  list1.value = templist1.filter((comp) => compsName != comp.componentName);
+
   message.success(`删除${compsName}模块成功!`);
 };
 
@@ -128,6 +133,13 @@ const checkMove = (event: any) => {
   console.log("Future index: " + event.draggedContext.futureIndex);
 };
 
+const onChoose = (event: any) => {
+  console.log("checkMove", event);
+};
+
+const onRemoveComponent = (name: string) => {
+  message.info(name);
+};
 store.commit("app/setThemeColor", colors[0].color);
 </script>
 

@@ -2,7 +2,10 @@
   <div class="temp04-box">
     <AvatarTop2 :background="bgColor"></AvatarTop2>
 
-    <VueDraggableNext v-model="list">
+    <VueDraggableNext
+      v-model="list"
+      :group="{ name: 'people', pull: 'clone', put: true }"
+    >
       <transition-group>
         <div v-for="element in list" :key="element">
           <Drag
