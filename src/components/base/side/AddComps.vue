@@ -26,21 +26,20 @@
     <!-- <CompsDisplay>
       <OpenSourcePro></OpenSourcePro>
     </CompsDisplay> -->
+    <div class="comps-box">
+      <VueDraggableNext
+        v-model="list1"
+        :group="{ name: 'people', pull: 'clone', put: true }"
+        :sort="true"
+      >
+        <transition-group>
+          <div v-for="element in list1" :key="element">
+            <DragItem :component-name="element.componentName"></DragItem>
+          </div>
+        </transition-group>
+      </VueDraggableNext>
+    </div>
 
-    <VueDraggableNext
-      v-model="list1"
-      :group="{ name: 'people', pull: 'clone', put: true }"
-      :sort="true"
-    >
-      <transition-group>
-        <div v-for="element in list1" :key="element">
-          <Drag
-            :component-name="element.componentName"
-            dragType="display"
-          ></Drag>
-        </div>
-      </transition-group>
-    </VueDraggableNext>
     <div
       :style="{
         position: 'absolute',
@@ -68,6 +67,7 @@ import CompsDisplay from "./CompsDisplay.vue";
 import OpenSourcePro from "../../layout/OpenSourcePro.vue";
 import { VueDraggableNext } from "vue-draggable-next";
 import Drag from "../drag/Drag.vue";
+import DragItem from "./DragItem.vue";
 
 const mode = ref("top");
 const activeKey = ref("All");
@@ -120,6 +120,14 @@ const onTabChange = (activeKey: String) => {
 .add-comps-box {
   width: 300px;
   height: 100%;
+
   background-color: antiquewhite;
+}
+
+.comps-box {
+  width: 100%;
+  height: calc(100vh - 200px);
+  // background-color: aqua;
+  overflow-y: auto;
 }
 </style>

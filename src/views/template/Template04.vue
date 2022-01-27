@@ -1,6 +1,6 @@
 <template>
   <div class="temp04-box">
-    <AvatarTop2 :background="bgColor"></AvatarTop2>
+    <!-- <AvatarTop2 :background="bgColor"></AvatarTop2> -->
 
     <VueDraggableNext
       v-model="list"
@@ -24,6 +24,7 @@
       titleSize="small"
       titleWidth="40%"
     ></Eduction> -->
+    <RemoveDrag @removeComponent="onRemove"></RemoveDrag>
 
     <Theme @changeTheme="onChange" :colors="colors"></Theme>
   </div>
@@ -31,17 +32,15 @@
 
 <script lang="ts" setup>
 import AvatarTop2 from "../../components/base/avatar/AvatarTop2.vue";
-import TitleC from "../../components/base/title/TitleC.vue";
-import TitleB from "../../components/base/title/TitleB.vue";
+
 import { computed, defineEmit, reactive, ref } from "vue";
-import Eduction from "../../components/layout/Eduction.vue";
-import WorkExperience from "../../components/layout/WorkExperience.vue";
-import OpenSourcePro from "../../components/layout/OpenSourcePro.vue";
+
 import Theme from "../../components/base/Theme.vue";
 import { useStore } from "vuex";
 import { VueDraggableNext } from "vue-draggable-next";
 import Drag from "../../components/base/drag/Drag.vue";
 import { message } from "ant-design-vue";
+import RemoveDrag from "../../components/base/drag/RemoveDrag.vue";
 
 interface ColorItem {
   color: string;
@@ -60,6 +59,7 @@ const colors = reactive<ColorItem[]>([
 ]);
 
 const list = ref<any[]>([
+  { componentName: "AvatarTop2" },
   { componentName: "JobIntension" },
   { componentName: "Education" },
   { componentName: "WorkExperience" },

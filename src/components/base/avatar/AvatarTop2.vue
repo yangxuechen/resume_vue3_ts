@@ -9,7 +9,7 @@
             :value="name"
             width="120px"
             height="40px"
-            :background-color="background"
+            :background-color="bgColor"
             class="name"
             style="font-size: 18px; font-weight: bold; color: #fff"
             @updateVal="updateName"
@@ -21,7 +21,7 @@
             :value="jobPostion"
             width="120px"
             height="40px"
-            :background-color="background"
+            :background-color="bgColor"
             class="name"
             style="font-size: 18px; font-weight: bold; color: #fff"
             @updateVal="updateJobPostion"
@@ -36,7 +36,7 @@
             :value="age"
             width="100px"
             icon-size="13px"
-            :background-color="background"
+            :background-color="bgColor"
             style="font-size: 13px; color: #fff"
             icon-color="#fff"
             size="small"
@@ -51,7 +51,7 @@
             :value="phoneNumber"
             width="150px"
             icon-size="13px"
-            :background-color="background"
+            :background-color="bgColor"
             style="font-size: 13px; color: #fff"
             icon-color="#fff"
             size="small"
@@ -68,7 +68,7 @@
             :value="workExperience"
             width="100px"
             icon-size="13px"
-            :background-color="background"
+            :background-color="bgColor"
             style="font-size: 13px; color: #fff"
             icon-color="#fff"
             size="small"
@@ -83,7 +83,7 @@
             :value="email"
             width="200px"
             icon-size="13px"
-            :background-color="background"
+            :background-color="bgColor"
             style="font-size: 13px; color: #fff"
             icon-color="#fff"
             size="small"
@@ -112,7 +112,7 @@ const props = defineProps({
 
 const avatarUrl = ref<string>(img_url);
 const store = useStore();
-const bgColor = computed(() => props.background);
+const bgColor = computed(() => store.state.app.themeColor);
 
 const uploadImg = () => {
   const input_img = document.getElementById("btn_upload");

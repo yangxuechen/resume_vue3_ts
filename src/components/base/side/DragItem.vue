@@ -1,38 +1,40 @@
 <template>
-  <div :class="dragClass">
-    <AvatarTop v-if="props.componentName == 'AvatarTop'"></AvatarTop>
-    <AvatarTop2 v-if="props.componentName == 'AvatarTop2'"></AvatarTop2>
-    <Avatar v-if="props.componentName == 'Avatar'"></Avatar>
-    <PersonInfo v-if="props.componentName == 'PersonInfo'"></PersonInfo>
-    <Skill1 v-if="props.componentName == 'Skill1'"></Skill1>
-    <JobIntension
-      v-if="props.componentName == 'JobIntension'"
-      :titleType="tType"
-      :titleWidth="tWidth"
-      :titleSize="tSize"
-      @remove="onRemove"
-    ></JobIntension>
-    <Eduction
-      v-if="props.componentName == 'Education'"
-      :titleType="tType"
-      :titleWidth="tWidth"
-      :titleSize="tSize"
-      @remove="onRemove"
-    ></Eduction>
-    <WorkExperience
-      v-if="props.componentName == 'WorkExperience'"
-      :titleType="tType"
-      :titleWidth="tWidth"
-      :titleSize="tSize"
-      @remove="onRemove"
-    ></WorkExperience>
-    <OpenSourcePro
-      v-if="props.componentName == 'OpenSourcePro'"
-      :titleType="tType"
-      :titleWidth="tWidth"
-      :titleSize="tSize"
-      @remove="onRemove"
-    ></OpenSourcePro>
+  <div class="drag-item-box">
+    <div class="drag-item">
+      <AvatarTop v-if="props.componentName == 'AvatarTop'"></AvatarTop>
+      <AvatarTop2 v-if="props.componentName == 'AvatarTop2'"></AvatarTop2>
+      <Avatar v-if="props.componentName == 'Avatar'"></Avatar>
+      <PersonInfo v-if="props.componentName == 'PersonInfo'"></PersonInfo>
+      <Skill1 v-if="props.componentName == 'Skill1'"></Skill1>
+      <JobIntension
+        v-if="props.componentName == 'JobIntension'"
+        :titleType="tType"
+        :titleWidth="tWidth"
+        :titleSize="tSize"
+        @remove="onRemove"
+      ></JobIntension>
+      <Eduction
+        v-if="props.componentName == 'Education'"
+        :titleType="tType"
+        :titleWidth="tWidth"
+        :titleSize="tSize"
+        @remove="onRemove"
+      ></Eduction>
+      <WorkExperience
+        v-if="props.componentName == 'WorkExperience'"
+        :titleType="tType"
+        :titleWidth="tWidth"
+        :titleSize="tSize"
+        @remove="onRemove"
+      ></WorkExperience>
+      <OpenSourcePro
+        v-if="props.componentName == 'OpenSourcePro'"
+        :titleType="tType"
+        :titleWidth="tWidth"
+        :titleSize="tSize"
+        @remove="onRemove"
+      ></OpenSourcePro>
+    </div>
   </div>
 </template>
 
@@ -80,14 +82,17 @@ const dragClass = computed(() => {
 </script>
 
 <style lang="less" scoped>
-.drag-box {
-  width: 100%;
+.drag-item-box {
+  width: 450px;
+  padding: 15px;
+  margin: 15px 0;
+  border: 1px #e9e2e2 solid;
+  box-shadow: 0px 0px 2px #888888;
 }
 
-.drag-box-display {
-  width: 600px;
-  margin: 15px;
-  border: 1px black solid;
-  transform: scale(0.5);
+.drag-item {
+  width: 611px;
+  transform: scale(0.7);
+  margin-left: -99px;
 }
 </style>

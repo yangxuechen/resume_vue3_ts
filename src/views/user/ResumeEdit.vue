@@ -58,29 +58,15 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  computed,
-  createVNode,
-  onActivated,
-  onMounted,
-  provide,
-  ref,
-} from "vue";
+import { computed, createVNode, onMounted, ref } from "vue";
 import route from "../../router";
 import Template01 from "../template/Template01.vue";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-
-import Theme from "../../components/base/Theme.vue";
 import { message, Modal } from "ant-design-vue";
 
-import {
-  ReloadOutlined,
-  EyeOutlined,
-  QuestionCircleOutlined,
-  ExclamationCircleOutlined,
-} from "@ant-design/icons-vue";
-import { UserInfo } from "../UserInfo";
+import { ExclamationCircleOutlined } from "@ant-design/icons-vue";
+
 import { useStore } from "vuex";
 import LeftSideTool from "../../components/base/side/LeftSideTool.vue";
 import Template02 from "../template/Template02.vue";
@@ -109,9 +95,9 @@ const addModalVisible = ref<boolean>(false);
  */
 const showConfirm = () => {
   Modal.confirm({
-    title: () => "确认导出pdf文件?",
-    icon: () => createVNode(ExclamationCircleOutlined),
-    content: () => "",
+    title: "确认导出pdf文件?",
+    icon: createVNode(ExclamationCircleOutlined),
+    content: "",
     onOk() {
       return new Promise((resolve, reject) => {
         downloadPdf();
@@ -121,6 +107,20 @@ const showConfirm = () => {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     onCancel() {},
   });
+
+  // Modal.confirm({
+  //   title: () => "确认导出pdf文件?",
+  //   icon: () => createVNode(ExclamationCircleOutlined),
+  //   content: () => "",
+  //   onOk() {
+  //     return new Promise((resolve, reject) => {
+  //       downloadPdf();
+  //       resolve("success");
+  //     }).catch(() => console.log("下载出错!"));
+  //   },
+  //   // eslint-disable-next-line @typescript-eslint/no-empty-function
+  //   onCancel() {},
+  // });
 };
 
 /**
@@ -164,6 +164,7 @@ const downloadPdf = () => {
 
 /** 打开预览窗口 */
 const openPreViewModal = () => {
+  window.scrollTo({ top: 0 });
   previewVisible.value = true;
   createMinPageImage();
 };

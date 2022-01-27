@@ -17,10 +17,6 @@
           </div>
         </transition-group>
       </VueDraggableNext>
-
-      <!-- <Avatar></Avatar>
-      <PersonInfo></PersonInfo>
-      <Skill1></Skill1> -->
     </div>
     <div class="right-box">
       <VueDraggableNext
@@ -47,22 +43,13 @@
 
 <script lang="ts" setup>
 /** 左右排版 3 7 布局 */
-import Avatar from "../../components/layout/Avatar.vue";
-import PersonInfo from "../../components/layout/PersonInfo.vue";
-import Skill1 from "../../components/layout/Skill1.vue";
-import JobIntension from "../../components/layout/JobIntension.vue";
-import Eduction from "../../components/layout/Eduction.vue";
-import WorkExperience from "../../components/layout/WorkExperience.vue";
-import OpenSourcePro from "../../components/layout/OpenSourcePro.vue";
-import AutoInput from "../../components/base/AutoInput.vue";
-import AutoTextArea from "../../components/base/AutoTextArea.vue";
+
 import { reactive } from "@vue/reactivity";
 import Theme from "../../components/base/Theme.vue";
-import { defineEmit, inject, onMounted } from "@vue/runtime-core";
+import { defineEmit, onMounted } from "@vue/runtime-core";
 import { useStore } from "vuex";
 import { VueDraggableNext } from "vue-draggable-next";
 
-import Draggable from "vuedraggable";
 import { ref } from "vue";
 import Drag from "../../components/base/drag/Drag.vue";
 import { message } from "ant-design-vue";
@@ -124,9 +111,6 @@ const onRemove = (compsName: String) => {
 const log = (evt: EventTarget) => {
   window.console.log(evt);
 };
-const onClone = (original: any) => {
-  console.log(original, "clone");
-};
 
 const checkMove = (event: any) => {
   console.log("checkMove", event.draggedContext);
@@ -137,9 +121,6 @@ const onChoose = (event: any) => {
   console.log("checkMove", event);
 };
 
-const onRemoveComponent = (name: string) => {
-  message.info(name);
-};
 store.commit("app/setThemeColor", colors[0].color);
 </script>
 
