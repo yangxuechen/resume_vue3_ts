@@ -130,15 +130,6 @@ const onOpenAddModal = () => {
   addModalVisible.value = true;
 };
 
-<<<<<<< HEAD
-  html2canvas(htmlElement!, {
-    height: htmlElement?.offsetHeight,
-    width: htmlElement?.offsetWidth,
-    useCORS: true,
-    allowTaint: true,
-  }).then((canvas) => {
-    const doc = new jsPDF();
-=======
 /**
  * 关闭自定义弹框
  */
@@ -177,7 +168,6 @@ const openPreViewModal = () => {
   previewVisible.value = true;
   createMinPageImage();
 };
->>>>>>> dev
 
 /** 预览窗口确认 */
 const previewHandleOk = () => {
@@ -216,11 +206,7 @@ const onEnlarge = (value: string) => {
 };
 
 function createMinPageImage() {
-<<<<<<< HEAD
-  return new Promise((resolve) => {
-=======
   return new Promise((resolve, reject) => {
->>>>>>> dev
     const htmlElement = document.getElementById("resume");
     const width: number = htmlElement?.offsetWidth || 0;
     const height: number = htmlElement?.offsetHeight || 0;
@@ -343,20 +329,11 @@ function directPath() {
   cursor: pointer;
 }
 
-<<<<<<< HEAD
-.toolTip {
-  // width: 100px;
-  height: 100px;
-  position: absolute;
-  top: 1160px;
-  left: calc(760px + (100vw - 756px) / 2);
-=======
 .modal-img-box {
   width: 100%;
   height: calc(100vh - 200px);
   overflow-y: auto;
   display: flex;
   justify-content: center;
->>>>>>> dev
 }
 </style>
