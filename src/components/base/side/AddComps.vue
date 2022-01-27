@@ -84,6 +84,8 @@ const list1 = ref<any[]>([
   { componentName: "Education" },
   { componentName: "WorkExperience" },
   { componentName: "OpenSourcePro" },
+  { componentName: "Skill02" },
+  { componentName: "BaseInfoRight" },
   // { componentName: "Avatar" },
   // { componentName: "PersonInfo" },
   // { componentName: "Skill1" },

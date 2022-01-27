@@ -1,41 +1,76 @@
 <template>
   <div class="baseinfo-box">
-    <div class="title">
-      <input type="text" v-model="title" class="input_1 info-title" />
-    </div>
-    <a-divider style="height: 2px; background-color: black; margin: 8px 0" />
+    <TitleA title="基本信息" bgColor="#fff" :show-tool="false"></TitleA>
+
     <div class="info">
-      <div><ManOutlined /></div>
+      <rs-svg-icon
+        class="icon-item"
+        name="sexm"
+        color="black"
+        width="15px"
+      ></rs-svg-icon>
       <div class="info-desc"><input class="input_1 name" v-model="sex" /></div>
     </div>
     <div class="info">
-      <div><PaperClipOutlined /></div>
+      <rs-svg-icon
+        class="icon-item"
+        name="nianling"
+        color="black"
+        width="15px"
+      ></rs-svg-icon>
       <div class="info-desc"><input class="input_1 name" v-model="age" /></div>
     </div>
     <div class="info">
-      <div><UsergroupAddOutlined /></div>
+      <rs-svg-icon
+        class="icon-item"
+        name="earth"
+        color="black"
+        width="15px"
+      ></rs-svg-icon>
       <div class="info-desc">
         <input class="input_1 name" v-model="nameFamily" />
       </div>
     </div>
     <div class="info">
-      <div><SolutionOutlined /></div>
+      <rs-svg-icon
+        class="icon-item"
+        name="education"
+        color="black"
+        width="15px"
+      ></rs-svg-icon>
       <div class="info-desc">
-        <input class="input_1 name" v-model="education"/>
+        <input class="input_1 name" v-model="education" />
       </div>
     </div>
     <div class="info">
-      <div><HourglassOutlined /></div>
-      <div class="info-desc"><input class="input_1 name" v-model="workExperience" /></div>
+      <rs-svg-icon
+        class="icon-item"
+        name="work-filling"
+        color="black"
+        width="15px"
+      ></rs-svg-icon>
+      <div class="info-desc">
+        <input class="input_1 name" v-model="workExperience" />
+      </div>
     </div>
     <div class="info">
-      <div><PhoneOutlined /></div>
+      <rs-svg-icon
+        class="icon-item"
+        name="phone"
+        color="black"
+        width="15px"
+      ></rs-svg-icon>
       <div class="info-desc">
         <input class="input_1 name" v-model="phoneNumber" />
       </div>
     </div>
     <div class="info">
-      <div><MailOutlined /></div>
+      <rs-svg-icon
+        class="icon-item"
+        name="email"
+        color="black"
+        width="15px"
+      ></rs-svg-icon>
       <div class="info-desc">
         <input class="input_1 name" v-model="email" />
       </div>
@@ -56,6 +91,7 @@ import {
 } from "@ant-design/icons-vue";
 import { useStore } from "vuex";
 import { UserInfo } from "../../../views/UserInfo";
+import TitleA from "../title/TitleA.vue";
 const title = ref<string>("基本信息");
 
 const store = useStore();
@@ -140,8 +176,6 @@ const email = computed({
     store.commit("user/setUserInfo", tempUser);
   },
 });
-
-
 </script>
 <style lang="less" scoped>
 .baseinfo-box {
@@ -154,19 +188,19 @@ const email = computed({
   justify-content: left;
 }
 .input_1 {
-  background-color: #f7f7f4;
+  // background-color: #f7f7f4;
   width: auto;
   height: 20px;
-  border-color: white;
+  //  border-color: white;
   //   padding: 5px;
   border-width: 0ch;
   text-align: left;
   //  border-color: #25252a;
-  border-color: #f7f7f4;
-  border-width: 1px;
-  border-style: dotted;
+  //  border-color: #f7f7f4;
+  // border-width: 1px;
+  // border-style: dotted;
   //  background-color: #25252a;
-  color: black;
+  //  color: black;
 }
 
 .input_1:focus {
@@ -196,5 +230,9 @@ const email = computed({
   .info-desc {
     padding-left: 10px;
   }
+}
+
+.icon-item {
+  margin-top: 5px;
 }
 </style>

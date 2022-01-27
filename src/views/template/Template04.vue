@@ -59,7 +59,7 @@ const colors = reactive<ColorItem[]>([
 ]);
 
 const list = ref<any[]>([
-  { componentName: "AvatarTop2" },
+{ componentName: "AvatarTop2" },
   { componentName: "JobIntension" },
   { componentName: "Education" },
   { componentName: "WorkExperience" },

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="icon"  @click="openTool">
+    <div class="icon" @click="openTool">
       <div v-html="svgSrc"></div>
       <div class="rs-icon-title" :title="name" v-if="showText">
         {{ props.title }}
