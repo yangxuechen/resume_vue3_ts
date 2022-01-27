@@ -191,6 +191,7 @@ const email = computed({
 });
 
 const title = ref<string>("基本信息");
+const bgColor = computed(() => store.state.app.themeColor);
 </script>
 
 <style lang="less" scoped>
@@ -198,6 +199,7 @@ const title = ref<string>("基本信息");
   width: 100%;
   padding: 15px;
   color: white;
+  background-color: v-bind(bgColor);
 
   .info {
     width: 100%;
