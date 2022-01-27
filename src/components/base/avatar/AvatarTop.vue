@@ -18,7 +18,19 @@
     </div>
     <div class="avatar-name-box">
       <div class="name-box">
-        <input class="input_dash name" v-model="name" />
+        <!-- <input class="input_dash name" v-model="name" /> -->
+
+        <RsInput
+          :showIcon="false"
+          :showTitle="false"
+          :value="name"
+          width="120px"
+          height="40px"
+          :background-color="bgColor"
+          class="name"
+          style="font-size: 18px; font-weight: bold; color: #fff"
+          @updateVal="updateName"
+        ></RsInput>
       </div>
 
       <div>
@@ -30,14 +42,7 @@
           v-if="edit"
         />
 
-        <div
-          style="
-            padding: 4px;
-            border: 1px var(--rs-bgcolor-1) solid;
-            text-align: left;
-          "
-          v-else
-        >
+        <div style="" class="motto-box" v-else>
           {{ motto }}
         </div>
       </div>
@@ -49,6 +54,7 @@ import { computed, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import img_url from "../../../assets/avatar-xx.png";
 import { UserInfo } from "../../../views/UserInfo";
+import RsInput from "../input/RsInput.vue";
 
 const store = useStore();
 
@@ -88,7 +94,13 @@ const motto = computed({
   },
 });
 
+const bgColor = computed(() => store.state.app.themeColor);
 
+const updateName = (val: string) => {
+  const tempUser: UserInfo = store.state.user.userInfo;
+  tempUser.userInfoHead.name = val;
+  store.commit("user/setUserInfo", tempUser);
+};
 const canEdit = () => {
   edit.value = true;
 };
@@ -98,7 +110,6 @@ const notEdit = () => {
 };
 
 const preView = (e: any) => {
-  console.log(e.target.files[0]);
   const src = window.URL.createObjectURL(e.target.files[0]);
 
   const reader = new FileReader();
@@ -107,7 +118,6 @@ const preView = (e: any) => {
     console.log(e.target!.result);
     user.avatarUrl = e.target!.result as string;
   };
-  console.log(src);
 
   user.avatarUrl = src;
 };
@@ -121,7 +131,7 @@ const uploadImg = () => {
 .avatar-top-box {
   width: 100%;
   height: 200px;
-  background-color: var(--rs-bgcolor-1);
+  background-color: v-bind(bgColor);
   color: white;
   display: flex;
   align-items: center;
@@ -131,7 +141,6 @@ const uploadImg = () => {
   .avarat-img-box {
     width: 100px;
     height: 120px;
-    // background-color: yellow;
   }
 
   .avatar-name-box {
@@ -156,7 +165,7 @@ const uploadImg = () => {
 
 .text-area {
   color: white;
-  background-color: var(--rs-bgcolor-1);
+  background-color: v-bind(bgColor);
   text-align: left;
   padding: 4px;
   border-color: transparent;
@@ -166,5 +175,11 @@ const uploadImg = () => {
   visibility: hidden;
   height: 10px;
   width: 0px;
+}
+
+.motto-box {
+  padding: 4px;
+  border: 1px v-bind(bgColor) solid;
+  text-align: left;
 }
 </style>

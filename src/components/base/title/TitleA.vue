@@ -1,13 +1,7 @@
 <template>
   <div class="title">
     <input type="text" v-model="title" class="input_1 info-title" />
-    <div class="tool">
-      <!-- <div class="icon-box" @click="addDesc">
-          <PlusOutlined :style="{ fontSize: '24px', color: '#eae4e4' }" />
-        </div>
-        <div class="icon-box" @click="deleteDesc">
-          <MinusOutlined :style="{ fontSize: '24px', color: '#eae4e4' }" />
-        </div> -->
+    <div class="tool" v-if="showTool">
       <PlusSquareOutlined @click="btnClick('add')" />
       <MinusSquareOutlined @click="btnClick('delete')" />
     </div>
@@ -21,6 +15,8 @@ import { MinusSquareOutlined, PlusSquareOutlined } from "@ant-design/icons-vue";
 const props = defineProps({
   title: { type: String, default: "基本信息" },
   bgColor: { type: String, default: "white" },
+  /**是否展示工具栏 */
+  showTool: { type: Boolean, default: true },
 });
 
 const title = computed(() => {

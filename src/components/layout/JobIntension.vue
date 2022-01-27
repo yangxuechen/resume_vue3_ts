@@ -11,7 +11,9 @@
       borderColor="#fff"
       font-size="14px"
       :show-tool="true"
-      size="normal"
+      :titleType="props.titleType"
+      :size="titleSize"
+      :style="{ width: titleWidth }"
       color="white"
       @btnClick="onBtnClick"
     ></TitleB>
@@ -75,14 +77,20 @@ import {
   CompassFilled,
 } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import { computed, reactive, ref } from "vue";
+import { computed, defineEmit, defineProps, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { UserInfo } from "../../views/UserInfo";
 import TitleB from "../base/title/TitleB.vue";
 const title = ref<string>("求职意向");
-
+const props = defineProps({
+  titleType: { type: String, default: "title-01" },
+  titleSize: { type: String, default: "normal" },
+  titleWidth: { type: String, default: "100%" },
+});
 const store = useStore();
-
+const emit = defineEmit({
+  remove: (value: String) => Boolean,
+});
 const jobPostion = computed({
   get() {
     return store.state.user.userInfo.intention.jobPostion;
@@ -116,8 +124,12 @@ const entryTime = computed({
   },
 });
 
-const onBtnClick = () => {
-  message.info("该模块不支持添加和删除!");
+const onBtnClick = (val: String) => {
+  if (val == "remove") {
+    emit("remove", "JobIntension");
+  } else {
+    message.info("该模块不支持添加和删除记录!");
+  }
 };
 
 const updataJobPostion = (val: string) => {

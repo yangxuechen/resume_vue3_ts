@@ -47,6 +47,7 @@ import route from "../../router";
 import resumeImgUrl from "../../assets/resume-temp/temp-03.png";
 import resumeImgUrl2 from "../../assets/resume-temp/temp-02.png";
 import resumeImgUrl0 from "../../assets/resume-temp/temp-01.png";
+import resumeImgUrl4 from "../../assets/resume-temp/temp-04.png";
 import Footer1 from "../../components/layout/Footer.vue";
 import {
   RightOutlined,

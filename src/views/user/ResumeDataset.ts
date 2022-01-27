@@ -2,6 +2,7 @@
 import resumeImgUrl from "../../assets/resume-temp/temp-03.png";
 import resumeImgUrl2 from "../../assets/resume-temp/temp-02.png";
 import resumeImgUrl0 from "../../assets/resume-temp/temp-01.png";
+import resumeImgUrl4 from "../../assets/resume-temp/temp-04.png";
 import { ref } from "vue";
 
 interface MinResumeData {
@@ -33,7 +34,7 @@ const dataset: MinResumeData[] = [
       name: "resume-03",
     },
     {
-      imgUrl: resumeImgUrl,
+      imgUrl: resumeImgUrl4,
       desc: "前端简历（简介版）",
       name: "resume-04",
     },

@@ -47,10 +47,10 @@ const props = defineProps({
   titleSize: { type: String, default: "normal" },
   titleWidth: { type: String, default: "100%" },
 });
+const emit = defineEmit({
+  remove: (value: String) => Boolean,
+});
 
-const title = ref<string>("工作经历");
-const workStatus = reactive<boolean[]>([true, false, false]);
-const workNum = ref<number>(1);
 const store = useStore();
 const workExperienceList = reactive<WorkExperience[]>(
   store.state.user.userInfo.workExperienceList
@@ -95,9 +95,11 @@ const onBtnClick = (val: string) => {
   if (val == "add") {
     addWork();
     message.success("添加成功!");
-  } else {
+  } else if (val == "delete") {
     deleteWork();
     message.success("删除成功!");
+  } else if (val == "remove") {
+    emit("remove", "WorkExperience");
   }
 };
 </script>

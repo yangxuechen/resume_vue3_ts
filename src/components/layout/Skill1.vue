@@ -19,6 +19,8 @@
       borderColor="black"
       font-size="14px"
       :show-tool="true"
+      :showDelete="false"
+      :show-set="false"
       size="small"
       color="black"
       @btnClick="onBtnClick"
@@ -67,7 +69,7 @@ import {
   MinusSquareOutlined,
 } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { Skill, UserInfo } from "../../views/UserInfo";
 import TitleB from "../base/title/TitleB.vue";
@@ -78,6 +80,8 @@ const title = ref<string>("技能特长");
 console.log(store.state.user.userInfo.skillList, "skilllist");
 
 const skilllist = reactive<Skill[]>(store.state.user.userInfo.skillList);
+
+const bgColor = computed(() => store.state.app.themeColor);
 
 const addSkill = () => {
   if (skilllist.length > 10) {
@@ -119,7 +123,7 @@ const updateStore = () => {
   padding: 15px;
   margin: 15px auto;
   color: white;
-
+  background-color: v-bind(bgColor);
   .info {
     width: 100%;
     height: 23px;

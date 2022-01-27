@@ -93,7 +93,7 @@ const emit = defineEmit({
 });
 
 const afterVisibleChange = (bool: boolean) => {
-  console.log("visible", bool);
+ 
   // emit("close", bool);
 };
 

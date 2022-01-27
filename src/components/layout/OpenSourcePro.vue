@@ -37,7 +37,7 @@ import {
   PlusSquareOutlined,
 } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import { computed, defineProps, reactive, ref } from "vue";
+import { computed, defineEmit, defineProps, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { Project, UserInfo } from "../../views/UserInfo";
 import AutoTextArea from "../base/AutoTextArea.vue";
@@ -48,6 +48,9 @@ const props = defineProps({
   titleType: { type: String, default: "title-01" },
   titleSize: { type: String, default: "normal" },
   titleWidth: { type: String, default: "100%" },
+});
+const emit = defineEmit({
+  remove: (value: String) => Boolean,
 });
 const title = ref<string>("开源项目");
 const edit = ref<boolean>(false);
@@ -107,8 +110,11 @@ const onChange = (value: String, index: Number) => {
 const onBtnClick = (val: string) => {
   if (val == "add") {
     addDesc();
-  } else {
+  } else if (val == "delete") {
     deleteDesc();
+    message.success("删除成功!");
+  } else if (val == "remove") {
+    emit("remove", "OpenSourcePro");
   }
 };
 

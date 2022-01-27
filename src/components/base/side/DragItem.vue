@@ -1,6 +1,6 @@
 <template>
-  <div :class="dragClass">
-    <panel :edit="edit" @changEditState="onClick">
+  <div class="drag-item-box">
+    <div class="drag-item">
       <AvatarTop v-if="props.componentName == 'AvatarTop'"></AvatarTop>
       <AvatarTop2 v-if="props.componentName == 'AvatarTop2'"></AvatarTop2>
       <Avatar v-if="props.componentName == 'Avatar'"></Avatar>
@@ -38,12 +38,7 @@
         :titleSize="tSize"
         @remove="onRemove"
       ></OpenSourcePro>
-      <EductionA
-        :edit="edit"
-        v-if="props.componentName == 'EductionA'"
-      ></EductionA>
-      <WorkExperise v-if="props.componentName == 'WorkExperise'"></WorkExperise>
-    </panel>
+    </div>
   </div>
 </template>
 
@@ -52,18 +47,15 @@ import JobIntension from "../../layout/JobIntension.vue";
 import Eduction from "../../layout/Eduction.vue";
 import WorkExperience from "../../layout/WorkExperience.vue";
 import OpenSourcePro from "../../layout/OpenSourcePro.vue";
-import { computed, defineEmit, defineProps, ref } from "vue";
+import { computed, defineEmit, defineProps } from "vue";
 import { message } from "ant-design-vue";
 import AvatarTop2 from "../avatar/AvatarTop2.vue";
 import AvatarTop from "../avatar/AvatarTop.vue";
 import Skill1 from "../../layout/Skill1.vue";
 import PersonInfo from "../../layout/PersonInfo.vue";
 import Avatar from "../../layout/Avatar.vue";
-import Skill02 from "../skill/Skill02.vue";
 import BaseInfoRight from "../baseinfo/BaseInfoRight.vue";
-import EductionA from "../edu/EductionA.vue";
-import WorkExperise from "../work/WorkExperise.vue";
-import Panel from "../panel/Panel.vue";
+import Skill02 from "../skill/Skill02.vue";
 
 const props = defineProps({
   componentName: { type: String, default: "JobIntension" },
@@ -77,8 +69,6 @@ const emit = defineEmit({
   removeComps: (val: String) => Boolean,
 });
 
-const edit = ref<boolean>(false);
-
 const tType = computed(() => props.titleType);
 const tWidth = computed(() => props.titleWidth);
 const tSize = computed(() => props.titleSize);
@@ -86,10 +76,6 @@ const tSize = computed(() => props.titleSize);
 const onRemove = (compsName: String) => {
   //  message.info(compsName);
   emit("removeComps", compsName);
-};
-
-const onClick = (val: boolean) => {
-  edit.value = val;
 };
 
 const dragClass = computed(() => {
@@ -102,14 +88,17 @@ const dragClass = computed(() => {
 </script>
 
 <style lang="less" scoped>
-.drag-box {
-  width: 100%;
+.drag-item-box {
+  width: 450px;
+  padding: 15px;
+  margin: 15px 0;
+  border: 1px #e9e2e2 solid;
+  box-shadow: 0px 0px 2px #888888;
 }
 
-.drag-box-display {
-  width: 600px;
-  margin: 15px;
-  border: 1px black solid;
-  transform: scale(0.5);
+.drag-item {
+  width: 611px;
+  transform: scale(0.7);
+  margin-left: -99px;
 }
 </style>

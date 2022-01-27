@@ -88,6 +88,8 @@ const motto = computed({
 
 const avatarUrl = computed(() => store.state.user.userInfo.userInfoHead.avatar);
 
+const bgColor = computed(() => store.state.app.themeColor);
+
 const uploadImg = () => {
   const input_img = document.getElementById("btn_upload");
   input_img?.click();
@@ -139,6 +141,7 @@ const onError = () => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: v-bind(bgColor);
 
   .avatar {
     width: 80px;

@@ -1,132 +1,136 @@
 <template>
   <div class="rs-edit-box" id="main" :key="key">
+    <LeftSideTool
+      @exportPdf="showConfirm"
+      @openAddModal="onOpenAddModal"
+      @previewPdf="openPreViewModal"
+    ></LeftSideTool>
+    <AddComps
+      :visible="addModalVisible"
+      @changeDrawer="onAddCompsChange"
+    ></AddComps>
     <div class="box">
       <div class="rs-edit" id="resume" ref="resume">
-        <!-- <Template01 @change=""></Template01> -->
-        <router-view @colorChange="onChange"></router-view>
+        <Template01
+          @colorChange="onChange"
+          v-if="templateName == 'resume-01'"
+        ></Template01>
+        <Template02
+          @colorChange="onChange"
+          v-if="templateName == 'resume-02'"
+        ></Template02>
+        <Template03
+          @colorChange="onChange"
+          v-if="templateName == 'resume-03'"
+        ></Template03>
+        <Template04
+          @colorChange="onChange"
+          v-if="templateName == 'resume-04'"
+        ></Template04>
+        <!-- <router-view @colorChange="onChange"></router-view> -->
       </div>
     </div>
-    <div class="min-page">
+    <!-- <div class="min-page">
       <a-spin v-if="loading" />
       <img :src="minPage" style="width: 170px; height: 238px" v-else />
-    </div>
-    <div
-      style="
-        position: fixed;
-        left: 265px;
-        top: 140px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      "
+    </div> -->
+
+    <a-modal
+      v-model:visible="previewVisible"
+      title="预览"
+      @ok="previewHandleOk"
+      width="100%"
+      height="100vh"
+      wrapClassName="full-modal"
     >
-      <!-- <ReloadOutlined /> -->
-      <!-- <a-tooltip>
-        <template #title>实时预览</template>
-        <EyeOutlined class="icon-btn" @click="onChange" />
-      </a-tooltip>
-
-      <a-tooltip>
-        <template #title>帮助</template>
-        <QuestionCircleOutlined class="icon-btn" />
-      </a-tooltip> -->
-    </div>
-    <div class="toolMenu">
-      <!-- <div class="item">
-        <Theme @changeTheme="onChange"></Theme>
-      </div> -->
-      <div class="item">
-        <a-button type="primary" @click="directPath" ghost>保存</a-button>
+      <div class="modal-img-box">
+        <div style="position: absolute; right: 100px">
+          <PreViewTool @enlarge="onEnlarge"></PreViewTool>
+        </div>
+        <img
+          :src="minPage"
+          style="border: 1px #c8bdbd solid"
+          :style="{ width: previewImgWidth, height: previewImgHeight }"
+        />
       </div>
-      <div class="item">
-        <a-button type="danger" ghost @click="downloadPdf">导出pdf</a-button>
-      </div>
-    </div>
-
-    <div class="toolTip">
-      <TooltipA></TooltipA>
-    </div>
+    </a-modal>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, onActivated, onMounted, provide, ref } from "vue";
+import { computed, createVNode, onMounted, ref } from "vue";
 import route from "../../router";
 import Template01 from "../template/Template01.vue";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import Canvg, { presets } from "canvg";
-import Theme from "../../components/base/Theme.vue";
-import { message } from "ant-design-vue";
+import { message, Modal } from "ant-design-vue";
 
-import {
-  ReloadOutlined,
-  EyeOutlined,
-  QuestionCircleOutlined,
-} from "@ant-design/icons-vue";
-import { UserInfo } from "../UserInfo";
+import { ExclamationCircleOutlined } from "@ant-design/icons-vue";
+
 import { useStore } from "vuex";
+import LeftSideTool from "../../components/base/side/LeftSideTool.vue";
+import Template02 from "../template/Template02.vue";
+import Template03 from "../template/Template03.vue";
+import Template04 from "../template/Template04.vue";
+import AddComps from "../../components/base/side/AddComps.vue";
+import PreViewTool from "../../components/base/tool/PreViewTool.vue";
 
 const store = useStore();
 const msg2 = ref<string>("1");
 const loading = ref<boolean>(true);
 const resume = ref<HTMLElement>();
 const key = ref<number>(0);
+const previewVisible = ref<boolean>(false);
+const previewImgWidth = ref<string>("340px");
+const previewImgHeight = ref<string>("476px");
 const msg = computed(() => {
   console.log(route.currentRoute.value.query, "currentRoute");
 
   return route.currentRoute.value.query.name;
 });
 const minPage = ref<string>("");
+const addModalVisible = ref<boolean>(false);
+/**
+ * 弹出框 确认是否下载pdf
+ */
+const showConfirm = () => {
+  Modal.confirm({
+    title: "确认导出pdf文件?",
+    icon: createVNode(ExclamationCircleOutlined),
+    content: "",
+    onOk() {
+      return new Promise((resolve, reject) => {
+        downloadPdf();
+        resolve("success");
+      }).catch(() => console.log("下载出错!"));
+    },
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    onCancel() {},
+  });
 
-const svgToCanvans = async () => {
-  console.log("canvg...");
-
-  //以下是对svg的处理
-  const svgElem = document.getElementsByTagName("svg") as unknown as Array<any>;
-
-  console.log(svgElem[3]);
-
-  for (let i = 0; i < svgElem.length; i++) {
-    console.log(i);
-    //获取svg的父节点
-    let node = svgElem[i];
-    const parentNode = node.parentNode;
-    //获取svg的html代码
-    const svg = node.outerHTML.trim();
-    //创建一个<canvas>，用于放置转换后的元素
-    const canvas = document.createElement("canvas");
-    const g = canvas.getContext("2d");
-    //将svg元素转换为canvas元素
-    //将svg元素转换为canvas元素
-    //将svg元素转换为canvas元素
-    //将svg元素转换为canvas元素
-
-    await Canvg.from(canvas, svg);
-    // Canvg(canvas, svg);
-    //设置新canvas元素的位置
-    if (node.style.position) {
-      canvas.style.position += node.style.position;
-      canvas.style.left += node.style.left;
-      canvas.style.top += node.style.top;
-    }
-
-    //删除svg元素
-    parentNode.removeChild(node);
-    //增加canvas元素
-    parentNode.appendChild(canvas);
-  }
+  // Modal.confirm({
+  //   title: () => "确认导出pdf文件?",
+  //   icon: () => createVNode(ExclamationCircleOutlined),
+  //   content: () => "",
+  //   onOk() {
+  //     return new Promise((resolve, reject) => {
+  //       downloadPdf();
+  //       resolve("success");
+  //     }).catch(() => console.log("下载出错!"));
+  //   },
+  //   // eslint-disable-next-line @typescript-eslint/no-empty-function
+  //   onCancel() {},
+  // });
 };
-const downloadPdf = () => {
-  window.scrollTo({ top: 0 });
-  const htmlElement = document.getElementById("resume");
 
-  console.log(htmlElement);
+/**
+ * 打开自定义模块弹框
+ */
+const onOpenAddModal = () => {
+  addModalVisible.value = true;
+};
 
-  const main = document.getElementById("main");
-  const width: number = htmlElement?.offsetWidth || 0;
-  const height: number = htmlElement?.offsetHeight || 0;
-
+<<<<<<< HEAD
   html2canvas(htmlElement!, {
     height: htmlElement?.offsetHeight,
     width: htmlElement?.offsetWidth,
@@ -134,20 +138,89 @@ const downloadPdf = () => {
     allowTaint: true,
   }).then((canvas) => {
     const doc = new jsPDF();
-
-    //  document.body.appendChild(canvas);
-
-    doc.addImage(canvas, "image/jpeg", 0, 0, 210, 297); //单位是毫米
-    minPage.value = canvas.toDataURL as unknown as string;
-    //  console.log(minPage);
-
-    doc.save("resume.pdf");
-    createMinPageImage();
+=======
+/**
+ * 关闭自定义弹框
+ */
+const onAddCompsChange = (bool: boolean) => {
+  addModalVisible.value = bool;
+};
+/**
+ * 下载pdf
+ */
+const downloadPdf = () => {
+  return new Promise((resolve, reject) => {
+    window.scrollTo({ top: 0 });
+    const htmlElement = document.getElementById("resume");
+    const main = document.getElementById("main");
+    const width: number = htmlElement?.offsetWidth || 0;
+    const height: number = htmlElement?.offsetHeight || 0;
+    html2canvas(htmlElement!, {
+      height: htmlElement?.offsetHeight,
+      width: htmlElement?.offsetWidth,
+      useCORS: true,
+      allowTaint: true,
+    }).then((canvas) => {
+      const doc = new jsPDF();
+      doc.addImage(canvas, "image/jpeg", 0, 0, 210, 297); //单位是毫米
+      minPage.value = canvas.toDataURL as unknown as string;
+      doc.save("resume.pdf");
+      resolve("success");
+      createMinPageImage();
+    });
   });
 };
 
+/** 打开预览窗口 */
+const openPreViewModal = () => {
+  window.scrollTo({ top: 0 });
+  previewVisible.value = true;
+  createMinPageImage();
+};
+>>>>>>> dev
+
+/** 预览窗口确认 */
+const previewHandleOk = () => {
+  previewVisible.value = false;
+};
+
+/** 放大预览图片 */
+const onEnlarge = (value: string) => {
+  if (value == "downloadPdf") {
+    showConfirm();
+    return;
+  }
+  const widthArr = previewImgWidth.value.split("px");
+  const heightArr = previewImgHeight.value.split("px");
+  let width = 0;
+  let height = 0;
+  if (value == "zoomOut") {
+    width = Number(widthArr[0]) * 1.2;
+    height = Number(heightArr[0]) * 1.2;
+    console.log(width, "width");
+  } else if (value == "zoomIn") {
+    width = Number(widthArr[0]) / 1.2;
+    height = Number(heightArr[0]) / 1.2;
+  }
+  if (width > 800) {
+    message.info("已放到最大!");
+    return;
+  }
+  if (width < 200) {
+    message.info("已放到最小!");
+    return;
+  }
+
+  previewImgWidth.value = `${width}px`;
+  previewImgHeight.value = `${height}px`;
+};
+
 function createMinPageImage() {
+<<<<<<< HEAD
   return new Promise((resolve) => {
+=======
+  return new Promise((resolve, reject) => {
+>>>>>>> dev
     const htmlElement = document.getElementById("resume");
     const width: number = htmlElement?.offsetWidth || 0;
     const height: number = htmlElement?.offsetHeight || 0;
@@ -191,7 +264,10 @@ const onChange = () => {
   createMinPageImage();
 };
 
+const templateName = computed(() => route.currentRoute.value.query.name);
+
 function directPath() {
+  return;
   switch (route.currentRoute.value.query.name) {
     case "resume-01":
       route.push({ path: "/resumeEdit/template01" });
@@ -267,11 +343,20 @@ function directPath() {
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 .toolTip {
   // width: 100px;
   height: 100px;
   position: absolute;
   top: 1160px;
   left: calc(760px + (100vw - 756px) / 2);
+=======
+.modal-img-box {
+  width: 100%;
+  height: calc(100vh - 200px);
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+>>>>>>> dev
 }
 </style>

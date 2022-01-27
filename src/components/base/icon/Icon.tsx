@@ -14,7 +14,7 @@ export const Icon =  defineComponent({
         
        const svgRef = ref<string>('');
        
-       console.log(svgRef,'svgRef');
+  
        
         const loadFile = function (name: string) {
             // name为文件所在位置
