@@ -16,9 +16,9 @@
 
 
 
-![运行效果1](https://www.dxjl.cc/images/app1.png)
+![运行效果1](https://github.com/yangxuechen/resume_vue3_ts/blob/master/src/assets/readme/temp1.png)
 
-![运行效果2](https://www.dxjl.cc/images/app2.png)
+![运行效果2](https://github.com/yangxuechen/resume_vue3_ts/blob/master/src/assets/readme/temp2.png)
 
 ### 预览地址 [https://www.dxjl.cc/](https://www.dxjl.cc/)
 
