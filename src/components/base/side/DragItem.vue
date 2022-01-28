@@ -17,6 +17,13 @@
         :titleSize="tSize"
         @remove="onRemove"
       ></JobIntension>
+      <JobIntension2
+        v-if="props.componentName == 'JobIntension2'"
+        :titleType="tType"
+        :titleWidth="tWidth"
+        :titleSize="tSize"
+        @remove="onRemove"
+      ></JobIntension2>
       <Eduction
         v-if="props.componentName == 'Education'"
         :titleType="tType"
@@ -24,6 +31,10 @@
         :titleSize="tSize"
         @remove="onRemove"
       ></Eduction>
+      <EductionA
+        :edit="edit"
+        v-if="props.componentName == 'EducationA'"
+      ></EductionA>
       <WorkExperience
         v-if="props.componentName == 'WorkExperience'"
         :titleType="tType"
@@ -31,6 +42,13 @@
         :titleSize="tSize"
         @remove="onRemove"
       ></WorkExperience>
+      <WorkExperiseTimeLine
+        v-if="props.componentName == 'WorkExperienceTimeLine'"
+      >
+      </WorkExperiseTimeLine>
+      <WorkExperience2
+        v-if="props.componentName == 'WorkExperience2'"
+      ></WorkExperience2>
       <OpenSourcePro
         v-if="props.componentName == 'OpenSourcePro'"
         :titleType="tType"
@@ -43,19 +61,23 @@
 </template>
 
 <script lang="ts" setup>
-import JobIntension from "../../layout/JobIntension.vue";
-import Eduction from "../../layout/Eduction.vue";
-import WorkExperience from "../../layout/WorkExperience.vue";
+import JobIntension from "../jobIntension/JobIntension.vue";
+import Eduction from "../edu/Education.vue";
+import WorkExperience from "../work/WorkExperience.vue";
 import OpenSourcePro from "../../layout/OpenSourcePro.vue";
-import { computed, defineEmit, defineProps } from "vue";
+import { computed, defineEmit, defineProps, ref } from "vue";
 import { message } from "ant-design-vue";
 import AvatarTop2 from "../avatar/AvatarTop2.vue";
 import AvatarTop from "../avatar/AvatarTop.vue";
 import Skill1 from "../../layout/Skill1.vue";
 import PersonInfo from "../../layout/PersonInfo.vue";
-import Avatar from "../../layout/Avatar.vue";
+import Avatar from "../avatar/Avatar.vue";
 import BaseInfoRight from "../baseinfo/BaseInfoRight.vue";
 import Skill02 from "../skill/Skill02.vue";
+import JobIntension2 from "../jobIntension/JobIntension2.vue";
+import EductionA from "../edu/EducationA.vue";
+import WorkExperiseTimeLine from "../work/WorkExperienceTimeLine.vue";
+import WorkExperience2 from "../work/WorkExperience2.vue";
 
 const props = defineProps({
   componentName: { type: String, default: "JobIntension" },
@@ -68,7 +90,7 @@ const props = defineProps({
 const emit = defineEmit({
   removeComps: (val: String) => Boolean,
 });
-
+const edit = ref<boolean>(false);
 const tType = computed(() => props.titleType);
 const tWidth = computed(() => props.titleWidth);
 const tSize = computed(() => props.titleSize);

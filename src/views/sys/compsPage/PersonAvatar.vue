@@ -43,7 +43,7 @@
 
 <script lang="ts" setup>
 import RsCard from "../../../components/base/card/RsCard.vue";
-import Avatar from "../../../components/layout/Avatar.vue";
+import Avatar from "../../../components/base/avatar/Avatar.vue";
 import AvatarTop from "../../../components/base/avatar/AvatarTop.vue";
 import AvatarTop2 from "../../../components/base/avatar/AvatarTop2.vue";
 </script>

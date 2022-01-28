@@ -1,12 +1,26 @@
 <template>
-  <div class="work-box">
-    <TitleA title="工作经历" @btnClick="onBtnClick"></TitleA>
+  <div>
+    <div>
+      <TitleB
+        title="工作经历"
+        iconName="work-filling"
+        :backgroundColorChange="true"
+        borderColor="#fff"
+        font-size="14px"
+        :show-tool="true"
+        :titleType="props.titleType"
+        :size="titleSize"
+        color="#fff"
+        :style="{ width: titleWidth }"
+        @btnClick="onBtnClick"
+      ></TitleB>
+    </div>
     <div v-for="(workExperience, index) in workExperienceList">
-      <WorkEdit2
+      <WorkEditTimeline
         :workExperience="workExperience"
         @workExperienceChange="onWorkExperienceChange"
         :dataIndex="index"
-      ></WorkEdit2>
+      ></WorkEditTimeline>
     </div>
   </div>
 </template>
@@ -14,14 +28,18 @@
 <script lang="ts" setup>
 import { reactive } from "@vue/reactivity";
 import { message } from "ant-design-vue";
-import { ref } from "vue";
+import { defineProps, ref } from "vue";
 import { useStore } from "vuex";
-import TitleA from "../../../components/base/title/TitleA.vue";
+import TitleB from "../title/TitleB.vue";
 import { UserInfo, WorkExperience } from "../../../views/UserInfo";
-import WorkEdit2 from "../../layout/work/WorkEdit2.vue";
+import WorkEditTimeline from "../../layout/work/WorkEditTimeline.vue";
 import user from "../../../utils/initUserInfo";
 const state = reactive<boolean[]>([true, false, false]);
-
+const props = defineProps({
+  titleType: { type: String, default: "title-01" },
+  titleSize: { type: String, default: "normal" },
+  titleWidth: { type: String, default: "100%" },
+});
 const store = useStore();
 const workExperienceList = reactive<WorkExperience[]>(
   store.state.user.userInfo.workExperienceList
@@ -73,8 +91,61 @@ const updateStore = () => {
 </script>
 
 <style lang="less" scoped>
-.work-box {
+.tool-box {
   width: 100%;
-  padding: 15px;
+  height: auto;
+  display: flex;
+  flex-direction: row-reverse;
+  visibility: visible;
+}
+.tool {
+  width: 200px;
+  height: 40px;
+  border: 2px var(--rs-bgcolor-1) dashed;
+  border-radius: 3px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 10px;
+  color: var(--rs-bgcolor-1);
+  font-size: 30px;
+}
+
+.line-time {
+  padding: 0;
+}
+
+.workEdit-item {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 0 15px 0;
+}
+
+.item {
+  padding: 10px 5px;
+}
+
+.input_dash {
+  height: 20px;
+  border-color: white;
+  //   padding: 5px;
+  border-width: 0ch;
+  text-align: left;
+  border-color: white;
+  border-width: 1px;
+  border-style: dotted;
+  background-color: white;
+  color: black;
+}
+.input_dash:focus {
+  background: none;
+  outline: none;
+  border: 0px;
+  //    padding: 5px;
+  border-color: tomato;
+  border-width: 1px;
+  border-style: dotted;
 }
 </style>

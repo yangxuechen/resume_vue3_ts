@@ -79,8 +79,8 @@ import {
 import { message } from "ant-design-vue";
 import { computed, defineEmit, defineProps, reactive, ref } from "vue";
 import { useStore } from "vuex";
-import { UserInfo } from "../../views/UserInfo";
-import TitleB from "../base/title/TitleB.vue";
+import { UserInfo } from "../../../views/UserInfo";
+import TitleB from "../title/TitleB.vue";
 const title = ref<string>("求职意向");
 const props = defineProps({
   titleType: { type: String, default: "title-01" },

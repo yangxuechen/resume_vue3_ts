@@ -28,12 +28,12 @@
     </CompsDisplay> -->
     <div class="comps-box">
       <VueDraggableNext
-        v-model="list1"
-        :group="{ name: 'people', pull: 'clone', put: true }"
+        v-model="list"
+        :group="{ name: 'people', pull: 'clone', put: false }"
         :sort="true"
       >
         <transition-group>
-          <div v-for="element in list1" :key="element">
+          <div v-for="element in list" :key="element">
             <DragItem :component-name="element.componentName"></DragItem>
           </div>
         </transition-group>
@@ -74,23 +74,69 @@ const activeKey = ref("All");
 
 const compsList = ref<TemplateComps[]>([
   { name: "All", desc: "全部", type: "1" },
+  { name: "Avatar", desc: "头像信息", type: "1" },
   { name: "JobIntension", desc: "求职意向", type: "1" },
   { name: "Education", desc: "教育背景", type: "1" },
   { name: "WorkExperience", desc: "工作经历", type: "1" },
   { name: "OpenSourcePro", desc: "开源项目", type: "1" },
+  { name: "PersonInfo", desc: "个人信息", type: "1" },
+  { name: "Skill", desc: "基础技能", type: "1" },
 ]);
-const list1 = ref<any[]>([
+const list = ref<any[]>([
   { componentName: "JobIntension" },
   { componentName: "Education" },
   { componentName: "WorkExperience" },
   { componentName: "OpenSourcePro" },
   { componentName: "Skill02" },
   { componentName: "BaseInfoRight" },
-  // { componentName: "Avatar" },
-  // { componentName: "PersonInfo" },
-  // { componentName: "Skill1" },
+  { componentName: "Avatar" },
+  { componentName: "PersonInfo" },
+  { componentName: "Skill1" },
   { componentName: "AvatarTop" },
   { componentName: "AvatarTop2" },
+]);
+
+const listAll = ref<any[]>([
+  { componentName: "JobIntension" },
+  { componentName: "Education" },
+  { componentName: "WorkExperience" },
+  { componentName: "OpenSourcePro" },
+  { componentName: "Skill02" },
+  { componentName: "BaseInfoRight" },
+  { componentName: "Avatar" },
+  { componentName: "PersonInfo" },
+  { componentName: "Skill1" },
+  { componentName: "AvatarTop" },
+  { componentName: "AvatarTop2" },
+]);
+const listAvatar = ref<any[]>([
+  { componentName: "Avatar" },
+  { componentName: "AvatarTop" },
+  { componentName: "AvatarTop2" },
+]);
+
+const listJobIntension = ref<any[]>([
+  { componentName: "JobIntension" },
+  { componentName: "JobIntension2" },
+]);
+const listEducation = ref<any[]>([
+  { componentName: "Education" },
+  { componentName: "EducationA" },
+]);
+
+const listWorkExperience = ref<any[]>([
+  { componentName: "WorkExperience" },
+  { componentName: "WorkExperience2" },
+  { componentName: "WorkExperienceTimeLine" },
+]);
+const listOpenSourcePro = ref<any[]>([{ componentName: "OpenSourcePro" }]);
+const listPersonInfo = ref<any[]>([
+  { componentName: "PersonInfo" },
+  { componentName: "BaseInfoRight" },
+]);
+const listSkill = ref<any[]>([
+  { componentName: "Skill1" },
+  { componentName: "Skill02" },
 ]);
 
 const props = defineProps({
@@ -114,7 +160,23 @@ const callback = (val: string) => {
 };
 
 const onTabChange = (activeKey: String) => {
-  message.info(activeKey);
+  if (activeKey == "JobIntension") {
+    list.value = listJobIntension.value;
+  } else if (activeKey == "Avatar") {
+    list.value = listAvatar.value;
+  } else if (activeKey == "All") {
+    list.value = listAll.value;
+  } else if (activeKey == "Education") {
+    list.value = listEducation.value;
+  } else if (activeKey == "WorkExperience") {
+    list.value = listWorkExperience.value;
+  } else if (activeKey == "OpenSourcePro") {
+    list.value = listOpenSourcePro.value;
+  } else if (activeKey == "PersonInfo") {
+    list.value = listPersonInfo.value;
+  } else if (activeKey == "Skill") {
+    list.value = listSkill.value;
+  }
 };
 </script>
 
