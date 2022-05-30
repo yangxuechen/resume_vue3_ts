@@ -4,9 +4,10 @@ const routes: Array<RouteRecordRaw> = [
     {  
         path:'/', 
         name:'index',
-         redirect: '/resumeTemplate',
+         redirect: '/templateIndex',
         component: () => import('../views/MainFrame.vue'),
         children:[
+          { path:'/templateIndex',component: () => import('../views/index/Index.vue')},
             { path:'/resumeTemplate',component: () => import('../views/user/ResumeTemplate.vue')},
             { path:'/mineResume',component: () => import('../views/user/MineResume.vue')},
             { path:'/recruitment',component: () => import('../views/user/Recruitment.vue')},

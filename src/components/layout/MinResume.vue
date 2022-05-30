@@ -2,7 +2,7 @@
   <div class="minResume-box">
     <div style="width: 260px">
       <img :src="resumeData.imgUrl" class="img-resume" />
-      <div class="title">{{ resumeData.desc }}</div>
+      <!-- <div class="title">{{ resumeData.desc }}</div> -->
     </div>
     <div class="tips">
       <a-button type="primary" size="small" class="btn">点击查看</a-button>
@@ -55,7 +55,7 @@ const resumeData = reactive<MinResumeData>({
   position: absolute;
   background-color: #6b645e36;
   width: 260px;
-  height: 400px;
+  height: 370px;
   z-index: 9;
   top: 0;
   cursor: pointer;

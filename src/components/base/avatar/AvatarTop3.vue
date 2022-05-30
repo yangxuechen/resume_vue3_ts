@@ -1,19 +1,5 @@
 <template>
   <div class="avatar-top3-box">
-    <!-- <svg
-      height="350"
-      width="1480"
-      viewBox="0 0 1480 350"
-      xmlns="http://www.w3.org/2000/svg"
-      transform="rotate(180)"
-    >
-      <path
-        d="M 0,560 C 0,560 0,280 0,280 C 99.61904761904762,280.6071428571429 199.23809523809524,281.2142857142857 322,256 C 444.76190476190476,230.78571428571428 590.6666666666667,179.74999999999997 740,194 C 889.3333333333333,208.25000000000003 1042.095238095238,287.78571428571433 1166,313 C 1289.904761904762,338.21428571428567 1384.952380952381,309.10714285714283 1480,280 C 1480,280 1480,560 1480,560 Z"
-        stroke="none"
-        strokewidth="0"
-        :fill="bgColor"
-      ></path>
-    </svg> -->
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
       <path
         :fill="bgColor"
@@ -22,15 +8,27 @@
       ></path>
     </svg>
 
-    <div class="a-t-box-1">{{ name }}</div>
+    <div class="a-t-box-1">
+      <RsInput
+        :showIcon="false"
+        :showTitle="false"
+        :value="name"
+        width="120px"
+        height="40px"
+        :background-color="bgColor"
+        class="name"
+        style="font-size: 35px; font-weight: bold; color: #fff"
+        @updateVal="updateName"
+      ></RsInput>
+    </div>
     <div class="a-t-box-2">
       <img
         :src="avatarUrl"
-        style="width: 100px; border-radius: 50%"
+        style="width: 100px; height: 100px; border-radius: 50%"
         @click="uploadImg"
       />
     </div>
-    <!-- <div class="btn-box">
+    <div class="btn-box">
       <input
         type="file"
         style="width: 120px; height: 10px"
@@ -38,7 +36,7 @@
         id="btn_upload"
         @change="preView($event)"
       />
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -47,6 +45,7 @@ import { computed, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import img_url from "../../../assets/avatar-xx.png";
 import { UserInfo } from "../../../views/UserInfo";
+import RsInput from "../input/RsInput.vue";
 interface AvatarData {
   name: string;
   desc: string;
@@ -64,6 +63,12 @@ const user = reactive<AvatarData>({
   avatarUrl: img_url,
 });
 
+const updateName = (val: string) => {
+  const tempUser: UserInfo = store.state.user.userInfo;
+  tempUser.userInfoHead.name = val;
+  store.commit("user/setUserInfo", tempUser);
+};
+
 const preView = (e: any) => {
   console.log(e.target.files[0]);
   const src = window.URL.createObjectURL(e.target.files[0]);
@@ -77,7 +82,7 @@ const preView = (e: any) => {
   console.log(src);
 
   user.avatarUrl = src;
-
+  avatarUrl.value = src;
   const tempUser: UserInfo = store.state.user.userInfo;
   tempUser.userInfoHead.avatar = src;
   store.commit("user/setUserInfo", tempUser);
@@ -110,11 +115,11 @@ const bgColor = computed(() => store.state.app.themeColor);
 
   .a-t-box-1 {
     width: 20%;
-
+    padding-left: 25px;
+    padding-top: 10px;
     position: absolute;
     top: 30px;
     color: white;
-    font-size: 50px;
     z-index: 99;
   }
 
@@ -130,5 +135,11 @@ const bgColor = computed(() => store.state.app.themeColor);
     font-size: 50px;
     z-index: 99;
   }
+}
+
+.btn-box {
+  visibility: hidden;
+  width: 0;
+  height: 10px;
 }
 </style>

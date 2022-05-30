@@ -311,7 +311,7 @@ function directPath() {
     height: auto;
     overflow: auto;
     // background-color: chocolate;
-
+    overflow-x: hidden;
     padding: 15px;
   }
 

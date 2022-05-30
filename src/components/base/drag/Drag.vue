@@ -3,7 +3,7 @@
     <panel :edit="edit" @changEditState="onClick">
       <AvatarTop v-if="props.componentName == 'AvatarTop'"></AvatarTop>
       <AvatarTop2 v-if="props.componentName == 'AvatarTop2'"></AvatarTop2>
-       <AvatarTop3 v-if="props.componentName == 'AvatarTop3'"></AvatarTop3>
+      <AvatarTop3 v-if="props.componentName == 'AvatarTop3'"></AvatarTop3>
       <Avatar v-if="props.componentName == 'Avatar'"></Avatar>
       <PersonInfo v-if="props.componentName == 'PersonInfo'"></PersonInfo>
       <BaseInfoRight
@@ -25,6 +25,13 @@
         :titleSize="tSize"
         @remove="onRemove"
       ></JobIntension2>
+      <JobIntension3
+        v-if="props.componentName == 'JobIntension3'"
+        :titleType="tType"
+        :titleWidth="tWidth"
+        :titleSize="tSize"
+        @remove="onRemove"
+      ></JobIntension3>
       <Eduction
         v-if="props.componentName == 'Education'"
         :titleType="tType"
@@ -32,6 +39,13 @@
         :titleSize="tSize"
         @remove="onRemove"
       ></Eduction>
+      <EductionB
+        v-if="props.componentName == 'EducationB'"
+        :titleType="tType"
+        :titleWidth="tWidth"
+        :titleSize="tSize"
+        @remove="onRemove"
+      ></EductionB>
       <WorkExperience
         v-if="props.componentName == 'WorkExperience'"
         :titleType="tType"
@@ -46,6 +60,9 @@
       <WorkExperience2
         v-if="props.componentName == 'WorkExperience2'"
       ></WorkExperience2>
+      <WorkExperience3
+        v-if="props.componentName == 'WorkExperience3'"
+      ></WorkExperience3>
       <OpenSourcePro
         v-if="props.componentName == 'OpenSourcePro'"
         :titleType="tType"
@@ -53,6 +70,13 @@
         :titleSize="tSize"
         @remove="onRemove"
       ></OpenSourcePro>
+      <OpenSourcePro2
+        v-if="props.componentName == 'OpenSourcePro2'"
+        :titleType="tType"
+        :titleWidth="tWidth"
+        :titleSize="tSize"
+        @remove="onRemove"
+      ></OpenSourcePro2>
 
       <EducationA
         :edit="edit"
@@ -68,6 +92,7 @@ import JobIntension from "../jobIntension/JobIntension.vue";
 import Eduction from "../edu/Education.vue";
 import WorkExperience from "../work/WorkExperience.vue";
 import OpenSourcePro from "../../layout/OpenSourcePro.vue";
+import OpenSourcePro2 from "../work/OpenSourcePro2.vue";
 import { computed, defineEmit, defineProps, ref } from "vue";
 import { message } from "ant-design-vue";
 import AvatarTop2 from "../avatar/AvatarTop2.vue";
@@ -79,12 +104,15 @@ import Avatar from "../avatar/Avatar.vue";
 import Skill02 from "../skill/Skill02.vue";
 import BaseInfoRight from "../baseinfo/BaseInfoRight.vue";
 import EductionA from "../edu/EducationA.vue";
+import EductionB from "../edu/EducationB.vue";
 import WorkExperise from "../work/WorkExperience2.vue";
 import Panel from "../panel/Panel.vue";
 import JobIntension2 from "../jobIntension/JobIntension2.vue";
+import JobIntension3 from "../jobIntension/JobIntension3.vue";
 import EducationA from "../edu/EducationA.vue";
 import WorkExperiseTimeLine from "../work/WorkExperienceTimeLine.vue";
 import WorkExperience2 from "../work/WorkExperience2.vue";
+import WorkExperience3 from "../work/WorkExperience3.vue";
 
 const props = defineProps({
   componentName: { type: String, default: "JobIntension" },
