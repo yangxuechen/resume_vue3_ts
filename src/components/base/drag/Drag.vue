@@ -3,6 +3,7 @@
     <panel :edit="edit" @changEditState="onClick">
       <AvatarTop v-if="props.componentName == 'AvatarTop'"></AvatarTop>
       <AvatarTop2 v-if="props.componentName == 'AvatarTop2'"></AvatarTop2>
+       <AvatarTop3 v-if="props.componentName == 'AvatarTop3'"></AvatarTop3>
       <Avatar v-if="props.componentName == 'Avatar'"></Avatar>
       <PersonInfo v-if="props.componentName == 'PersonInfo'"></PersonInfo>
       <BaseInfoRight
@@ -71,6 +72,7 @@ import { computed, defineEmit, defineProps, ref } from "vue";
 import { message } from "ant-design-vue";
 import AvatarTop2 from "../avatar/AvatarTop2.vue";
 import AvatarTop from "../avatar/AvatarTop.vue";
+import AvatarTop3 from "../avatar/AvatarTop3.vue";
 import Skill1 from "../../layout/Skill1.vue";
 import PersonInfo from "../../layout/PersonInfo.vue";
 import Avatar from "../avatar/Avatar.vue";

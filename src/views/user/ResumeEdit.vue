@@ -27,6 +27,10 @@
           @colorChange="onChange"
           v-if="templateName == 'resume-04'"
         ></Template04>
+        <Template05
+          @colorChange="onChange"
+          v-if="templateName == 'resume-05'"
+        ></Template05>
         <!-- <router-view @colorChange="onChange"></router-view> -->
       </div>
     </div>
@@ -72,6 +76,7 @@ import LeftSideTool from "../../components/base/side/LeftSideTool.vue";
 import Template02 from "../template/Template02.vue";
 import Template03 from "../template/Template03.vue";
 import Template04 from "../template/Template04.vue";
+import Template05 from "../template/Template05.vue";
 import AddComps from "../../components/base/side/AddComps.vue";
 import PreViewTool from "../../components/base/tool/PreViewTool.vue";
 
@@ -207,11 +212,24 @@ const onEnlarge = (value: string) => {
 
 function createMinPageImage() {
   return new Promise((resolve, reject) => {
-    const htmlElement = document.getElementById("resume");
+    const element = document.createElement("p");
+    element.innerHTML = "hello world";
+
+    const htmlElement = document.getElementById("resume") || element;
     const width: number = htmlElement?.offsetWidth || 0;
     const height: number = htmlElement?.offsetHeight || 0;
 
+    // document.body.appendChild(htmlElement);
     //console.log(width + " " + height);
+
+    // html2canvas(htmlElement!, {
+    //   height: 1480,
+    //   width: 720,
+    // }).then((canvas) => {
+    //   // console.log(canvas.toDataURL());
+    //   minPage.value = canvas.toDataURL() + "";
+    //   resolve("success");
+    // });
 
     html2canvas(htmlElement!, {
       height: htmlElement?.offsetHeight,
@@ -230,13 +248,13 @@ onMounted(() => {
   console.log(store.state.user.userInfo, "store resume 111");
   directPath();
   window.scrollTo({ top: 0 });
-  createMinPageImage();
+  //  createMinPageImage();
   //loading.value = false;
-  setTimeout(() => {
-    createMinPageImage();
+  // setTimeout(() => {
+  //   createMinPageImage();
 
-    console.log("刷新");
-  }, 300);
+  //   console.log("刷新");
+  // }, 300);
 
   setTimeout(() => {
     loading.value = false;
