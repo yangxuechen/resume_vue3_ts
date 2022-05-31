@@ -35,6 +35,7 @@ const datalist = ref<MinResumeData[]>([
   { imgUrl: resumeImgUrl3, desc: "", name: "resume-03" },
   { imgUrl: resumeImgUrl4, desc: "", name: "resume-04" },
   { imgUrl: resumeImgUrl5, desc: "", name: "resume-05" },
+  { imgUrl: resumeImgUrl5, desc: "", name: "resume-06" },
 ]);
 
 const route = useRouter();

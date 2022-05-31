@@ -31,6 +31,10 @@
           @colorChange="onChange"
           v-if="templateName == 'resume-05'"
         ></Template05>
+        <Template06
+          @colorChange="onChange"
+          v-if="templateName == 'resume-06'"
+        ></Template06>
         <!-- <router-view @colorChange="onChange"></router-view> -->
       </div>
     </div>
@@ -77,6 +81,7 @@ import Template02 from "../template/Template02.vue";
 import Template03 from "../template/Template03.vue";
 import Template04 from "../template/Template04.vue";
 import Template05 from "../template/Template05.vue";
+import Template06 from "../template/Template06.vue";
 import AddComps from "../../components/base/side/AddComps.vue";
 import PreViewTool from "../../components/base/tool/PreViewTool.vue";
 
