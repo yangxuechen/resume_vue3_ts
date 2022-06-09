@@ -1,1 +1,0 @@
-import{p as s,l as a,o as d,c as e,w as t,i as o}from"./vendor.794e2e38.js";const c={},n=t();s("data-v-358ecd4d");const r={class:"contrainer"},i=o("div",null,"test",-1);a();const l=n(((s,a)=>(d(),e("div",r,[i]))));c.render=l,c.__scopeId="data-v-358ecd4d";export default c;
