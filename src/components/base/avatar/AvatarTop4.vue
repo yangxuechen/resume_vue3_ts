@@ -63,7 +63,7 @@
         height="40px"
         :background-color="bgColor"
         class="name"
-        style="font-size: 35px; font-weight: bold; color: #fff"
+        style="font-size: 15px; font-weight: bold; color: #fff"
         @updateVal="updateName"
       ></RsInput>
     </div>
@@ -255,10 +255,10 @@ const updateEmail = (val: string) => {
     padding-left: 25px;
     padding-top: 10px;
     position: absolute;
-    top: 15px;
-    left: 174px;
+    top: 20px;
+    left: 135px;
 
-    color: white;
+    // color: white;
     z-index: 99;
   }
 

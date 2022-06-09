@@ -19,6 +19,7 @@ import resumeImgUrl2 from "../../assets/resume-temp/temp-02.png";
 import resumeImgUrl3 from "../../assets/resume-temp/temp-03.png";
 import resumeImgUrl4 from "../../assets/resume-temp/temp-04.png";
 import resumeImgUrl5 from "../../assets/resume-temp/temp-05.png";
+import resumeImgUrl6 from "../../assets/resume-temp/temp-06.png";
 import { ref } from "vue";
 import MinResume from "../../components/layout/MinResume.vue";
 import { useRouter } from "vue-router";
@@ -35,7 +36,7 @@ const datalist = ref<MinResumeData[]>([
   { imgUrl: resumeImgUrl3, desc: "", name: "resume-03" },
   { imgUrl: resumeImgUrl4, desc: "", name: "resume-04" },
   { imgUrl: resumeImgUrl5, desc: "", name: "resume-05" },
-  { imgUrl: resumeImgUrl5, desc: "", name: "resume-06" },
+  { imgUrl: resumeImgUrl6, desc: "", name: "resume-06" },
 ]);
 
 const route = useRouter();

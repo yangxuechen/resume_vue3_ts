@@ -6,10 +6,10 @@
         <h2>大象简历</h2>
       </div>
       <div class="rightBox">
-        <div class="item" @click="onClick_3">使用教程</div>
+        <!-- <div class="item" @click="onClick_3">使用教程</div> -->
         <div class="item" @click="onClick_1">模版中心</div>
-        <div class="item" @click="onClick_2">隐私政策</div>
-        <div class="item" @click="onClick_5">组件库</div>
+        <!-- <div class="item" @click="onClick_2">隐私政策</div>
+        <div class="item" @click="onClick_5">组件库</div> -->
         <div class="item" @click="onClick_4">联系我们</div>
       </div>
     </div>
@@ -23,7 +23,7 @@ const onClick_2 = () => {
   route.push({ path: "/privacyPolicy" });
 };
 const onClick_1 = () => {
-  route.push({ path: "/resumeTemplate" });
+  route.push({ path: "/templateIndex" });
 };
 
 const onClick_3 = () => {
