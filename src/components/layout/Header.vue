@@ -11,6 +11,14 @@
         <!-- <div class="item" @click="onClick_2">隐私政策</div>
         <div class="item" @click="onClick_5">组件库</div> -->
         <div class="item" @click="onClick_4">联系我们</div>
+        <div class="item">
+          <a
+            href="https://github.com/yangxuechen/resume_vue3_ts"
+            style="color: black"
+            target="_blank"
+            >github</a
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -110,6 +118,7 @@ const onClick_5 = () => {
       cursor: pointer;
       font-size: 1rem;
       font-weight: bold;
+      color: black;
     }
   }
 }
