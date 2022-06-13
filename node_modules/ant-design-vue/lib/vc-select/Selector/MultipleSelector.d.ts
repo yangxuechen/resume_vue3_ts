@@ -1,0 +1,84 @@
+import type { LabelValueType, RawValueType, CustomTagProps } from '../interface/generator';
+import type { RenderNode } from '../interface';
+import type { InnerSelectorProps } from './interface';
+import type { VNodeChild } from 'vue';
+declare type SelectorProps = InnerSelectorProps & {
+    removeIcon?: RenderNode;
+    maxTagCount?: number | 'responsive';
+    maxTagTextLength?: number;
+    maxTagPlaceholder?: VNodeChild | ((omittedValues: LabelValueType[]) => VNodeChild);
+    tokenSeparators?: string[];
+    tagRender?: (props: CustomTagProps) => VNodeChild;
+    onToggleOpen: any;
+    choiceTransitionName?: string;
+    onSelect: (value: RawValueType, option: {
+        selected: boolean;
+    }) => void;
+};
+declare const SelectSelector: import("vue").DefineComponent<SelectorProps, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, import("vue").EmitsOptions, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
+    prefixCls?: unknown;
+    id?: unknown;
+    mode?: unknown;
+    inputRef?: unknown;
+    placeholder?: unknown;
+    disabled?: unknown;
+    autofocus?: unknown;
+    autocomplete?: unknown;
+    values?: unknown;
+    showSearch?: unknown;
+    searchValue?: unknown;
+    accessibilityIndex?: unknown;
+    open?: unknown;
+    tabindex?: unknown;
+    onInputKeyDown?: unknown;
+    onInputMouseDown?: unknown;
+    onInputChange?: unknown;
+    onInputPaste?: unknown;
+    onInputCompositionStart?: unknown;
+    onInputCompositionEnd?: unknown;
+    removeIcon?: unknown;
+    maxTagCount?: unknown;
+    maxTagTextLength?: unknown;
+    maxTagPlaceholder?: unknown;
+    tokenSeparators?: unknown;
+    tagRender?: unknown;
+    onToggleOpen?: unknown;
+    choiceTransitionName?: unknown;
+    onSelect?: unknown;
+} & {
+    onToggleOpen: any;
+} & {
+    values?: LabelValueType;
+    prefixCls?: string;
+    onSelect?: (value: RawValueType, option: {
+        selected: boolean;
+    }) => void;
+    tabindex?: string | number;
+    open?: boolean;
+    disabled?: boolean;
+    mode?: import("../interface").Mode;
+    id?: string;
+    searchValue?: string;
+    inputRef?: import("../../_util/createRef").RefObject;
+    autofocus?: boolean;
+    autocomplete?: string;
+    accessibilityIndex?: number;
+    placeholder?: VNodeChild;
+    showSearch?: boolean;
+    onInputKeyDown?: void;
+    onInputMouseDown?: void;
+    onInputChange?: void;
+    onInputPaste?: void;
+    onInputCompositionStart?: void;
+    onInputCompositionEnd?: void;
+    removeIcon?: RenderNode;
+    maxTagCount?: number | "responsive";
+    maxTagTextLength?: number;
+    maxTagPlaceholder?: VNodeChild | ((omittedValues: LabelValueType[]) => VNodeChild);
+    tokenSeparators?: string;
+    tagRender?: (props: CustomTagProps) => VNodeChild;
+    choiceTransitionName?: string;
+}>, {
+    onToggleOpen: any;
+}>;
+export default SelectSelector;

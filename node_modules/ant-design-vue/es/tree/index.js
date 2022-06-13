@@ -1,0 +1,16 @@
+import Tree from './Tree';
+import DirectoryTree from './DirectoryTree';
+Tree.TreeNode.name = 'ATreeNode';
+Tree.DirectoryTree = DirectoryTree;
+/* istanbul ignore next */
+
+Tree.install = function (app) {
+  app.component(Tree.name, Tree);
+  app.component(Tree.TreeNode.name, Tree.TreeNode);
+  app.component(DirectoryTree.name, DirectoryTree);
+  return app;
+};
+
+export var TreeNode = Tree.TreeNode;
+export { DirectoryTree };
+export default Tree;

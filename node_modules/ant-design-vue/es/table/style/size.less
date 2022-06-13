@@ -1,0 +1,55 @@
+@table-padding-vertical-md: (@table-padding-vertical * 3 / 4);
+@table-padding-horizontal-md: (@table-padding-horizontal / 2);
+@table-padding-vertical-sm: (@table-padding-vertical / 2);
+@table-padding-horizontal-sm: (@table-padding-horizontal / 2);
+
+.table-size(@size, @padding-vertical, @padding-horizontal) {
+  .@{table-prefix-cls}.@{table-prefix-cls}-@{size} {
+    > .@{table-prefix-cls}-title,
+    > .@{table-prefix-cls}-content > .@{table-prefix-cls}-footer {
+      padding: @padding-vertical @padding-horizontal;
+    }
+    > .@{table-prefix-cls}-content {
+      > .@{table-prefix-cls}-header > table,
+      > .@{table-prefix-cls}-body > table,
+      > .@{table-prefix-cls}-scroll > .@{table-prefix-cls}-header > table,
+      > .@{table-prefix-cls}-scroll > .@{table-prefix-cls}-body > table,
+      > .@{table-prefix-cls}-fixed-left > .@{table-prefix-cls}-header > table,
+      > .@{table-prefix-cls}-fixed-right > .@{table-prefix-cls}-header > table,
+      > .@{table-prefix-cls}-fixed-left
+        > .@{table-prefix-cls}-body-outer
+        > .@{table-prefix-cls}-body-inner
+        > table,
+      > .@{table-prefix-cls}-fixed-right
+        > .@{table-prefix-cls}-body-outer
+        > .@{table-prefix-cls}-body-inner
+        > table {
+        > .@{table-prefix-cls}-thead > tr > th,
+        > .@{table-prefix-cls}-tbody > tr > td {
+          padding: @padding-vertical @padding-horizontal;
+        }
+      }
+    }
+
+    tr.@{table-prefix-cls}-expanded-row td > .@{table-prefix-cls}-wrapper {
+      margin: -@padding-vertical (-@table-padding-horizontal / 2) -@padding-vertical - 1px;
+    }
+  }
+}
+
+// ================================================================
+// =                            Middle                            =
+// ================================================================
+.table-size(~'middle', @table-padding-vertical-md, @table-padding-horizontal-md);
+
+// ================================================================
+// =                            Small                             =
+// ================================================================
+.table-size(~'small', @table-padding-vertical-sm, @table-padding-horizontal-sm);
+
+.@{table-prefix-cls}-small {
+  .@{table-prefix-cls}-selection-column {
+    width: 46px;
+    min-width: 46px;
+  }
+}

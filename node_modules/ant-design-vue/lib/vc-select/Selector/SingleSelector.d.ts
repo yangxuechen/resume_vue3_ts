@@ -1,0 +1,57 @@
+import type { InnerSelectorProps } from './interface';
+import type { VNodeChild } from 'vue';
+interface SelectorProps extends InnerSelectorProps {
+    inputElement: VNodeChild;
+    activeValue: string;
+    backfill?: boolean;
+}
+declare const SingleSelector: import("vue").DefineComponent<SelectorProps, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, import("vue").EmitsOptions, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
+    inputElement?: unknown;
+    activeValue?: unknown;
+    backfill?: unknown;
+    prefixCls?: unknown;
+    id?: unknown;
+    mode?: unknown;
+    inputRef?: unknown;
+    placeholder?: unknown;
+    disabled?: unknown;
+    autofocus?: unknown;
+    autocomplete?: unknown;
+    values?: unknown;
+    showSearch?: unknown;
+    searchValue?: unknown;
+    accessibilityIndex?: unknown;
+    open?: unknown;
+    tabindex?: unknown;
+    onInputKeyDown?: unknown;
+    onInputMouseDown?: unknown;
+    onInputChange?: unknown;
+    onInputPaste?: unknown;
+    onInputCompositionStart?: unknown;
+    onInputCompositionEnd?: unknown;
+} & {} & {
+    values?: import("../interface/generator").LabelValueType;
+    prefixCls?: string;
+    tabindex?: string | number;
+    open?: boolean;
+    disabled?: boolean;
+    mode?: import("../interface").Mode;
+    id?: string;
+    searchValue?: string;
+    inputRef?: import("../../_util/createRef").RefObject;
+    inputElement?: VNodeChild;
+    autofocus?: boolean;
+    autocomplete?: string;
+    accessibilityIndex?: number;
+    placeholder?: VNodeChild;
+    showSearch?: boolean;
+    onInputKeyDown?: void;
+    onInputMouseDown?: void;
+    onInputChange?: void;
+    onInputPaste?: void;
+    onInputCompositionStart?: void;
+    onInputCompositionEnd?: void;
+    activeValue?: string;
+    backfill?: boolean;
+}>, {}>;
+export default SingleSelector;

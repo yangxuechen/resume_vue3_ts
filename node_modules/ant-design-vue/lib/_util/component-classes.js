@@ -1,0 +1,208 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _default;
+exports.ClassList = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
+
+var _indexOf = _interopRequireDefault(require("lodash/indexOf"));
+
+/**
+ * source by `component-classes`
+ * https://github.com/component/classes.git
+ */
+
+/**
+ * Whitespace regexp.
+ */
+var re = /\s+/;
+
+var ClassList = /*#__PURE__*/function () {
+  function ClassList(el) {
+    (0, _classCallCheck2.default)(this, ClassList);
+
+    if (!el || !el.nodeType) {
+      throw new Error('A DOM element reference is required');
+    }
+
+    this.el = el;
+    this.list = el.classList;
+  }
+
+  (0, _createClass2.default)(ClassList, [{
+    key: "array",
+    value: function array() {
+      var className = this.el.getAttribute('class') || '';
+      var str = className.replace(/^\s+|\s+$/g, '');
+      var arr = str.split(re);
+      if ('' === arr[0]) arr.shift();
+      return arr;
+    }
+    /**
+     * Add class `name` if not already present.
+     *
+     * @param {String} name
+     * @return {ClassList}
+     * @api public
+     */
+
+  }, {
+    key: "add",
+    value: function add(name) {
+      // classList
+      if (this.list) {
+        this.list.add(name);
+        return this;
+      } // fallback
+
+
+      var arr = this.array();
+      var i = (0, _indexOf.default)(arr, name);
+      if (!~i) arr.push(name);
+      this.el.className = arr.join(' ');
+      return this;
+    }
+    /**
+     * Remove class `name` when present, or
+     * pass a regular expression to remove
+     * any which match.
+     *
+     * @param {String|RegExp} name
+     * @return {ClassList}
+     * @api public
+     */
+
+  }, {
+    key: "remove",
+    value: function remove(name) {
+      if ('[object RegExp]' === toString.call(name)) {
+        return this._removeMatching(name);
+      } // classList
+
+
+      if (this.list) {
+        this.list.remove(name);
+        return this;
+      } // fallback
+
+
+      var arr = this.array();
+      var i = (0, _indexOf.default)(arr, name);
+      if (~i) arr.splice(i, 1);
+      this.el.className = arr.join(' ');
+      return this;
+    }
+    /**
+     * Remove all classes matching `re`.
+     *
+     * @param {RegExp} re
+     * @return {ClassList}
+     * @api private
+     */
+
+  }, {
+    key: "_removeMatching",
+    value: function _removeMatching(re) {
+      var arr = this.array();
+
+      for (var i = 0; i < arr.length; i++) {
+        if (re.test(arr[i])) {
+          this.remove(arr[i]);
+        }
+      }
+
+      return this;
+    }
+    /**
+     * Toggle class `name`, can force state via `force`.
+     *
+     * For browsers that support classList, but do not support `force` yet,
+     * the mistake will be detected and corrected.
+     *
+     * @param {String} name
+     * @param {Boolean} force
+     * @return {ClassList}
+     * @api public
+     */
+
+  }, {
+    key: "toggle",
+    value: function toggle(name, force) {
+      // classList
+      if (this.list) {
+        if ('undefined' !== typeof force) {
+          if (force !== this.list.toggle(name, force)) {
+            this.list.toggle(name); // toggle again to correct
+          }
+        } else {
+          this.list.toggle(name);
+        }
+
+        return this;
+      } // fallback
+
+
+      if ('undefined' !== typeof force) {
+        if (!force) {
+          this.remove(name);
+        } else {
+          this.add(name);
+        }
+      } else {
+        if (this.has(name)) {
+          this.remove(name);
+        } else {
+          this.add(name);
+        }
+      }
+
+      return this;
+    }
+    /**
+     * Check if class `name` is present.
+     *
+     * @param {String} name
+     * @api public
+     */
+
+  }, {
+    key: "has",
+    value: function has(name) {
+      return this.list ? this.list.contains(name) : !!~(0, _indexOf.default)(this.array(), name);
+    }
+    /**
+     * Check if class `name` is present.
+     *
+     * @param {String} name
+     * @api public
+     */
+
+  }, {
+    key: "contains",
+    value: function contains(name) {
+      return this.has(name);
+    }
+  }]);
+  return ClassList;
+}();
+/**
+ * Wrap `el` in a `ClassList`.
+ *
+ * @param {Element} el
+ * @return {ClassList}
+ * @api public
+ */
+
+
+exports.ClassList = ClassList;
+
+function _default(el) {
+  return new ClassList(el);
+}

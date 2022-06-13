@@ -1,0 +1,11 @@
+export function getTodayTime(value: any): moment.Moment;
+export function getTitleString(value: any): any;
+export function getTodayTimeStr(value: any): any;
+export function getMonthName(month: any): any;
+export function syncTime(from: any, to: any): void;
+export function getTimeConfig(value: any, disabledTime: any): any;
+export function isTimeValidByConfig(value: any, disabledTimeConfig: any): boolean;
+export function isTimeValid(value: any, disabledTime: any): boolean;
+export function isAllowedDate(value: any, disabledDate: any, disabledTime: any): boolean;
+export function formatDate(value: any, format: any): any;
+import moment from "moment";

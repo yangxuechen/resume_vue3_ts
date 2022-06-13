@@ -1,0 +1,23 @@
+{
+    "name": "@types/raf",
+    "version": "3.4.0",
+    "description": "TypeScript definitions for raf",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Ben Lorantfy",
+            "url": "https://github.com/BenLorantfy",
+            "githubUsername": "BenLorantfy"
+        }
+    ],
+    "main": "",
+    "types": "index",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+    },
+    "scripts": {},
+    "dependencies": {},
+    "typesPublisherContentHash": "0c3d2cdca7759973a1103c65d7a0f145d0fc503e851040030f272cdc5cb17846",
+    "typeScriptVersion": "2.0"
+}

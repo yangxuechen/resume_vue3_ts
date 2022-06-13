@@ -1,0 +1,137 @@
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+/* stylelint-disable no-duplicate-selectors */
+/* stylelint-disable */
+/* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
+.ant-color-picker {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  position: relative;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  min-width: 55px;
+}
+.ant-color-picker .pickr {
+  display: inline-block;
+}
+.ant-color-picker .pickr .pcr-button {
+  width: 18px;
+  height: 18px;
+  margin-left: 7px;
+}
+.ant-color-picker .pickr .pcr-button:focus {
+  box-shadow: none;
+}
+.ant-color-picker.ant-color-picker-disabled {
+  cursor: not-allowed;
+}
+.ant-color-picker.ant-color-picker-disabled .ant-color-picker-selection {
+  background: #f5f5f5;
+  box-shadow: none;
+  border: 1px solid #d9d9d9;
+}
+.ant-color-picker.ant-color-picker-disabled .ant-color-picker-selection:hover,
+.ant-color-picker.ant-color-picker-disabled .ant-color-picker-selection:focus,
+.ant-color-picker.ant-color-picker-disabled .ant-color-picker-selection:active {
+  border: 1px solid #d9d9d9;
+  box-shadow: none;
+}
+.ant-color-picker.ant-color-picker-disabled.ant-color-picker-open .ant-color-picker-icon svg {
+  transform: none;
+}
+.ant-color-picker-open .ant-color-picker-icon svg {
+  transform: rotate(180deg);
+}
+.ant-color-picker-open .ant-color-picker-selection {
+  border-color: #40a9ff;
+  border-right-width: 1px !important;
+  outline: 0;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+.ant-color-picker-selection {
+  display: block;
+  box-sizing: border-box;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-top-width: 1.02px;
+  border-radius: 2px;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  height: 32px;
+  cursor: inherit;
+}
+.ant-color-picker-selection:hover {
+  border-color: #40a9ff;
+  border-right-width: 1px !important;
+}
+.ant-color-picker-icon {
+  display: inline-block;
+  color: inherit;
+  font-style: normal;
+  line-height: 0;
+  text-align: center;
+  text-transform: none;
+  vertical-align: -0.125em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  margin-top: -6px;
+  color: rgba(0, 0, 0, 0.25);
+  font-size: 12px;
+  line-height: 1;
+  transform-origin: 50% 50%;
+}
+.ant-color-picker-icon > * {
+  line-height: 1;
+}
+.ant-color-picker-icon svg {
+  display: inline-block;
+}
+.ant-color-picker-icon::before {
+  display: none;
+}
+.ant-color-picker-icon .ant-color-picker-icon-icon {
+  display: block;
+}
+.ant-color-picker-icon svg {
+  transition: transform 0.3s;
+}
+.ant-color-picker-lg {
+  font-size: 16px;
+}
+.ant-color-picker-lg .ant-color-picker-selection {
+  line-height: 28px;
+  height: 40px;
+}
+.ant-color-picker-lg .ant-color-picker-icon {
+  top: 20px;
+}
+.ant-color-picker-sm .ant-color-picker-selection {
+  line-height: 12px;
+  height: 24px;
+}
+.ant-color-picker-sm .pickr .pcr-button {
+  width: 14px;
+  height: 14px;
+}
+.ant-color-picker-sm .ant-color-picker-icon {
+  right: 10px;
+  top: 12px;
+  font-size: 10px;
+}

@@ -1,0 +1,14 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _Tooltip = _interopRequireDefault(require("./Tooltip"));
+
+// based on rc-tooltip 3.7.3
+var _default = _Tooltip.default;
+exports.default = _default;

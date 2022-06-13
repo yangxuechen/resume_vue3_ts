@@ -1,0 +1,73 @@
+{
+  "name": "@ant-design/icons-vue",
+  "version": "6.0.1",
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ant-design/ant-design-icons/tree/master/packages/icons-vue"
+  },
+  "contributors": [
+    "tangjinzhou <415800467@qq.com>"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "clean": "./scripts/cleanup.sh",
+    "start": "vc-tools run server",
+    "lint": "eslint src/ --ext .tsx,.ts",
+    "compile": "vc-tools run compile",
+    "test": "cross-env NODE_ENV=test jest --config .jest.js",
+    "prepublishOnly": "npm run lint && npm run generate && npm run compile && npm run test",
+    "generate": "rimraf src/icons && TS_NODE_PROJECT=scripts/tsconfig.json node -r ts-node/register scripts/generate.ts --target=icon",
+    "postcompile": "npm run clean && TS_NODE_PROJECT=scripts/tsconfig.json node -r ts-node/register scripts/generate.ts --target=entry",
+    "ci": "npm run lint && npm run compile && npm run test"
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.3"
+  },
+  "devDependencies": {
+    "@vue/babel-plugin-jsx": "^1.0.0",
+    "@babel/runtime": "^7.11.2",
+    "@types/jest": "^24.0.17",
+    "@types/node": "^13.13.15",
+    "@typescript-eslint/eslint-plugin": "^4.14.0",
+    "@typescript-eslint/parser": "^4.14.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.3",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "@vue/test-utils": "^2.0.0-beta.2",
+    "cross-env": "^5.2.0",
+    "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-vue": "^7.0.0",
+    "jest": "^25.4.0",
+    "jest-serializer-vue": "^2.0.2",
+    "prettier": "^1.19.1",
+    "ts-node": "^9.1.1",
+    "typescript": "~4.1.3",
+    "vc-tools": "^3.0.0",
+    "vue": "^3.0.3",
+    "vue-jest": "^5.0.0-alpha.3"
+  },
+  "dependencies": {
+    "@ant-design/colors": "^5.0.0",
+    "@ant-design/icons-svg": "^4.0.0",
+    "@types/lodash": "^4.14.165",
+    "lodash": "^4.17.15"
+  },
+  "config": {
+    "port": 9528,
+    "entry": {
+      "@ant-design/icons-vue": [
+        "./src/index.jsx"
+      ]
+    }
+  },
+  "description": "Ant Design Icons for Vue"
+}

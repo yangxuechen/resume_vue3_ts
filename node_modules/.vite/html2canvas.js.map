@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["dep:html2canvas"],
+  "sourcesContent": ["import d from \"./node_modules/html2canvas/dist/html2canvas.esm.js\";export default d;"],
+  "mappings": ";;;;;;AAAmE,IAAO,sBAAQ;",
+  "names": []
+}
