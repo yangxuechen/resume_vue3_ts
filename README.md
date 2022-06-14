@@ -14,6 +14,7 @@
 # 技术栈 
 `Vue 3` + `Typescript` + `Vite` 
 
+<a href="https://yangxuechen.github.io/resume_vue3_ts/#/resumeEdit/template01?name=resume-01"><img src="https://github.com/yangxuechen/resume_vue3_ts/blob/master/src/assets/readme/temp1.png"></img></a>
 
 
 ![运行效果1](https://github.com/yangxuechen/resume_vue3_ts/blob/master/src/assets/readme/temp1.png)
