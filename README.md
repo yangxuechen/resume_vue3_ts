@@ -10,26 +10,31 @@
 - :six:支持拖拽调整模块位置 :heavy_check_mark:
 
 
+
 # 模版  
-<div style="display:flex; flex-wrap: wrap;">
-<a href="https://yangxuechen.github.io/resume_vue3_ts/#/resumeEdit/template01?name=resume-01"><img src="https://github.com/yangxuechen/resume_vue3_ts/blob/dev/src/assets/resume-temp/temp-01.png" style=" width: 250px;
-    height: 350px;padding:0 15px;"></img></a>
 
-  <a href="https://yangxuechen.github.io/resume_vue3_ts/#/resumeEdit/template01?name=resume-02"><img src="https://github.com/yangxuechen/resume_vue3_ts/blob/dev/src/assets/resume-temp/temp-02.png" style=" width: 250px;
-    height: 350px;padding:0 15px;"></img></a>
+<table>
 
-  <a href="https://yangxuechen.github.io/resume_vue3_ts/#/resumeEdit/template01?name=resume-03"><img src="https://github.com/yangxuechen/resume_vue3_ts/blob/dev/src/assets/resume-temp/temp-03.png" style=" width: 250px;
-    height: 350px;padding:0 15px;"></img></a>
+  <tr>
+      <td><a href="https://yangxuechen.github.io/resume_vue3_ts/#/resumeEdit/template01?name=resume-01"><img src="https://github.com/yangxuechen/resume_vue3_ts/blob/dev/src/assets/resume-temp/temp-01.png" style=" width: 250px;
+    height: 350px;padding:0 15px;"></img></a></td>  
+    <td>  <a href="https://yangxuechen.github.io/resume_vue3_ts/#/resumeEdit/template01?name=resume-02"><img src="https://github.com/yangxuechen/resume_vue3_ts/blob/dev/src/assets/resume-temp/temp-02.png" style=" width: 250px;
+    height: 350px;padding:0 15px;"></img></a></td>
+<td> <a href="https://yangxuechen.github.io/resume_vue3_ts/#/resumeEdit/template01?name=resume-03"><img src="https://github.com/yangxuechen/resume_vue3_ts/blob/dev/src/assets/resume-temp/temp-03.png" style=" width: 250px;
+    height: 350px;padding:0 15px;"></img></a></td>
+  </tr>
 
-  <a href="https://yangxuechen.github.io/resume_vue3_ts/#/resumeEdit/template01?name=resume-04"><img src="https://github.com/yangxuechen/resume_vue3_ts/blob/dev/src/assets/resume-temp/temp-04.png" style=" width: 250px;
-    height: 350px;padding:0 15px;"></img></a>
-  
-  <a href="https://yangxuechen.github.io/resume_vue3_ts/#/resumeEdit/template01?name=resume-05"><img src="https://github.com/yangxuechen/resume_vue3_ts/blob/dev/src/assets/resume-temp/temp-05.png" style=" width: 250px;
-    height: 350px;padding:0 15px;"></img></a>
 
-  <a href="https://yangxuechen.github.io/resume_vue3_ts/#/resumeEdit/template01?name=resume-06"><img src="https://github.com/yangxuechen/resume_vue3_ts/blob/dev/src/assets/resume-temp/temp-06.png" style=" width: 250px;
-    height: 350px;padding:0 15px;"></img></a>
-</div>
+  <tr>
+      <td>  <a href="https://yangxuechen.github.io/resume_vue3_ts/#/resumeEdit/template01?name=resume-04"><img src="https://github.com/yangxuechen/resume_vue3_ts/blob/dev/src/assets/resume-temp/temp-04.png" style=" width: 250px;
+    height: 350px;padding:0 15px;"></img></a></td>
+      <td>  <a href="https://yangxuechen.github.io/resume_vue3_ts/#/resumeEdit/template01?name=resume-05"><img src="https://github.com/yangxuechen/resume_vue3_ts/blob/dev/src/assets/resume-temp/temp-05.png" style=" width: 250px;
+    height: 350px;padding:0 15px;"></img></a></td>
+      <td>  <a href="https://yangxuechen.github.io/resume_vue3_ts/#/resumeEdit/template01?name=resume-06"><img src="https://github.com/yangxuechen/resume_vue3_ts/blob/dev/src/assets/resume-temp/temp-06.png" style=" width: 250px;
+    height: 350px;padding:0 15px;"></img></a></td>
+  </tr>
+
+</table>
 
 
 ### 预览地址 [https://www.dxjl.cc/](https://www.dxjl.cc/)
