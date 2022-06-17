@@ -9,6 +9,7 @@
       :visible="addModalVisible"
       @changeDrawer="onAddCompsChange"
     ></AddComps>
+    <set-edit />
     <div class="box">
       <div class="rs-edit" id="resume" ref="resume">
         <Template01
@@ -35,6 +36,10 @@
           @colorChange="onChange"
           v-if="templateName == 'resume-06'"
         ></Template06>
+        <Template07
+          @colorChange="onChange"
+          v-if="templateName == 'resume-07'"
+        ></Template07>
         <!-- <router-view @colorChange="onChange"></router-view> -->
       </div>
     </div>
@@ -82,8 +87,10 @@ import Template03 from "../template/Template03.vue";
 import Template04 from "../template/Template04.vue";
 import Template05 from "../template/Template05.vue";
 import Template06 from "../template/Template06.vue";
+import Template07 from "../template/Template07.vue";
 import AddComps from "../../components/base/side/AddComps.vue";
 import PreViewTool from "../../components/base/tool/PreViewTool.vue";
+import SetEdit from "../../components/base/tool/SetEdit.vue";
 
 const store = useStore();
 const msg2 = ref<string>("1");
@@ -296,6 +303,8 @@ function directPath() {
 
   // route.push({ path: "/resumeEdit/template01" });
 }
+
+store.commit("app/setCanEdit", true);
 </script>
 
 <style lang="less" scoped>

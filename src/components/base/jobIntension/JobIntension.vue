@@ -84,7 +84,7 @@ import TitleB from "../title/TitleB.vue";
 const title = ref<string>("求职意向");
 const props = defineProps({
   titleType: { type: String, default: "title-01" },
-  titleSize: { type: String, default: "normal" },
+  titleSize: { type: String, default: "small" },
   titleWidth: { type: String, default: "100%" },
 });
 const store = useStore();

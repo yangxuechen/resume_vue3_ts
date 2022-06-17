@@ -116,7 +116,7 @@ button {
   position: fixed;
   border: 1px #e2e1e1 solid;
   right: 50px;
-  top: 100px;
+  top: 150px;
   align-items: center;
   justify-content: space-around;
   .color-box {

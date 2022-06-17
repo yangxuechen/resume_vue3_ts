@@ -9,16 +9,25 @@
     ></rs-svg-icon>
     <input class="rs-input label-box" v-if="props.showTitle" v-model="title" />
 
-    <input class="rs-input" v-model="inputValue" />
+    <input
+      class="rs-input"
+      v-if="canEdit"
+      :height="height"
+      v-model="inputValue"
+    />
+    <div v-else class="rs-input input-val">{{ inputValue }}</div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { message } from "ant-design-vue";
 import { computed, defineEmit, defineProps, reactive, ref } from "vue";
+import { useStore } from "vuex";
+
 import RsIcon from "../icon/RsIcon.vue";
 import SvgIcon from "../icon/SvgIcon.vue";
 
+const store = useStore();
 const props = defineProps({
   /**input输入框的值 */
   value: { type: String, default: "" },
@@ -46,6 +55,8 @@ const props = defineProps({
   fontWeight: { type: String, default: "normal" },
   /**输入框的大小 */
   size: { type: String, default: "normal" },
+
+  
 });
 
 const emit = defineEmit({
@@ -79,6 +90,8 @@ const iconWidth = computed(() => {
     return "40px";
   }
 });
+
+const canEdit = computed(() => store.state.app.canEdit);
 </script>
 
 <style lang="less" scoped>
@@ -102,10 +115,17 @@ const iconWidth = computed(() => {
     font-weight: v-bind(inputFontWeight);
     width: v-bind(inputWidth);
     height: v-bind(inputHeight);
+    line-height: v-bind(inputHeight);
     background-color: v-bind(bgColor);
     border-width: 1px;
     border-color: v-bind(bgColor);
     border-style: dotted;
+  }
+
+  .input-val {
+    text-align: left;
+    border: 1px;
+    padding: 1px 2px;
   }
 
   .rs-input:focus {
