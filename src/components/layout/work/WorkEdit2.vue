@@ -27,7 +27,7 @@
             class="input_dash"
             v-model="workExper.firstJobCompany"
             @change="workExperienceDataChange"
-            style="width: 120px"
+            style="width: 200px"
           />
         </div>
         <div class="item">

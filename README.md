@@ -37,8 +37,6 @@
 </table>
 
 
-### 预览地址 [https://www.dxjl.cc/](https://www.dxjl.cc/)
-
 ### 技术栈
 
 - `vue3` + `ant-design-vue 2.0` + `TypeScript` + `Vite` + `less`
