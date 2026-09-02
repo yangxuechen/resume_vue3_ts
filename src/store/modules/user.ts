@@ -18,14 +18,19 @@ export const user = {
     state: {
       userInfo :  JSON.parse(tempUserInfo) 
     },
+    token: '',
     mutations: {
       setUserInfo(state : { userInfo : UserInfo}, userInfo: UserInfo) {
         state.userInfo = userInfo;
         localStorage.setItem('userInfo',JSON.stringify(userInfo))
       },
+      setToken(state : { token: string }, token: string) {
+        state.token = token;
+      },
     },
 
     getters: {
         userInfo: (state: any) => state.userInfo,
+        token: (state: any) => state.token,
     },
   };

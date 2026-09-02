@@ -33,6 +33,17 @@
         ></rs-svg-icon>
         <div>预览</div>
       </div>
+
+      <div class="icon-item" @click="saveUserInfo">
+        <rs-svg-icon
+          name="save"
+          :showTool="false"
+          :hoverEffect="false"
+          color="black"
+          width="18px"
+        ></rs-svg-icon>
+        <div>保存</div>
+      </div>
     </div>
   </div>
 </template>
@@ -44,6 +55,7 @@ const emit = defineEmit({
   exportPdf: () => Boolean,
   openAddModal: () => Boolean,
   previewPdf: () => Boolean,
+  saveUserInfo: () => Boolean,
 });
 
 const exportPdf = () => {
@@ -56,6 +68,10 @@ const openAddModal = () => {
 
 const previewPdf = () => {
   emit("previewPdf");
+};
+
+const saveUserInfo = () => {
+  emit("saveUserInfo");
 };
 </script>
 

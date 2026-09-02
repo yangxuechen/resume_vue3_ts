@@ -36,6 +36,8 @@ const onClick = () => {
 //  }
 
 .box {
+  width: 100%;
+  min-height: 100vh;
   background-image: linear-gradient(to right top, #fdffff, #9fceda, #d6d7f9);
 }
 .mainContrainer {

@@ -54,6 +54,7 @@ const toResumeDetail = (item: MinResumeData) => {
 <style lang="less" scoped>
 .sys-web-index {
   width: 100%;
+  height: 100%;
   padding: 50px 25px;
 
   .sys-web-index-main {

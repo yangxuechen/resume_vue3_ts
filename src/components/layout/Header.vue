@@ -19,13 +19,84 @@
             >github</a
           >
         </div>
+        <div v-if="!loginUser" class="item" @click="loginModalVisible = true">
+          登录
+        </div>
+        <a-dropdown v-else placement="bottomRight">
+          <div class="item account-trigger">
+            <a-avatar class="account-avatar" :size="28">{{ accountInitial }}</a-avatar>
+            <span>{{ loginUser.username }}</span>
+          </div>
+          <template #overlay>
+            <a-menu>
+              <a-menu-item key="logout" @click="logout">退出登录</a-menu-item>
+            </a-menu>
+          </template>
+        </a-dropdown>
       </div>
     </div>
+    <LoginModal v-model:visible="loginModalVisible" @success="handleLoginSuccess" />
   </div>
 </template>
 
 <script lang="ts" setup>
+import { message } from "ant-design-vue";
+import { computed, ref } from "vue";
+import type { LoginResponse } from "@/api/user";
+import LoginModal from "@/components/user/LoginModal.vue";
 import route from "../../router";
+
+interface LoggedInUser {
+  username: string;
+  realName?: string;
+}
+
+const loginUserStorageKey = "loginUser";
+
+const getStoredLoginUser = (): LoggedInUser | null => {
+  const storedLoginUser = localStorage.getItem(loginUserStorageKey);
+  if (!storedLoginUser) {
+    return null;
+  }
+
+  try {
+    const loginUser = JSON.parse(storedLoginUser) as Partial<LoggedInUser>;
+    return typeof loginUser.username === "string" && loginUser.username
+      ? { username: loginUser.username }
+      : null;
+  } catch {
+    localStorage.removeItem(loginUserStorageKey);
+    return null;
+  }
+};
+
+const loginModalVisible = ref(false);
+const loginUser = ref<LoggedInUser | null>(getStoredLoginUser());
+const accountInitial = computed(() => loginUser.value?.username.charAt(0).toUpperCase() ?? "");
+
+const handleLoginSuccess = ({
+  username,
+  response,
+}: {
+  username: string;
+  response: LoginResponse;
+}) => {
+  const loginUsername = response.user?.username || response.username || username;
+  const realName : string = response?.user?.realName || '' as string;
+  loginUser.value = { username: loginUsername, realName: realName   };
+  localStorage.setItem(loginUserStorageKey, JSON.stringify(loginUser.value));
+
+  if (response.token) {
+    localStorage.setItem("token", response.token);
+  }
+};
+
+const logout = () => {
+  loginUser.value = null;
+  localStorage.removeItem(loginUserStorageKey);
+  localStorage.removeItem("token");
+  message.success("已退出登录");
+};
 
 const onClick_2 = () => {
   route.push({ path: "/privacyPolicy" });
@@ -119,6 +190,17 @@ const onClick_5 = () => {
       font-size: 1rem;
       font-weight: bold;
       color: black;
+    }
+
+    .account-trigger {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 50px;
+    }
+
+    .account-avatar {
+      flex-shrink: 0;
     }
   }
 }

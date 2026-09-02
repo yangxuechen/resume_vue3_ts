@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { createSvg } from './src/plugins/svgBuilder'
-
+import path from 'path' 
 import vueJsx from '@vitejs/plugin-vue-jsx'
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,6 +10,11 @@ export default defineConfig({
     // 引入svg
     createSvg('./src/assets/svg/'),
   ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
   server:{
     port:3001
   },
