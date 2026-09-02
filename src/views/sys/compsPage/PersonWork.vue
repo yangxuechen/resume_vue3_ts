@@ -31,8 +31,8 @@
 <script lang="ts" setup>
 import RsCard from "../../../components/base/card/RsCard.vue";
 
-import WorkExperience from "../../../components/layout/WorkExperience.vue";
-import WorkExperise from "../../../components/base/work/WorkExperise.vue";
+import WorkExperience from "../../../components/base/work/WorkExperience.vue";
+import WorkExperise from "../../../components/base/work/WorkExperience2.vue";
 </script>
 
 <style lang="less" scoped>

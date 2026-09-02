@@ -63,8 +63,8 @@ import {
 import { message } from "ant-design-vue";
 import { defineComponent, defineEmit, defineProps, reactive, ref } from "vue";
 import { useStore } from "vuex";
-import { Education } from "../../views/UserInfo";
-import TitleB from "../base/title/TitleB.vue";
+import { Education } from "../../../views/UserInfo";
+import TitleB from "../title/TitleB.vue";
 
 const props = defineProps({
   titleType: { type: String, default: "title-01" },

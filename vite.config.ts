@@ -12,5 +12,7 @@ export default defineConfig({
   ],
   server:{
     port:3001
-  }
+  },
+  // 上传打包项目到github pages 配置的路径
+  base:'/resume_vue3_ts/'
 })

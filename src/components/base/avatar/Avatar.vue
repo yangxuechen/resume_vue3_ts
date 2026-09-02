@@ -38,9 +38,9 @@
 <script lang="ts" setup>
 import { computed, defineProps, reactive, ref } from "vue";
 import { useStore } from "vuex";
-import img_url from "../../assets/avatar-xx.png";
+import img_url from "../../../assets/avatar-xx.png";
 
-import { UserInfo, UserInfoHead } from "../../views/UserInfo";
+import { UserInfo, UserInfoHead } from "../../../views/UserInfo";
 
 interface AvatarData {
   name: string;

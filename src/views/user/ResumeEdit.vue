@@ -9,6 +9,7 @@
       :visible="addModalVisible"
       @changeDrawer="onAddCompsChange"
     ></AddComps>
+    <set-edit />
     <div class="box">
       <div class="rs-edit" id="resume" ref="resume">
         <Template01
@@ -27,6 +28,18 @@
           @colorChange="onChange"
           v-if="templateName == 'resume-04'"
         ></Template04>
+        <Template05
+          @colorChange="onChange"
+          v-if="templateName == 'resume-05'"
+        ></Template05>
+        <Template06
+          @colorChange="onChange"
+          v-if="templateName == 'resume-06'"
+        ></Template06>
+        <Template07
+          @colorChange="onChange"
+          v-if="templateName == 'resume-07'"
+        ></Template07>
         <!-- <router-view @colorChange="onChange"></router-view> -->
       </div>
     </div>
@@ -72,8 +85,12 @@ import LeftSideTool from "../../components/base/side/LeftSideTool.vue";
 import Template02 from "../template/Template02.vue";
 import Template03 from "../template/Template03.vue";
 import Template04 from "../template/Template04.vue";
+import Template05 from "../template/Template05.vue";
+import Template06 from "../template/Template06.vue";
+import Template07 from "../template/Template07.vue";
 import AddComps from "../../components/base/side/AddComps.vue";
 import PreViewTool from "../../components/base/tool/PreViewTool.vue";
+import SetEdit from "../../components/base/tool/SetEdit.vue";
 
 const store = useStore();
 const msg2 = ref<string>("1");
@@ -207,11 +224,24 @@ const onEnlarge = (value: string) => {
 
 function createMinPageImage() {
   return new Promise((resolve, reject) => {
-    const htmlElement = document.getElementById("resume");
+    const element = document.createElement("p");
+    element.innerHTML = "hello world";
+
+    const htmlElement = document.getElementById("resume") || element;
     const width: number = htmlElement?.offsetWidth || 0;
     const height: number = htmlElement?.offsetHeight || 0;
 
+    // document.body.appendChild(htmlElement);
     //console.log(width + " " + height);
+
+    // html2canvas(htmlElement!, {
+    //   height: 1480,
+    //   width: 720,
+    // }).then((canvas) => {
+    //   // console.log(canvas.toDataURL());
+    //   minPage.value = canvas.toDataURL() + "";
+    //   resolve("success");
+    // });
 
     html2canvas(htmlElement!, {
       height: htmlElement?.offsetHeight,
@@ -230,13 +260,13 @@ onMounted(async () => {
   console.log(store.state.user.userInfo, "store resume 111");
   directPath();
   window.scrollTo({ top: 0 });
-  await createMinPageImage();
+  //  createMinPageImage();
   //loading.value = false;
-  setTimeout(() => {
-    createMinPageImage();
+  // setTimeout(() => {
+  //   createMinPageImage();
 
-    console.log("刷新");
-  }, 300);
+  //   console.log("刷新");
+  // }, 300);
 
   setTimeout(() => {
     loading.value = false;
@@ -273,6 +303,8 @@ function directPath() {
 
   // route.push({ path: "/resumeEdit/template01" });
 }
+
+store.commit("app/setCanEdit", true);
 </script>
 
 <style lang="less" scoped>
@@ -293,7 +325,7 @@ function directPath() {
     height: auto;
     overflow: auto;
     // background-color: chocolate;
-
+    overflow-x: hidden;
     padding: 15px;
   }
 

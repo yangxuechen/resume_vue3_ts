@@ -59,16 +59,16 @@
 </template>
 
 <script lang="ts" setup>
-import Avatar from "../../components/layout/Avatar.vue";
+import Avatar from "../../components/base/avatar/Avatar.vue";
 import AvatarTop from "../../components/base/avatar/AvatarTop.vue";
 import PersonInfo from "../../components/layout/PersonInfo.vue";
 import BaseInfoRight from "../../components/base/baseinfo/BaseInfoRight.vue";
 import { VueDraggableNext } from "vue-draggable-next";
 import Skill02 from "../../components/base/skill/Skill02.vue";
-import EductionA from "../../components/base/edu/EductionA.vue";
+import EductionA from "../../components/base/edu/EducationA.vue";
 import Panel from "../../components/base/panel/Panel.vue";
 import { defineEmit, onMounted, reactive, ref, watch } from "vue";
-import WorkExperise from "../../components/base/work/WorkExperise.vue";
+import WorkExperise from "../../components/base/work/WorkExperience2.vue";
 import Theme from "../../components/base/Theme.vue";
 import { message } from "ant-design-vue";
 import Drag from "../../components/base/drag/Drag.vue";
@@ -98,8 +98,8 @@ const list1 = ref<any[]>([
 ]);
 
 const list2 = ref<any[]>([
-  { componentName: "EductionA" },
-  { componentName: "WorkExperise" },
+  { componentName: "EducationA" },
+  { componentName: "WorkExperience2" },
 ]);
 
 const list3 = ref<any[]>([{ componentName: "AvatarTop" }]);

@@ -30,8 +30,8 @@
 
 <script lang="ts" setup>
 import RsCard from "../../../components/base/card/RsCard.vue";
-import Eduction from "../../../components/layout/Eduction.vue";
-import EductionA from "../../../components/base/edu/EductionA.vue";
+import Eduction from "../../../components/base/edu/Education.vue";
+import EductionA from "../../../components/base/edu/EducationA.vue";
 </script>
 
 <style lang="less" scoped>

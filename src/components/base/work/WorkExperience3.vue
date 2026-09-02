@@ -2,18 +2,13 @@
   <div class="info-box">
     <TitleB
       title="工作经历"
+      color="black"
       iconName="work-filling"
-      :backgroundColorChange="true"
-      borderColor="#fff"
-      font-size="14px"
-      :show-tool="true"
-      :titleType="props.titleType"
-      :size="titleSize"
-      color="#fff"
-      :style="{ width: titleWidth }"
+      titleType="title-04"
+      backgroundColor="#FFFFFF"
+      :backgroundColorChange="false"
       @btnClick="onBtnClick"
     ></TitleB>
-
     <div v-for="(workExperience, index) in workExperienceList">
       <WorkEdit
         :workExperience="workExperience"
@@ -36,11 +31,11 @@ import {
 import { message } from "ant-design-vue";
 import { defineEmit, defineProps, reactive, ref } from "vue";
 import { useStore } from "vuex";
-import { UserInfo, WorkExperience } from "../../views/UserInfo";
-import MainLeft from "./MainLeft.vue";
-import WorkEdit from "./work/WorkEdit.vue";
-import user from "../../utils/initUserInfo";
-import TitleB from "../base/title/TitleB.vue";
+import { UserInfo, WorkExperience } from "../../../views/UserInfo";
+import MainLeft from "../../layout/MainLeft.vue";
+import WorkEdit from "../../layout/work/WorkEdit.vue";
+import user from "../../../utils/initUserInfo";
+import TitleB from "../title/TitleB.vue";
 
 const props = defineProps({
   titleType: { type: String, default: "title-01" },
